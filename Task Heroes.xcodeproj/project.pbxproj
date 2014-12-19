@@ -21,6 +21,7 @@
 		6D67D2B31A40EAF500F49CDE /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D67D2B21A40EAF500F49CDE /* redButton.png */; };
 		6D67D2B51A40EB2A00F49CDE /* greenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D67D2B41A40EB2A00F49CDE /* greenButton.png */; };
 		6D67D2B91A41B9AC00F49CDE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2B81A41B9AC00F49CDE /* HomeViewController.m */; };
+		6DCF52511A4227AF0091187A /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF52501A4227AF0091187A /* RegisterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		6D67D2B41A40EB2A00F49CDE /* greenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenButton.png; sourceTree = "<group>"; };
 		6D67D2B71A41B9AC00F49CDE /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6D67D2B81A41B9AC00F49CDE /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		6DCF524F1A4227AF0091187A /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		6DCF52501A4227AF0091187A /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 				6D67D28E1A409C7500F49CDE /* LaunchScreen.xib */,
 				6D67D2831A409C7500F49CDE /* Task_Heroes.xcdatamodeld */,
 				6D67D27C1A409C7500F49CDE /* Supporting Files */,
+				6DCF524F1A4227AF0091187A /* RegisterViewController.h */,
+				6DCF52501A4227AF0091187A /* RegisterViewController.m */,
 			);
 			path = "Task Heroes";
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				6D67D2851A409C7500F49CDE /* Task_Heroes.xcdatamodeld in Sources */,
 				6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */,
 				6D67D2881A409C7500F49CDE /* ViewController.m in Sources */,
+				6DCF52511A4227AF0091187A /* RegisterViewController.m in Sources */,
 				6D67D27F1A409C7500F49CDE /* main.m in Sources */,
 				6D67D2B91A41B9AC00F49CDE /* HomeViewController.m in Sources */,
 			);
@@ -452,6 +458,7 @@
 				6D67D2A11A409C7600F49CDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D67D2A21A409C7600F49CDE /* Build configuration list for PBXNativeTarget "Task HeroesTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +467,7 @@
 				6D67D2A41A409C7600F49CDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

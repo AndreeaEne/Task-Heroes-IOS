@@ -74,7 +74,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.67843137254901964" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.082352941176470587" green="0.60784313725490191" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="518" height="320"/>
                     <connections>
@@ -166,7 +166,7 @@
         <!--Sign Up-->
         <scene sceneID="ISu-Wt-eVt">
             <objects>
-                <viewController title="Sign Up" id="YDW-mf-3Bv" sceneMemberID="viewController">
+                <viewController title="Sign Up" id="YDW-mf-3Bv" customClass="RegisterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rSt-3k-n4s"/>
                         <viewControllerLayoutGuide type="bottom" id="BhS-aM-N5I"/>
@@ -181,14 +181,90 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qeT-Oi-MVg" customClass="SOTextField">
+                                <rect key="frame" x="23" y="131" width="265" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YDW-mf-3Bv" id="hI4-Ex-yXA"/>
+                                    <outlet property="nextField" destination="YUb-pu-x9u" id="A9Y-qf-4bp"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YUb-pu-x9u" customClass="SOTextField">
+                                <rect key="frame" x="23" y="177" width="265" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YDW-mf-3Bv" id="8Ob-cc-0Oo"/>
+                                    <outlet property="nextField" destination="D75-Rc-7IX" id="OjZ-1L-a6j"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D75-Rc-7IX" customClass="SOTextField">
+                                <rect key="frame" x="23" y="228" width="265" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YDW-mf-3Bv" id="WqH-AR-LPN"/>
+                                    <outlet property="nextField" destination="T6H-Ar-MXq" id="qEg-ct-L9k"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="55d-sp-sBU" customClass="SOTextField">
+                                <rect key="frame" x="170" y="276" width="118" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YDW-mf-3Bv" id="PaY-LP-1HQ"/>
+                                    <outlet property="nextField" destination="Xzw-PG-z2P" id="2Xi-vV-KYg"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T6H-Ar-MXq" customClass="SOTextField">
+                                <rect key="frame" x="23" y="276" width="117" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YDW-mf-3Bv" id="YJm-LZ-055"/>
+                                    <outlet property="nextField" destination="55d-sp-sBU" id="KnL-M5-jdd"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Organisation Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xzw-PG-z2P" customClass="SOTextField">
+                                <rect key="frame" x="23" y="324" width="265" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YDW-mf-3Bv" id="bYs-hU-m61"/>
+                                    <outlet property="nextField" destination="Pfh-KB-8Vu" id="lPj-0Z-RHM"/>
+                                </connections>
+                            </textField>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0V-y5-a4y">
+                                <rect key="frame" x="-5" y="398" width="320" height="180"/>
+                            </pickerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Organisation Type" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pfh-KB-8Vu" customClass="SOTextField">
+                                <rect key="frame" x="23" y="373" width="265" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="selectOrg:" destination="YDW-mf-3Bv" eventType="touchDragInside" id="iGd-b8-H7P"/>
+                                    <action selector="selectOrgField:" destination="YDW-mf-3Bv" eventType="editingDidEnd" id="fbP-UO-lVk"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="518" height="320"/>
+                    <connections>
+                        <outlet property="OrgNameField" destination="Xzw-PG-z2P" id="Y5M-lk-5vM"/>
+                        <outlet property="OrgTypeField" destination="Pfh-KB-8Vu" id="vFj-tH-5es"/>
+                        <outlet property="emailField" destination="D75-Rc-7IX" id="1hP-mi-Z5w"/>
+                        <outlet property="firstnameField" destination="qeT-Oi-MVg" id="01l-cr-K3Y"/>
+                        <outlet property="lastnameField" destination="YUb-pu-x9u" id="aXv-Gj-0JP"/>
+                        <outlet property="orgTypePicker" destination="j0V-y5-a4y" id="hqq-Eg-9ZF"/>
+                        <outlet property="passConfirmField" destination="55d-sp-sBU" id="1bz-WP-NO4"/>
+                        <outlet property="passField" destination="T6H-Ar-MXq" id="Pb8-py-xaW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqF-Ji-59b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="266" y="-47"/>
+            <point key="canvasLocation" x="266" y="-58"/>
         </scene>
     </scenes>
     <resources>
