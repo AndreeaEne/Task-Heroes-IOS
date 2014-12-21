@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "Globals.h"
 
 @interface HomeViewController ()
 
@@ -18,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,16 +27,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)validateEmail:(NSString *)email {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:email];
+//Hide Keyboard
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"Hide keyboard");
+    //NSLog(@"touchesBegan:withEvent:");
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (IBAction)loginButton:(id)sender {
     NSString *msg;
     
-    BOOL email = [self validateEmail:[emailField text]];
+    BOOL email = [Globals validateEmail:[emailField text]];
     BOOL pass = [passField.text length] > 0;
     
     if (!email && !pass) {

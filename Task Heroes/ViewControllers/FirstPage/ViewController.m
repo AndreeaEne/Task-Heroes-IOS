@@ -10,9 +10,7 @@
 #import "DetailViewController.h"
 
 @interface ViewController ()
-
 @end
-
 
 
 @implementation ViewController
@@ -20,7 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
+    
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
     [super viewDidLoad];
     // nslog afiseaza in consola
@@ -28,9 +29,8 @@
     
 }
 
-- (void) viewWillDisappear:(BOOL)animated
-{
-    
+-(void) viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,12 +40,6 @@
 
 
 - (IBAction)showAlert:(id)sender {
-    NSLog(@"did touch button");
-    _label.text = @"Andreea chiar invata";
-    _label.textColor = [UIColor purpleColor];
-    _label.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
-    _label.textAlignment = NSTextAlignmentCenter;
-    
     [self performSegueWithIdentifier:@"firstViewToSecondView" sender:self];
 
 }

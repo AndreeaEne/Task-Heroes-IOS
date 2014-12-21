@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Globals.h"
 
-@interface RegisterViewController : UIViewController <UITextFieldDelegate>
+@interface RegisterViewController : UIViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *firstnameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastnameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passField;
 @property (weak, nonatomic) IBOutlet UITextField *passConfirmField;
 @property (weak, nonatomic) IBOutlet UITextField *OrgNameField;
-@property (weak, nonatomic) IBOutlet UITextField *OrgTypeField;
+@property (weak, nonatomic) IBOutlet UIButton *orgTypeButton;
 @property (weak, nonatomic) IBOutlet UIPickerView *orgTypePicker;
 
 @end
