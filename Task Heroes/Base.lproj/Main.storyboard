@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FiV-50-GGN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lCG-xf-ieD">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -76,16 +76,6 @@
                                     <segue destination="1P2-aQ-82p" kind="push" id="xeE-Dd-jHm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WFR-cq-78J">
-                                <rect key="frame" x="91" y="496" width="139" height="30"/>
-                                <state key="normal" title="Go to Table View" backgroundImage="greenButton.png">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1I5-9d-cY1" kind="push" id="3ao-0r-oHU"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.082352941176470587" green="0.60784313725490191" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -98,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="278"/>
+            <point key="canvasLocation" x="-170" y="290"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Oi7-ds-Zo8">
@@ -172,16 +162,53 @@
                         <outlet property="emailField" destination="ZHT-cL-peM" id="z04-fR-ffE"/>
                         <outlet property="loginButton" destination="M7v-sg-lrc" id="uOr-nA-bQM"/>
                         <outlet property="passField" destination="SZ8-we-aEZ" id="Fju-jo-6BO"/>
+                        <segue destination="Rgx-FS-il7" kind="push" identifier="LogIn" id="ngX-dJ-1Go"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yob-s5-GBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="354" y="675"/>
         </scene>
+        <!--Dashboard View Controller-->
+        <scene sceneID="CwP-w3-PTe">
+            <objects>
+                <viewController storyboardIdentifier="dashboardViewController" id="Rgx-FS-il7" customClass="DashboardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gxy-aT-94g"/>
+                        <viewControllerLayoutGuide type="bottom" id="cVf-Rf-DoH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cTk-HC-0DN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-YC-SIF">
+                                <rect key="frame" x="-8" y="37" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xtp-0Y-Pil">
+                        <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" style="plain" id="JAM-kC-ZCy"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="barButton" destination="JAM-kC-ZCy" id="5YP-dP-0WQ"/>
+                        <outlet property="tableView" destination="8GP-YC-SIF" id="zjj-sv-9T2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rym-S0-6zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="766" y="675"/>
+        </scene>
         <!--TableView Controller-->
         <scene sceneID="7Mt-Wp-iKc">
             <objects>
-                <viewController title="TableView Controller" id="1I5-9d-cY1" customClass="TableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tableViewController" title="TableView Controller" id="1I5-9d-cY1" customClass="TableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eV1-7c-gZp"/>
                         <viewControllerLayoutGuide type="bottom" id="qc7-Vj-WHc"/>
@@ -205,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89h-oc-aCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="-392"/>
+            <point key="canvasLocation" x="-666" y="-404"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="ISu-Wt-eVt">
@@ -345,6 +372,28 @@
             </objects>
             <point key="canvasLocation" x="766" y="-23"/>
         </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="13y-Wr-BFb">
+            <objects>
+                <viewController storyboardIdentifier="SWRevealViewController" id="lCG-xf-ieD" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nHl-yF-nn9"/>
+                        <viewControllerLayoutGuide type="bottom" id="WOm-tV-o4y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eX9-Q4-zBi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="1I5-9d-cY1" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="vkv-ID-a5A"/>
+                        <segue destination="FiV-50-GGN" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="kVD-IB-wbb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="knG-1F-rPs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1088" y="-62"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="akQ-F8-j4U">
             <objects>
@@ -356,12 +405,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Fvt-4b-FYg"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="5pG-et-h0x"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2i-Zx-nqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-660" y="290"/>
+            <point key="canvasLocation" x="-666" y="290"/>
         </scene>
     </scenes>
     <resources>
@@ -369,10 +418,12 @@
         <image name="greenButton.png" width="379" height="187"/>
         <image name="logo.png" width="600" height="600"/>
         <image name="redButton.png" width="379" height="187"/>
+        <image name="reveal-icon.png" width="22" height="17"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 </document>

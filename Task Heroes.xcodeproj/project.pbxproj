@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		6D1B56A71A45D177009B50C1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56A01A45D177009B50C1 /* HomeViewController.m */; };
 		6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56A31A45D177009B50C1 /* RegisterViewController.m */; };
-		6D1B56A91A45D177009B50C1 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56A61A45D177009B50C1 /* TableViewController.m */; };
 		6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56AD1A45D2C3009B50C1 /* greenButton.png */; };
 		6D1B56B21A45D2C3009B50C1 /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56AE1A45D2C3009B50C1 /* redButton.png */; };
 		6D1B56B31A45D2C3009B50C1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56B01A45D2C3009B50C1 /* logo.png */; };
 		6D1B56B71A464407009B50C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56B61A464407009B50C1 /* ViewController.m */; };
 		6D1B56BA1A464569009B50C1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56B91A464569009B50C1 /* background.png */; };
 		6D30480C1A477FC10059159B /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D30480B1A477FC10059159B /* Globals.m */; };
+		6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D30481D1A48A7880059159B /* DashboardViewController.m */; };
+		6D3048251A48ABD70059159B /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3048241A48ABD70059159B /* TableViewController.m */; };
+		6D54C9051A48C4240023032E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D54C9041A48C4240023032E /* SWRevealViewController.m */; };
 		6D67D27F1A409C7500F49CDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D27E1A409C7500F49CDE /* main.m */; };
 		6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2811A409C7500F49CDE /* AppDelegate.m */; };
 		6D67D2851A409C7500F49CDE /* Task_Heroes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2831A409C7500F49CDE /* Task_Heroes.xcdatamodeld */; };
@@ -25,6 +27,7 @@
 		6D67D29C1A409C7600F49CDE /* Task_HeroesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D29B1A409C7600F49CDE /* Task_HeroesTests.m */; };
 		6D67D2A61A409D1900F49CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D67D2A51A409D1900F49CDE /* MapKit.framework */; };
 		6D67D2AD1A40B96D00F49CDE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */; };
+		6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +45,6 @@
 		6D1B56A01A45D177009B50C1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		6D1B56A21A45D177009B50C1 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		6D1B56A31A45D177009B50C1 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		6D1B56A51A45D177009B50C1 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		6D1B56A61A45D177009B50C1 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		6D1B56AD1A45D2C3009B50C1 /* greenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenButton.png; sourceTree = "<group>"; };
 		6D1B56AE1A45D2C3009B50C1 /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redButton.png; sourceTree = "<group>"; };
 		6D1B56B01A45D2C3009B50C1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -52,6 +53,12 @@
 		6D1B56B91A464569009B50C1 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		6D30480A1A477FC10059159B /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		6D30480B1A477FC10059159B /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
+		6D30481C1A48A7880059159B /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		6D30481D1A48A7880059159B /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		6D3048231A48ABD70059159B /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		6D3048241A48ABD70059159B /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		6D54C9031A48C4240023032E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		6D54C9041A48C4240023032E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		6D67D2791A409C7500F49CDE /* Task Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Heroes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D67D27D1A409C7500F49CDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D67D27E1A409C7500F49CDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,6 +74,7 @@
 		6D67D2A51A409D1900F49CDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6D67D2AB1A40B96D00F49CDE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
 		6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
+		6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +99,12 @@
 		6D1B569C1A45D044009B50C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D54C9021A48C4240023032E /* SWRevealViewController */,
+				6D3048221A48ABD70059159B /* TableViewController */,
+				6D30481B1A48A7880059159B /* DashboardViewController */,
 				6D1B56B41A464407009B50C1 /* FirstPage */,
 				6D1B569E1A45D177009B50C1 /* HomeViewController */,
 				6D1B56A11A45D177009B50C1 /* RegisterViewController */,
-				6D1B56A41A45D177009B50C1 /* TableViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -117,18 +127,10 @@
 			path = RegisterViewController;
 			sourceTree = "<group>";
 		};
-		6D1B56A41A45D177009B50C1 /* TableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				6D1B56A51A45D177009B50C1 /* TableViewController.h */,
-				6D1B56A61A45D177009B50C1 /* TableViewController.m */,
-			);
-			path = TableViewController;
-			sourceTree = "<group>";
-		};
 		6D1B56AB1A45D2C3009B50C1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6DB8125A1A49DF8B0031FF4D /* Dashboard */,
 				6D1B56B81A464569009B50C1 /* ViewController */,
 				6D1B56AC1A45D2C3009B50C1 /* Buttons */,
 				6D1B56AF1A45D2C3009B50C1 /* HomeViewController */,
@@ -177,6 +179,33 @@
 				6D30480B1A477FC10059159B /* Globals.m */,
 			);
 			path = Globals;
+			sourceTree = "<group>";
+		};
+		6D30481B1A48A7880059159B /* DashboardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D30481C1A48A7880059159B /* DashboardViewController.h */,
+				6D30481D1A48A7880059159B /* DashboardViewController.m */,
+			);
+			path = DashboardViewController;
+			sourceTree = "<group>";
+		};
+		6D3048221A48ABD70059159B /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D3048231A48ABD70059159B /* TableViewController.h */,
+				6D3048241A48ABD70059159B /* TableViewController.m */,
+			);
+			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		6D54C9021A48C4240023032E /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D54C9031A48C4240023032E /* SWRevealViewController.h */,
+				6D54C9041A48C4240023032E /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		6D67D2701A409C7500F49CDE = {
@@ -241,6 +270,14 @@
 				6D67D29A1A409C7600F49CDE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DB8125A1A49DF8B0031FF4D /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +367,7 @@
 				6D67D28D1A409C7500F49CDE /* Images.xcassets in Resources */,
 				6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */,
 				6D1B56B21A45D2C3009B50C1 /* redButton.png in Resources */,
+				6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,13 +385,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D3048251A48ABD70059159B /* TableViewController.m in Sources */,
 				6D1B56B71A464407009B50C1 /* ViewController.m in Sources */,
-				6D1B56A91A45D177009B50C1 /* TableViewController.m in Sources */,
 				6D67D2AD1A40B96D00F49CDE /* DetailViewController.m in Sources */,
 				6D67D2851A409C7500F49CDE /* Task_Heroes.xcdatamodeld in Sources */,
 				6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */,
+				6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */,
 				6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */,
 				6D1B56A71A45D177009B50C1 /* HomeViewController.m in Sources */,
+				6D54C9051A48C4240023032E /* SWRevealViewController.m in Sources */,
 				6D30480C1A477FC10059159B /* Globals.m in Sources */,
 				6D67D27F1A409C7500F49CDE /* main.m in Sources */,
 			);

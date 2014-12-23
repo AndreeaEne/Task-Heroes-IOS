@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[DashboardViewController viewDidLoad]:DashboardViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.revealViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

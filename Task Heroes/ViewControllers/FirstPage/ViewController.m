@@ -39,11 +39,6 @@
 }
 
 
-- (IBAction)showAlert:(id)sender {
-    [self performSegueWithIdentifier:@"firstViewToSecondView" sender:self];
-
-}
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     

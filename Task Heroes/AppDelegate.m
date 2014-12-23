@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SWRevealViewController.h"
 
 @interface AppDelegate ()
 
@@ -108,6 +109,14 @@
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
 }
+
+- (void) setupRevealViewController
+{
+    SWRevealViewController *srvc = (SWRevealViewController *)self.window.rootViewController;
+    srvc.rearViewRevealWidth = 275;
+    srvc.toggleAnimationDuration = 0.25;
+}
+
 
 #pragma mark - Core Data Saving support
 

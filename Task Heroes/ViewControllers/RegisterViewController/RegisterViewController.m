@@ -160,7 +160,7 @@
         [self performSegueWithIdentifier: @"SignUp" sender: self];
         }
 }
-
+/* Transmite info la urmatorul view
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"SignUp"]) {
         NSLog(@"Segue Blocked");
@@ -171,7 +171,7 @@
     
     return YES;
 }
-
+*/
 @end
 
 @implementation SOTextField
