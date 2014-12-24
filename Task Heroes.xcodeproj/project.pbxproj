@@ -28,6 +28,7 @@
 		6D67D2A61A409D1900F49CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D67D2A51A409D1900F49CDE /* MapKit.framework */; };
 		6D67D2AD1A40B96D00F49CDE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */; };
 		6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */; };
+		6DB8125F1A4A07380031FF4D /* Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125E1A4A07380031FF4D /* Header.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		6D67D2AB1A40B96D00F49CDE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
 		6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
 		6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
+		6DB8125E1A4A07380031FF4D /* Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +101,6 @@
 		6D1B569C1A45D044009B50C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				6D54C9021A48C4240023032E /* SWRevealViewController */,
 				6D3048221A48ABD70059159B /* TableViewController */,
 				6D30481B1A48A7880059159B /* DashboardViewController */,
 				6D1B56B41A464407009B50C1 /* FirstPage */,
@@ -130,6 +131,7 @@
 		6D1B56AB1A45D2C3009B50C1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6DB8125D1A4A07380031FF4D /* RevealList */,
 				6DB8125A1A49DF8B0031FF4D /* Dashboard */,
 				6D1B56B81A464569009B50C1 /* ViewController */,
 				6D1B56AC1A45D2C3009B50C1 /* Buttons */,
@@ -205,7 +207,8 @@
 				6D54C9031A48C4240023032E /* SWRevealViewController.h */,
 				6D54C9041A48C4240023032E /* SWRevealViewController.m */,
 			);
-			path = SWRevealViewController;
+			name = SWRevealViewController;
+			path = ViewControllers/SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		6D67D2701A409C7500F49CDE = {
@@ -230,13 +233,14 @@
 		6D67D27B1A409C7500F49CDE /* Task Heroes */ = {
 			isa = PBXGroup;
 			children = (
-				6D3048091A477FC10059159B /* Globals */,
+				6DB812601A4A20D60031FF4D /* Interface */,
 				6D1B569C1A45D044009B50C1 /* ViewControllers */,
+				6D3048091A477FC10059159B /* Globals */,
+				6DB812611A4A212A0031FF4D /* Uitls */,
 				6D67D2AB1A40B96D00F49CDE /* DetailViewController.h */,
 				6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */,
 				6D67D2801A409C7500F49CDE /* AppDelegate.h */,
 				6D67D2811A409C7500F49CDE /* AppDelegate.m */,
-				6D67D2891A409C7500F49CDE /* Main.storyboard */,
 				6D67D28C1A409C7500F49CDE /* Images.xcassets */,
 				6D67D28E1A409C7500F49CDE /* LaunchScreen.xib */,
 				6D67D2831A409C7500F49CDE /* Task_Heroes.xcdatamodeld */,
@@ -278,6 +282,30 @@
 				6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		6DB8125D1A4A07380031FF4D /* RevealList */ = {
+			isa = PBXGroup;
+			children = (
+				6DB8125E1A4A07380031FF4D /* Header.png */,
+			);
+			path = RevealList;
+			sourceTree = "<group>";
+		};
+		6DB812601A4A20D60031FF4D /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				6D67D2891A409C7500F49CDE /* Main.storyboard */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		6DB812611A4A212A0031FF4D /* Uitls */ = {
+			isa = PBXGroup;
+			children = (
+				6D54C9021A48C4240023032E /* SWRevealViewController */,
+			);
+			name = Uitls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +394,7 @@
 				6D1B56B31A45D2C3009B50C1 /* logo.png in Resources */,
 				6D67D28D1A409C7500F49CDE /* Images.xcassets in Resources */,
 				6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */,
+				6DB8125F1A4A07380031FF4D /* Header.png in Resources */,
 				6D1B56B21A45D2C3009B50C1 /* redButton.png in Resources */,
 				6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */,
 			);

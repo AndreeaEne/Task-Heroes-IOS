@@ -16,13 +16,12 @@
     NSArray *content;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    content = [NSArray arrayWithObjects:@"Nume", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"Oganizatie", nil];
+   // [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organization Profile", nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

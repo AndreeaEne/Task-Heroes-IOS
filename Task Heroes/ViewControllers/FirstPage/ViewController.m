@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "DetailViewController.h"
 
+
+
 @interface ViewController ()
 @end
 
@@ -18,14 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    
-    [super viewDidLoad];
-    // nslog afiseaza in consola
-    NSLog(@"App - view did load");
     
 }
 
@@ -53,7 +50,7 @@
         DetailViewController *detailViewController = (DetailViewController *) segue.destinationViewController;
         detailViewController.projectID = 100;
     }
-    
+
     
 }
 
