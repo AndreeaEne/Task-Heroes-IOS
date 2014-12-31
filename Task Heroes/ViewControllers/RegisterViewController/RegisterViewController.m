@@ -27,7 +27,7 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [orgTypePicker setAlpha:0];
      content = [NSArray arrayWithObjects:@"Social", @"Studii Informatică", @"Studii Matematica", @"Fundraising",@"Resurse Umane", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"PR & Marketing", nil];
-    
+	
 }
 
 - (void)didReceiveMemoryWarning

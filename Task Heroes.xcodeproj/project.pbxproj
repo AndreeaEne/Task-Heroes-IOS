@@ -17,6 +17,7 @@
 		6D30480C1A477FC10059159B /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D30480B1A477FC10059159B /* Globals.m */; };
 		6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D30481D1A48A7880059159B /* DashboardViewController.m */; };
 		6D3048251A48ABD70059159B /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3048241A48ABD70059159B /* TableViewController.m */; };
+		6D322A851A52FB720052D2A0 /* MembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D322A841A52FB720052D2A0 /* MembersViewController.m */; };
 		6D54C9051A48C4240023032E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D54C9041A48C4240023032E /* SWRevealViewController.m */; };
 		6D67D27F1A409C7500F49CDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D27E1A409C7500F49CDE /* main.m */; };
 		6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2811A409C7500F49CDE /* AppDelegate.m */; };
@@ -29,6 +30,7 @@
 		6D67D2AD1A40B96D00F49CDE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */; };
 		6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */; };
 		6DB8125F1A4A07380031FF4D /* Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125E1A4A07380031FF4D /* Header.png */; };
+		6DBBDA751A532FA200B31D2D /* UIViewController+NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA741A532FA200B31D2D /* UIViewController+NavigationBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		6D30481D1A48A7880059159B /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		6D3048231A48ABD70059159B /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		6D3048241A48ABD70059159B /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		6D322A831A52FB720052D2A0 /* MembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MembersViewController.h; path = MembersViewController/MembersViewController.h; sourceTree = "<group>"; };
+		6D322A841A52FB720052D2A0 /* MembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MembersViewController.m; path = MembersViewController/MembersViewController.m; sourceTree = "<group>"; };
 		6D54C9031A48C4240023032E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		6D54C9041A48C4240023032E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		6D67D2791A409C7500F49CDE /* Task Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Heroes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +81,8 @@
 		6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
 		6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
 		6DB8125E1A4A07380031FF4D /* Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header.png; sourceTree = "<group>"; };
+		6DBBDA731A532FA200B31D2D /* UIViewController+NavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationBar.h"; sourceTree = "<group>"; };
+		6DBBDA741A532FA200B31D2D /* UIViewController+NavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationBar.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,8 @@
 		6D1B569C1A45D044009B50C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6DBBDA721A532FA200B31D2D /* UIViewController+NavigationBar */,
+				6D322A861A52FB7B0052D2A0 /* MembersViewController */,
 				6D3048221A48ABD70059159B /* TableViewController */,
 				6D30481B1A48A7880059159B /* DashboardViewController */,
 				6D1B56B41A464407009B50C1 /* FirstPage */,
@@ -199,6 +207,15 @@
 				6D3048241A48ABD70059159B /* TableViewController.m */,
 			);
 			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		6D322A861A52FB7B0052D2A0 /* MembersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D322A831A52FB720052D2A0 /* MembersViewController.h */,
+				6D322A841A52FB720052D2A0 /* MembersViewController.m */,
+			);
+			name = MembersViewController;
 			sourceTree = "<group>";
 		};
 		6D54C9021A48C4240023032E /* SWRevealViewController */ = {
@@ -308,6 +325,15 @@
 			name = Uitls;
 			sourceTree = "<group>";
 		};
+		6DBBDA721A532FA200B31D2D /* UIViewController+NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				6DBBDA731A532FA200B31D2D /* UIViewController+NavigationBar.h */,
+				6DBBDA741A532FA200B31D2D /* UIViewController+NavigationBar.m */,
+			);
+			path = "UIViewController+NavigationBar";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -414,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D322A851A52FB720052D2A0 /* MembersViewController.m in Sources */,
 				6D3048251A48ABD70059159B /* TableViewController.m in Sources */,
 				6D1B56B71A464407009B50C1 /* ViewController.m in Sources */,
 				6D67D2AD1A40B96D00F49CDE /* DetailViewController.m in Sources */,
@@ -425,6 +452,7 @@
 				6D54C9051A48C4240023032E /* SWRevealViewController.m in Sources */,
 				6D30480C1A477FC10059159B /* Globals.m in Sources */,
 				6D67D27F1A409C7500F49CDE /* main.m in Sources */,
+				6DBBDA751A532FA200B31D2D /* UIViewController+NavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
