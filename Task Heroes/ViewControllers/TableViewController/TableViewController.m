@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view.
     
    // [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organization Profile", nil];
+    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organisation Profile", @"Projects", nil];
 //	if([content isEqual: @"Members"]) {
 //		[self performSegueWithIdentifier: @"segueToMembers" sender: self];
 //	}
@@ -60,6 +60,14 @@
 	
 	if([cell.textLabel.text isEqual: @"Members"]){
 		[self performSegueWithIdentifier: @"segueToMembers" sender: self];
+		
+	}
+	else if([cell.textLabel.text isEqual: @"Organisation Profile"]){
+		[self performSegueWithIdentifier: @"segueToOrganisationProfile" sender: self];
+		
+	}
+	else if([cell.textLabel.text isEqual: @"Projects"]){
+		[self performSegueWithIdentifier: @"segueToProjects" sender: self];
 		
 	}
 	
