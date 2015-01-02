@@ -34,7 +34,7 @@
 	[[UIApplication sharedApplication] setStatusBarHidden: NO];
 	[self.navigationController setNavigationBarHidden: NO];
 	
-	[self setTitle:@"Members"];
+	[self setTitle:@"Organisation Profile"];
 	[self setRevealButtonWithImage: [UIImage imageNamed:@"reveal-icon.png"]];
 }
 

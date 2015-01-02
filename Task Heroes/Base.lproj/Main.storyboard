@@ -204,6 +204,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" image="logout.png" id="gI4-PD-k2n"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -236,7 +237,7 @@
                                 </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Header.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lqa-Rz-Jeu">
-                                <rect key="frame" x="5" y="14" width="208" height="44"/>
+                                <rect key="frame" x="5" y="20" width="208" height="44"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                             </imageView>
                         </subviews>
@@ -248,6 +249,7 @@
                         <segue destination="ICw-Fd-Zgp" kind="custom" identifier="segueToMembers" customClass="SWRevealViewControllerSegue" id="XCy-3y-bOO"/>
                         <segue destination="0yi-d4-rFP" kind="custom" identifier="segueToOrganisationProfile" customClass="SWRevealViewControllerSegue" id="4Aw-RN-Fn0"/>
                         <segue destination="Yh3-4g-VG8" kind="custom" identifier="segueToProjects" customClass="SWRevealViewControllerSegue" id="O06-H1-KHY"/>
+                        <segue destination="Rgx-FS-il7" kind="custom" identifier="segueToDashboard" customClass="SWRevealViewControllerSegue" id="LXX-HT-OIT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89h-oc-aCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -517,6 +519,7 @@
         <image name="background.png" width="640" height="1156"/>
         <image name="greenButton.png" width="379" height="187"/>
         <image name="logo.png" width="600" height="600"/>
+        <image name="logout.png" width="30" height="30"/>
         <image name="redButton.png" width="379" height="187"/>
         <image name="reveal-icon.png" width="22" height="17"/>
     </resources>
@@ -525,5 +528,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ngX-dJ-1Go"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 </document>

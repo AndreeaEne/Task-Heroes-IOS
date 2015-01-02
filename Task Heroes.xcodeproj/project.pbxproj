@@ -33,6 +33,7 @@
 		6DBBDA751A532FA200B31D2D /* UIViewController+NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA741A532FA200B31D2D /* UIViewController+NavigationBar.m */; };
 		6DBBDA781A54231B00B31D2D /* OrganisationProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA771A54231B00B31D2D /* OrganisationProfileViewController.m */; };
 		6DBBDA7C1A5424F000B31D2D /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA7B1A5424F000B31D2D /* ProjectsViewController.m */; };
+		6DBBDA7F1A54318B00B31D2D /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DBBDA7E1A54318B00B31D2D /* logout.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		6DBBDA771A54231B00B31D2D /* OrganisationProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganisationProfileViewController.m; path = OrganisationProfileViewController/OrganisationProfileViewController.m; sourceTree = "<group>"; };
 		6DBBDA7A1A5424F000B31D2D /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectsViewController.h; path = ProjectsViewController/ProjectsViewController.h; sourceTree = "<group>"; };
 		6DBBDA7B1A5424F000B31D2D /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectsViewController.m; path = ProjectsViewController/ProjectsViewController.m; sourceTree = "<group>"; };
+		6DBBDA7E1A54318B00B31D2D /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 		6DB8125A1A49DF8B0031FF4D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				6DBBDA7E1A54318B00B31D2D /* logout.png */,
 				6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */,
 			);
 			path = Dashboard;
@@ -447,6 +450,7 @@
 				6D67D28D1A409C7500F49CDE /* Images.xcassets in Resources */,
 				6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */,
 				6DB8125F1A4A07380031FF4D /* Header.png in Resources */,
+				6DBBDA7F1A54318B00B31D2D /* logout.png in Resources */,
 				6D1B56B21A45D2C3009B50C1 /* redButton.png in Resources */,
 				6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */,
 			);

@@ -70,6 +70,10 @@
 		[self performSegueWithIdentifier: @"segueToProjects" sender: self];
 		
 	}
+	else if([cell.textLabel.text isEqual: @"Dashboard"]){
+		[self performSegueWithIdentifier: @"segueToDashboard" sender: self];
+		
+	}
 	
 }
 
