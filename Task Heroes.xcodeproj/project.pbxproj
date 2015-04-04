@@ -27,7 +27,6 @@
 		6D67D2901A409C7500F49CDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D67D28E1A409C7500F49CDE /* LaunchScreen.xib */; };
 		6D67D29C1A409C7600F49CDE /* Task_HeroesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D29B1A409C7600F49CDE /* Task_HeroesTests.m */; };
 		6D67D2A61A409D1900F49CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D67D2A51A409D1900F49CDE /* MapKit.framework */; };
-		6D67D2AD1A40B96D00F49CDE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */; };
 		6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */; };
 		6DB8125F1A4A07380031FF4D /* Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125E1A4A07380031FF4D /* Header.png */; };
 		6DBBDA751A532FA200B31D2D /* UIViewController+NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA741A532FA200B31D2D /* UIViewController+NavigationBar.m */; };
@@ -80,8 +79,6 @@
 		6D67D29A1A409C7600F49CDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D67D29B1A409C7600F49CDE /* Task_HeroesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task_HeroesTests.m; sourceTree = "<group>"; };
 		6D67D2A51A409D1900F49CDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		6D67D2AB1A40B96D00F49CDE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
-		6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
 		6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
 		6DB8125E1A4A07380031FF4D /* Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header.png; sourceTree = "<group>"; };
 		6DBBDA731A532FA200B31D2D /* UIViewController+NavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationBar.h"; sourceTree = "<group>"; };
@@ -264,8 +261,6 @@
 				6D1B569C1A45D044009B50C1 /* ViewControllers */,
 				6D3048091A477FC10059159B /* Globals */,
 				6DB812611A4A212A0031FF4D /* Uitls */,
-				6D67D2AB1A40B96D00F49CDE /* DetailViewController.h */,
-				6D67D2AC1A40B96D00F49CDE /* DetailViewController.m */,
 				6D67D2801A409C7500F49CDE /* AppDelegate.h */,
 				6D67D2811A409C7500F49CDE /* AppDelegate.m */,
 				6D67D28C1A409C7500F49CDE /* Images.xcassets */,
@@ -473,7 +468,6 @@
 				6D322A851A52FB720052D2A0 /* MembersViewController.m in Sources */,
 				6D3048251A48ABD70059159B /* TableViewController.m in Sources */,
 				6D1B56B71A464407009B50C1 /* ViewController.m in Sources */,
-				6D67D2AD1A40B96D00F49CDE /* DetailViewController.m in Sources */,
 				6D67D2851A409C7500F49CDE /* Task_Heroes.xcdatamodeld in Sources */,
 				6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */,
 				6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */,
@@ -607,8 +601,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Task Heroes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -617,8 +613,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Task Heroes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

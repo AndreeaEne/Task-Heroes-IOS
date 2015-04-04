@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "DetailViewController.h"
 
 
 
@@ -33,25 +32,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-//    if ([segue.identifier isEqualToString:@"firstViewToSecondView"])
-//    {
-//        NSLog(@"Set project id");
-//    }
-    
-    if ( [segue.destinationViewController isKindOfClass:[DetailViewController class]])
-    {
-        NSLog(@"set project id");
-        DetailViewController *detailViewController = (DetailViewController *) segue.destinationViewController;
-        detailViewController.projectID = 100;
-    }
-
-    
 }
 
 

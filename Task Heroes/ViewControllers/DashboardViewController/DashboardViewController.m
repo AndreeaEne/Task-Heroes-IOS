@@ -66,6 +66,32 @@
     return 6;
 }
 
+- (IBAction)quitButton:(id)sender {
+	//show confirmation message to user
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Confirmation"
+													message:@"Do you want to Log Out?"
+												   delegate:self
+										  cancelButtonTitle:@"Cancel"
+										  otherButtonTitles:@"OK", nil];
+	[alert show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex != 0)  // 0 == the cancel button
+	{
+		//home button press programmatically
+		UIApplication *app = [UIApplication sharedApplication];
+		[app performSelector:@selector(suspend)];
+		
+		//wait 2 seconds while app is going background
+		[NSThread sleepForTimeInterval:2.0];
+		
+		//exit app when app is in background
+		exit(0);
+	}
+}
+
+
 /*
 #pragma mark - Navigation
 
