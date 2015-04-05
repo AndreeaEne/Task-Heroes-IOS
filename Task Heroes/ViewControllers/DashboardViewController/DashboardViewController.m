@@ -8,6 +8,7 @@
 
 #import "DashboardViewController.h"
 #import "SWRevealViewController.h"
+#import "FirstPageViewController.h"
 
 @interface DashboardViewController ()
 
@@ -79,15 +80,9 @@
 {
 	if (buttonIndex != 0)  // 0 == the cancel button
 	{
-		//home button press programmatically
-		UIApplication *app = [UIApplication sharedApplication];
-		[app performSelector:@selector(suspend)];
-		
-		//wait 2 seconds while app is going background
-		[NSThread sleepForTimeInterval:2.0];
-		
-		//exit app when app is in background
-		exit(0);
+		[self.navigationController popToRootViewControllerAnimated:YES];
+		//UINavigationController *nav = self.navigationController;
+		//[nav pushViewController:UINavigationControllerOperationNone animated:YES];
 	}
 }
 

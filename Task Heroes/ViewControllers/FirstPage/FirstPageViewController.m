@@ -6,22 +6,32 @@
 //  Copyright (c) 2014 Andreea-Daniela Ene. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FirstPageViewController.h"
+#import "SWRevealViewController.h"
 
 
 
-@interface ViewController ()
+@interface FirstPageViewController ()
 @end
 
 
-@implementation ViewController
+@implementation FirstPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
-    
+//    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
+	
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+	
+	//UIViewController *rmvc = (UINavigationController *)[[self revealViewController] frontViewController];
+	//NSLog(@"%@", [rmvc class]);
+	
+//Deschide Dashboard <3
+//	SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
+//	[rmvc performSegueWithIdentifier:@"segueToProjects" sender:rmvc];
+	
+	
     
 }
 
