@@ -22,7 +22,8 @@
 	//[self performSegueWithIdentifier: @"segueToDashboard" sender: self];
 }
 - (IBAction)startButton:(id)sender {
-	[self performSegueWithIdentifier: @"segueToDashboard" sender: self];
+	SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
+	[rmvc performSegueWithIdentifier:@"segueToProjects" sender:rmvc];
 }
 
 - (void)didReceiveMemoryWarning {

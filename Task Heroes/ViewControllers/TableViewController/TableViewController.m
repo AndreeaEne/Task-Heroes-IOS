@@ -16,17 +16,28 @@
 
 @implementation TableViewController {
     NSArray *content;
+
+	__weak IBOutlet UIImageView *profileImageView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+	self.view.backgroundColor = [UIColor blackColor];
+
+	self->profileImageView.layer.cornerRadius = self->profileImageView.frame.size.width / 2;
+	self->profileImageView.clipsToBounds = YES;
+	
+	self->profileImageView.layer.borderWidth = 3.0f;
+	self->profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+
+	
    // [[self navigationController] setNavigationBarHidden:NO animated:YES];
     content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organisation Profile", @"Projects", nil];
 //	if([content isEqual: @"Members"]) {
 //		[self performSegueWithIdentifier: @"segueToMembers" sender: self];
 //	}
+	
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,6 +108,10 @@
 	}
 		 
 }
+
+
+
+
 
 /*
 #pragma mark - Navigation

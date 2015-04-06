@@ -11,6 +11,7 @@
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *TableViewContent;
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
 
  
 @end
