@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChoosePhotoViewController : UIViewController <UINavigationBarDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ChoosePhotoViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (nonatomic, retain) IBOutlet UIButton * choosePhotoBtn;
-@property (nonatomic, retain) IBOutlet UIButton * takePhotoBtn;
+@property (nonatomic, retain) IBOutlet UIButton *choosePhotoBtn;
+@property (nonatomic, retain) IBOutlet UIButton *takePhotoBtn;
 
 -(IBAction) getPhoto:(id) sender;
 

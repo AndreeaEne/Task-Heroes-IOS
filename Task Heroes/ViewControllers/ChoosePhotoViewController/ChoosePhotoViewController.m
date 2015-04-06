@@ -10,21 +10,13 @@
 
 @interface ChoosePhotoViewController ()
 
-
 @end
 
 @implementation ChoosePhotoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-	UIBarButtonItem *btnBack = [[UIBarButtonItem alloc]
-								initWithTitle:@"Done"
-								style:UIBarButtonItemStyleBordered
-								target:self
-								action:nil];
-	self.navigationController.navigationBar.topItem.backBarButtonItem=btnBack;
-	
+    // Do any additional setup after loading the view.	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,10 +34,10 @@
 }
 */
 
-@synthesize imageView,choosePhotoBtn, takePhotoBtn;
+@synthesize imageView,choosePhotoBtn,takePhotoBtn;
 
 -(IBAction) getPhoto:(id) sender {
-	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	UIImagePickerController *picker = [[UIImagePickerController alloc] init];
 	picker.delegate = self;
  
 	if((UIButton *) sender == choosePhotoBtn) {
@@ -61,15 +53,6 @@
 	[picker dismissViewControllerAnimated:YES completion:nil];
 	
 	imageView.image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-}
-- (void) viewWillAppear:(BOOL)animated {
-	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(Back)];
-	self.navigationItem.leftBarButtonItem = backButton;
-}
-
-- (IBAction)Back
-{
-	[self dismissViewControllerAnimated:YES completion:nil]; // ios 6
 }
 
 
