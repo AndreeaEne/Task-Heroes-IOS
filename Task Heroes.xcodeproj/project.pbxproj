@@ -12,8 +12,9 @@
 		6D0E2D5B1AD1D01700E24046 /* Green Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5A1AD1D01700E24046 /* Green Header.png */; };
 		6D0E2D5E1AD1D82000E24046 /* index logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5D1AD1D82000E24046 /* index logo.png */; };
 		6D0E2D651AD1DB0700E24046 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D641AD1DB0700E24046 /* WelcomeViewController.m */; };
-		6D0E2D681AD31AFC00E24046 /* Wuplc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D671AD31AFC00E24046 /* Wuplc.jpg */; };
+		6D0E2D681AD31AFC00E24046 /* Default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D671AD31AFC00E24046 /* Default.jpg */; };
 		6D0E2D6F1AD3232F00E24046 /* ChoosePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D6E1AD3232F00E24046 /* ChoosePhotoViewController.m */; };
+		6D14528B1AD98CBE004EBE50 /* graySection.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D14528A1AD98CBE004EBE50 /* graySection.png */; };
 		6D1B56A71A45D177009B50C1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56A01A45D177009B50C1 /* HomeViewController.m */; };
 		6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56A31A45D177009B50C1 /* RegisterViewController.m */; };
 		6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56AD1A45D2C3009B50C1 /* greenButton.png */; };
@@ -61,9 +62,10 @@
 		6D0E2D5D1AD1D82000E24046 /* index logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "index logo.png"; sourceTree = "<group>"; };
 		6D0E2D631AD1DB0700E24046 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		6D0E2D641AD1DB0700E24046 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		6D0E2D671AD31AFC00E24046 /* Wuplc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Wuplc.jpg; sourceTree = "<group>"; };
+		6D0E2D671AD31AFC00E24046 /* Default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Default.jpg; sourceTree = "<group>"; };
 		6D0E2D6D1AD3232F00E24046 /* ChoosePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePhotoViewController.h; sourceTree = "<group>"; };
 		6D0E2D6E1AD3232F00E24046 /* ChoosePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePhotoViewController.m; sourceTree = "<group>"; };
+		6D14528A1AD98CBE004EBE50 /* graySection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graySection.png; sourceTree = "<group>"; };
 		6D1B569F1A45D177009B50C1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6D1B56A01A45D177009B50C1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		6D1B56A21A45D177009B50C1 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -156,7 +158,7 @@
 		6D0E2D661AD31AFC00E24046 /* Profile Picture */ = {
 			isa = PBXGroup;
 			children = (
-				6D0E2D671AD31AFC00E24046 /* Wuplc.jpg */,
+				6D0E2D671AD31AFC00E24046 /* Default.jpg */,
 			);
 			path = "Profile Picture";
 			sourceTree = "<group>";
@@ -226,6 +228,7 @@
 		6D1B56AC1A45D2C3009B50C1 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				6D14528A1AD98CBE004EBE50 /* graySection.png */,
 				6D1B56AD1A45D2C3009B50C1 /* greenButton.png */,
 				6D1B56AE1A45D2C3009B50C1 /* redButton.png */,
 			);
@@ -509,8 +512,9 @@
 			files = (
 				6D67D28B1A409C7500F49CDE /* Main.storyboard in Resources */,
 				6D67D2901A409C7500F49CDE /* LaunchScreen.xib in Resources */,
+				6D14528B1AD98CBE004EBE50 /* graySection.png in Resources */,
 				6D1B56BA1A464569009B50C1 /* background.png in Resources */,
-				6D0E2D681AD31AFC00E24046 /* Wuplc.jpg in Resources */,
+				6D0E2D681AD31AFC00E24046 /* Default.jpg in Resources */,
 				6D0E2D5B1AD1D01700E24046 /* Green Header.png in Resources */,
 				6D1B56B31A45D2C3009B50C1 /* logo.png in Resources */,
 				6D67D28D1A409C7500F49CDE /* Images.xcassets in Resources */,

@@ -22,6 +22,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	//NSLog(@"avatar.image = %@", _avatar.image);
+	[self setNewImage:(_avatar.image)];
+	
+	//NSLog(@"avatar.image = %@", _avatar.image);
     // Do any additional setup after loading the view.
 	self.view.backgroundColor = [UIColor blackColor];
 
@@ -106,9 +110,24 @@
 			[rvc setFrontViewPosition: FrontViewPositionLeft animated: YES];
 		};
 	}
+	NSLog(@"Poza din TableViewController: %@",_avatar.image);
 		 
 }
 
+- (void) setNewImage: (UIImage*) setimage {
+	NSLog(@"Se apeleaza setNewImage");
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *getImagePath = [documentsDirectory stringByAppendingPathComponent:@"Default.jpg"];
+	//UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
+	//_avatar.image = img;
+	NSData *imgData = [NSData dataWithContentsOfFile:getImagePath];
+	_avatar.image = [[UIImage alloc] initWithData:imgData];
+	
+	//setimage = [UIImage imageNamed:@"Default.jpg"];
+	
+	//[_avatar setImage:setimage];
+}
 
 
 

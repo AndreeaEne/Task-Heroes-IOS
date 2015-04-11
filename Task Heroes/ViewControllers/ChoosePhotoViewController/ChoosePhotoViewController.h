@@ -14,6 +14,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *choosePhotoBtn;
 @property (nonatomic, retain) IBOutlet UIButton *takePhotoBtn;
 
+
 -(IBAction) getPhoto:(id) sender;
 
 @end

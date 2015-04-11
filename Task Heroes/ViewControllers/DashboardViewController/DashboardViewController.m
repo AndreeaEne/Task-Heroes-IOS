@@ -16,6 +16,9 @@
 
 @implementation DashboardViewController
 
+@synthesize scrollView;
+@synthesize pageControl;
+@synthesize imageArray;
 
 //- (void)viewDidLoad {
 //    [super viewDidLoad];
@@ -37,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.dataTest = @[@"Data1", @"Data2", @"Data3", @"Data4", @"Data5"];
+	NSArray *titles = @[@"Backlog", @"Waiting", @"Doing", @"Done"];
     
     SWRevealViewController *revealController = [self revealViewController];
     
@@ -48,6 +53,28 @@
                                                                          style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     
     self.navigationItem.leftBarButtonItem = revealButtonItem;
+	
+	imageArray = [[NSArray alloc] initWithObjects:@"graySection.png", @"graySection.png", @"graySection.png", @"graySection.png", nil];
+	
+	for (int i = 0; i < [imageArray count]; i++) {
+		//We'll create an imageView object in every 'page' of our scrollView.
+		CGRect frame;
+		frame.origin.x = self.scrollView.frame.size.width * i;
+		frame.origin.y = 0;
+		frame.size = self.scrollView.frame.size;
+		
+		UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+		imageView.image = [UIImage imageNamed:[imageArray objectAtIndex:i]];
+
+		UILabel *taskSection = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y , 97, 21)];
+		[taskSection setText:[NSString stringWithFormat:@"%@",[titles objectAtIndex:i]]];
+		
+		[self.scrollView addSubview:imageView];
+		[self.scrollView addSubview:taskSection];
+		
+	}
+//	Set the content size of our scrollview according to the total width of our imageView objects.
+	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [imageArray count], scrollView.frame.size.height);
 }
 
 
@@ -59,12 +86,36 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+	return 1;//[self.dataTest count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+	NSInteger numberOfRows = [self.dataTest count];
+	return numberOfRows;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *CellIdentifier = @"Cell Identifier";
+	
+	[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	
+	// Fetch Fruit
+	NSString *dataTest = [self.dataTest objectAtIndex:[indexPath row]];
+	
+	[cell.textLabel setText:dataTest];
+	
+	return cell;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender
+{
+	// Update the page when more than 50% of the previous/next page is visible
+	CGFloat pageWidth = self.scrollView.frame.size.width;
+	int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+	self.pageControl.currentPage = page;
 }
 
 - (IBAction)quitButton:(id)sender {
@@ -76,6 +127,7 @@
 										  otherButtonTitles:@"OK", nil];
 	[alert show];
 }
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex != 0)  // 0 == the cancel button
@@ -85,6 +137,7 @@
 		//[nav pushViewController:UINavigationControllerOperationNone animated:YES];
 	}
 }
+
 
 
 /*

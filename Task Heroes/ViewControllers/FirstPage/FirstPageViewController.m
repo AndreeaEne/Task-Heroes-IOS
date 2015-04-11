@@ -31,7 +31,6 @@
 //	SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
 //	[rmvc performSegueWithIdentifier:@"segueToProjects" sender:rmvc];
 	
-	
     
 }
 
