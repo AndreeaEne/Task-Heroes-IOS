@@ -14,12 +14,12 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *quitButton;
 //@property (weak, nonatomic) IBOutlet UICollectionView *dashboardCollection;
 
-
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, strong) NSArray *imageArray;
 @property (weak, nonatomic) IBOutlet UILabel *taskSection;
 @property NSArray *dataTest;
 
+@property (weak, nonatomic) IBOutlet UIImageView *wallImage;
 
 @end

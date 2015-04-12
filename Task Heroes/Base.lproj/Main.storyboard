@@ -163,30 +163,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-YC-SIF">
-                                <rect key="frame" x="-69" y="382" width="144" height="126"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Rgx-FS-il7" id="H8u-hf-urZ"/>
-                                    <outlet property="delegate" destination="Rgx-FS-il7" id="M7E-22-J2R"/>
-                                </connections>
-                            </tableView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="gkp-mv-Trc">
-                                <rect key="frame" x="141" y="479" width="39" height="37"/>
-                            </pageControl>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wjQ-OR-Jm5">
-                                <rect key="frame" x="141" y="471" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
-                                <color key="currentPageIndicatorTintColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
-                                <connections>
-                                    <action selector="changeScreen:" destination="Rgx-FS-il7" eventType="valueChanged" id="ThH-3x-KW9"/>
-                                </connections>
-                            </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq3-57-zzp">
-                                <rect key="frame" x="56" y="105" width="208" height="211"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dkh-3I-8gC">
+                                <rect key="frame" x="-7" y="64" width="327" height="504"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq3-57-zzp">
+                                <rect key="frame" x="31" y="82" width="248" height="248"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-yv-tUt">
-                                        <rect key="frame" x="8" y="8" width="97" height="21"/>
+                                        <rect key="frame" x="76" y="8" width="97" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -196,25 +180,48 @@
                                     <outlet property="delegate" destination="Rgx-FS-il7" id="mch-Mm-qHe"/>
                                 </connections>
                             </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-YC-SIF">
+                                <rect key="frame" x="-83" y="398" width="144" height="126"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Rgx-FS-il7" id="H8u-hf-urZ"/>
+                                    <outlet property="delegate" destination="Rgx-FS-il7" id="M7E-22-J2R"/>
+                                </connections>
+                            </tableView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wjQ-OR-Jm5">
+                                <rect key="frame" x="141" y="471" width="39" height="37"/>
+                                <connections>
+                                    <action selector="changeScreen:" destination="Rgx-FS-il7" eventType="valueChanged" id="ThH-3x-KW9"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dkh-3I-8gC" secondAttribute="trailing" constant="-16" id="KWm-XG-Amb"/>
+                            <constraint firstItem="Dkh-3I-8gC" firstAttribute="top" secondItem="gxy-aT-94g" secondAttribute="bottom" id="UAA-Tc-p62"/>
+                            <constraint firstItem="Dkh-3I-8gC" firstAttribute="leading" secondItem="cTk-HC-0DN" secondAttribute="leadingMargin" constant="-23" id="cy9-Rd-bbZ"/>
+                            <constraint firstItem="Dkh-3I-8gC" firstAttribute="bottom" secondItem="cTk-HC-0DN" secondAttribute="bottomMargin" id="tdo-C9-3bk"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="xtp-0Y-Pil">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" style="plain" id="JAM-kC-ZCy"/>
+                        <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="JAM-kC-ZCy">
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="WtU-FM-KOQ">
                             <rect key="frame" x="86" y="7" width="148" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                             <state key="normal" title="Dashboard">
-                                <color key="titleColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
+                                <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </state>
                         </button>
                         <barButtonItem key="rightBarButtonItem" image="logout.png" id="gI4-PD-k2n">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="quitButton:" destination="Rgx-FS-il7" id="q2x-tD-ZJh"/>
                             </connections>
@@ -228,6 +235,7 @@
                         <outlet property="scrollView" destination="gq3-57-zzp" id="ahz-cn-Nbx"/>
                         <outlet property="tableView" destination="8GP-YC-SIF" id="Tl0-Ng-3dp"/>
                         <outlet property="taskSection" destination="k0f-yv-tUt" id="wRb-Fj-Day"/>
+                        <outlet property="wallImage" destination="Dkh-3I-8gC" id="xLc-tX-en0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rym-S0-6zh" userLabel="First Responder" sceneMemberID="firstResponder"/>

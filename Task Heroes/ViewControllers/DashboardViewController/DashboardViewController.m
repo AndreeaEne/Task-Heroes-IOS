@@ -40,11 +40,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0f/255.0f green:108.0f/255.0f blue:164.0f/255.0f alpha:1.0f];
+	self.navigationController.navigationBar.translucent = NO;
+	
+	
+	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
+	
 	self.dataTest = @[@"Data1", @"Data2", @"Data3", @"Data4", @"Data5"];
 	NSArray *titles = @[@"Backlog", @"Waiting", @"Doing", @"Done"];
     
     SWRevealViewController *revealController = [self revealViewController];
-    
+	
     
     [revealController panGestureRecognizer];
     [revealController tapGestureRecognizer];
@@ -53,7 +60,8 @@
                                                                          style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     
     self.navigationItem.leftBarButtonItem = revealButtonItem;
-	
+	[[[self navigationItem] leftBarButtonItem] setTintColor:[UIColor whiteColor]];
+
 	imageArray = [[NSArray alloc] initWithObjects:@"graySection.png", @"graySection.png", @"graySection.png", @"graySection.png", nil];
 	
 	for (int i = 0; i < [imageArray count]; i++) {
@@ -66,7 +74,7 @@
 		UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
 		imageView.image = [UIImage imageNamed:[imageArray objectAtIndex:i]];
 
-		UILabel *taskSection = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y , 97, 21)];
+		UILabel *taskSection = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x + 90, frame.origin.y, 97, 21)];
 		[taskSection setText:[NSString stringWithFormat:@"%@",[titles objectAtIndex:i]]];
 		
 		[self.scrollView addSubview:imageView];

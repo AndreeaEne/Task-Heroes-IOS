@@ -15,6 +15,8 @@
 		6D0E2D681AD31AFC00E24046 /* Default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D671AD31AFC00E24046 /* Default.jpg */; };
 		6D0E2D6F1AD3232F00E24046 /* ChoosePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D6E1AD3232F00E24046 /* ChoosePhotoViewController.m */; };
 		6D14528B1AD98CBE004EBE50 /* graySection.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D14528A1AD98CBE004EBE50 /* graySection.png */; };
+		6D14528D1AD9E6D9004EBE50 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14528C1AD9E6D9004EBE50 /* wallpaper.jpg */; };
+		6D14528F1AD9F9CF004EBE50 /* wallpaper2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14528E1AD9F9CF004EBE50 /* wallpaper2.jpg */; };
 		6D1B56A71A45D177009B50C1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56A01A45D177009B50C1 /* HomeViewController.m */; };
 		6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56A31A45D177009B50C1 /* RegisterViewController.m */; };
 		6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56AD1A45D2C3009B50C1 /* greenButton.png */; };
@@ -66,6 +68,8 @@
 		6D0E2D6D1AD3232F00E24046 /* ChoosePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePhotoViewController.h; sourceTree = "<group>"; };
 		6D0E2D6E1AD3232F00E24046 /* ChoosePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePhotoViewController.m; sourceTree = "<group>"; };
 		6D14528A1AD98CBE004EBE50 /* graySection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graySection.png; sourceTree = "<group>"; };
+		6D14528C1AD9E6D9004EBE50 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
+		6D14528E1AD9F9CF004EBE50 /* wallpaper2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper2.jpg; sourceTree = "<group>"; };
 		6D1B569F1A45D177009B50C1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6D1B56A01A45D177009B50C1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		6D1B56A21A45D177009B50C1 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -372,6 +376,8 @@
 		6DB8125A1A49DF8B0031FF4D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				6D14528E1AD9F9CF004EBE50 /* wallpaper2.jpg */,
+				6D14528C1AD9E6D9004EBE50 /* wallpaper.jpg */,
 				6DBBDA7E1A54318B00B31D2D /* logout.png */,
 				6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */,
 			);
@@ -517,8 +523,10 @@
 				6D0E2D681AD31AFC00E24046 /* Default.jpg in Resources */,
 				6D0E2D5B1AD1D01700E24046 /* Green Header.png in Resources */,
 				6D1B56B31A45D2C3009B50C1 /* logo.png in Resources */,
+				6D14528F1AD9F9CF004EBE50 /* wallpaper2.jpg in Resources */,
 				6D67D28D1A409C7500F49CDE /* Images.xcassets in Resources */,
 				6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */,
+				6D14528D1AD9E6D9004EBE50 /* wallpaper.jpg in Resources */,
 				6DB8125F1A4A07380031FF4D /* Header.png in Resources */,
 				6DBBDA7F1A54318B00B31D2D /* logout.png in Resources */,
 				6D1B56B21A45D2C3009B50C1 /* redButton.png in Resources */,
