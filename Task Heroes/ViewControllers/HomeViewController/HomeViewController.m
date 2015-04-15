@@ -9,6 +9,8 @@
 #import "HomeViewController.h"
 #import "Globals.h"
 
+
+
 @interface HomeViewController ()
 
 @end
@@ -17,11 +19,12 @@
 
 @synthesize emailField, loginButton, passField;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-	[self performSegueWithIdentifier: @"LogIn" sender: self];
+	//[self performSegueWithIdentifier: @"LogIn" sender: self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,8 +42,8 @@
 
 - (IBAction)loginButton:(id)sender {
     NSString *msg;
-    
-    BOOL email = [Globals validateEmail:[emailField text]];
+    //BOOL email = [Globals validateEmail:[emailField text]];
+	BOOL email = [emailField.text length] > 0;
     BOOL pass = [passField.text length] > 0;
     
     if (!email && !pass) {
@@ -52,14 +55,46 @@
     else if (!pass) {
         msg = @"Enter a password. ";
     }
-    else if ([emailField.text isEqualToString:@"test@test.com"] && [passField.text isEqualToString:@"test"]) {
+    else if([self Login] == 1) {
          [self performSegueWithIdentifier: @"LogIn" sender: self];
     }
+	else msg = @"User or password incorrect";
     
     if ([msg length] > 0 ) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
+}
+
+- (BOOL)Login
+{
+	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
+	NSString *post = [NSString stringWithFormat:@"username=%@&pass=%@", emailField.text, passField.text];
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	
+	//Next up, we read the postData's length, so we can pass it along in the request.
+	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	
+	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:@"http://localhost:8081/login/user"]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:postData];
+	
+	//And finally, we can send our request, and read the reply:
+	NSURLResponse *requestResponse;
+	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+	
+	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+	//requestReply = [NSString stringWithFormat:@"msg"];
+
+	BOOL log = false;
+	if(![requestReply isEqualToString:@"{\"msg\":\"user not found\"}"]) {
+		log = true;
+	}
+	NSLog(@"requestReply: %@", requestReply);
+	return log;
 }
 
 

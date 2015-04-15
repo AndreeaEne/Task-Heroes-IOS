@@ -44,7 +44,6 @@
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0f/255.0f green:108.0f/255.0f blue:164.0f/255.0f alpha:1.0f];
 	self.navigationController.navigationBar.translucent = NO;
 	
-	
 	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
 	
 	self.dataTest = @[@"Data1", @"Data2", @"Data3", @"Data4", @"Data5"];
@@ -76,6 +75,8 @@
 
 		UILabel *taskSection = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x + 90, frame.origin.y, 97, 21)];
 		[taskSection setText:[NSString stringWithFormat:@"%@",[titles objectAtIndex:i]]];
+		
+		
 		
 		[self.scrollView addSubview:imageView];
 		[self.scrollView addSubview:taskSection];

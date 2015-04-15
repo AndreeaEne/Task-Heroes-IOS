@@ -26,7 +26,7 @@
     // Do any additional setup after loading the view.
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [orgTypePicker setAlpha:0];
-     content = [NSArray arrayWithObjects:@"Social", @"Studii Informatică", @"Studii Matematica", @"Fundraising",@"Resurse Umane", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"Oganizatie",@"Nume", @"Prenume", @"E-mail", @"PR & Marketing", nil];
+     content = [NSArray arrayWithObjects:@"Youth", @"School", @"Religious", nil];
 	
 }
 
@@ -156,7 +156,7 @@
         [alert show];
     }
     
-    if (checkSignUp == 1){
+    if (checkSignUp == 1 && [self Register] == 1){
         [self performSegueWithIdentifier: @"SignUp" sender: self];
         }
 }
@@ -172,6 +172,38 @@
     return YES;
 }
 */
+
+- (BOOL)Register
+{
+	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
+	NSString *post = [NSString stringWithFormat:@"Email=%@&Pass1=%@&First=%@&Last=%@", emailField.text, passField.text, firstnameField.text, lastnameField.text];
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	
+	//Next up, we read the postData's length, so we can pass it along in the request.
+	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	
+	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:@"http://localhost:8081/register/user"]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:postData];
+	
+	//And finally, we can send our request, and read the reply:
+	NSURLResponse *requestResponse;
+	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+	
+	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+	//requestReply = [NSString stringWithFormat:@"msg"];
+	
+	BOOL log = false;
+	if([requestReply isEqualToString:@"{\"success\":\"User Inserted successfuly!\"}"]) {
+		log = true;
+	}
+	NSLog(@"requestReply: %@", requestReply);
+	return log;
+}
+
 @end
 
 @implementation SOTextField

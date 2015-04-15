@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface HomeViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passField;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+	@property (weak, nonatomic) IBOutlet UITextField *emailField;
+	@property (weak, nonatomic) IBOutlet UITextField *passField;
+	@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
+
