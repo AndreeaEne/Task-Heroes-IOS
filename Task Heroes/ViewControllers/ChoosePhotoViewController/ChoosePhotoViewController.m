@@ -56,7 +56,7 @@
 	NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Default.jpg"]];//, imageView.image]]; //add our image to the path
 	if (imageView.image != nil) {
 		[fileManager createFileAtPath:fullPath contents:imageData attributes:nil]; //finally save the path (image)
-		//[self listFileAtPath:documentsDirectory];
+		[self listFileAtPath:documentsDirectory];
 		NSLog(@"image saved");
 	}
 	[self dismissViewControllerAnimated:YES completion:nil];
@@ -84,22 +84,22 @@
 //}
 
 //// List all files in Directory
-//-(NSArray *)listFileAtPath:(NSString *)path
-//{
-//	//-----> LIST ALL FILES <-----//
-//	NSLog(@"LISTING ALL FILES FOUND");
-//	
-//	int count;
-//	
-//	NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
-//	for (count = 0; count < (int)[directoryContent count]; count++)
-//	{
-//		NSLog(@"File %d: %@", (count + 1), [directoryContent objectAtIndex:count]);
-//	}
-//	return directoryContent;
-//	
-//	
-//}
+-(NSArray *)listFileAtPath:(NSString *)path
+{
+	//-----> LIST ALL FILES <-----//
+	NSLog(@"LISTING ALL FILES FOUND");
+	
+	int count;
+	
+	NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+	for (count = 0; count < (int)[directoryContent count]; count++)
+	{
+		NSLog(@"File %d: %@", (count + 1), [directoryContent objectAtIndex:count]);
+	}
+	return directoryContent;
+	
+	
+}
 
 
 //-(void)storeImageNSDefaults{

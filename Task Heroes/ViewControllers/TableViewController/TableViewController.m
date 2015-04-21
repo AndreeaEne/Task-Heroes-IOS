@@ -37,7 +37,7 @@
 
 	
    // [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organisation Profile", @"Projects", nil];
+    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organisation Profile", @"Projects", @"Edit User Profile", nil];
 //	if([content isEqual: @"Members"]) {
 //		[self performSegueWithIdentifier: @"segueToMembers" sender: self];
 //	}
@@ -87,6 +87,9 @@
 	}
 	else if([cell.textLabel.text isEqual: @"Dashboard"]){
 		[self performSegueWithIdentifier: @"segueToDashboard" sender: self];
+	}
+	else if([cell.textLabel.text isEqual: @"Edit User Profile"]){
+			[self performSegueWithIdentifier: @"segueToUser" sender: self];
 		
 	}
 	

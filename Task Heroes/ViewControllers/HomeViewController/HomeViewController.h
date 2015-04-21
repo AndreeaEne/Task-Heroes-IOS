@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 
 @interface HomeViewController : UIViewController
@@ -16,4 +17,5 @@
 	@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
+
 

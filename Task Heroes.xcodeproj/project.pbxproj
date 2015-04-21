@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6D0E2D501AD1717400E24046 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D4F1AD1717400E24046 /* ToDoItem.m */; };
-		6D0E2D591AD18C0300E24046 /* TasksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D581AD18C0300E24046 /* TasksListViewController.m */; };
 		6D0E2D5B1AD1D01700E24046 /* Green Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5A1AD1D01700E24046 /* Green Header.png */; };
 		6D0E2D5E1AD1D82000E24046 /* index logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5D1AD1D82000E24046 /* index logo.png */; };
 		6D0E2D651AD1DB0700E24046 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D641AD1DB0700E24046 /* WelcomeViewController.m */; };
@@ -43,6 +42,7 @@
 		6DBBDA781A54231B00B31D2D /* OrganisationProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA771A54231B00B31D2D /* OrganisationProfileViewController.m */; };
 		6DBBDA7C1A5424F000B31D2D /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA7B1A5424F000B31D2D /* ProjectsViewController.m */; };
 		6DBBDA7F1A54318B00B31D2D /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DBBDA7E1A54318B00B31D2D /* logout.png */; };
+		6DF41C041ADF044E00F5DFDA /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF41C031ADF044E00F5DFDA /* EditUserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +58,6 @@
 /* Begin PBXFileReference section */
 		6D0E2D4E1AD1717400E24046 /* ToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
 		6D0E2D4F1AD1717400E24046 /* ToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
-		6D0E2D571AD18C0300E24046 /* TasksListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TasksListViewController.h; path = TasksList/TasksListViewController.h; sourceTree = "<group>"; };
-		6D0E2D581AD18C0300E24046 /* TasksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TasksListViewController.m; path = TasksList/TasksListViewController.m; sourceTree = "<group>"; };
 		6D0E2D5A1AD1D01700E24046 /* Green Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Header.png"; sourceTree = "<group>"; };
 		6D0E2D5D1AD1D82000E24046 /* index logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "index logo.png"; sourceTree = "<group>"; };
 		6D0E2D631AD1DB0700E24046 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -112,6 +110,8 @@
 		6DBBDA7A1A5424F000B31D2D /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectsViewController.h; path = ProjectsViewController/ProjectsViewController.h; sourceTree = "<group>"; };
 		6DBBDA7B1A5424F000B31D2D /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectsViewController.m; path = ProjectsViewController/ProjectsViewController.m; sourceTree = "<group>"; };
 		6DBBDA7E1A54318B00B31D2D /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		6DF41C021ADF044E00F5DFDA /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditUserViewController.h; path = EditUserViewController/EditUserViewController.h; sourceTree = "<group>"; };
+		6DF41C031ADF044E00F5DFDA /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditUserViewController.m; path = EditUserViewController/EditUserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,10 +179,9 @@
 		6D1B569C1A45D044009B50C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6DF41C011ADF043600F5DFDA /* EditUserViewController */,
 				6D0E2D6C1AD3232F00E24046 /* ChoosePhotoViewController */,
 				6D0E2D621AD1DB0700E24046 /* WelcomeViewController */,
-				6D0E2D571AD18C0300E24046 /* TasksListViewController.h */,
-				6D0E2D581AD18C0300E24046 /* TasksListViewController.m */,
 				6D0E2D4D1AD1717400E24046 /* ToDoItem */,
 				6DBBDA7D1A5424F800B31D2D /* ProjectsViewController */,
 				6DBBDA791A54232B00B31D2D /* OrganisationProfileViewController */,
@@ -436,6 +435,15 @@
 			name = ProjectsViewController;
 			sourceTree = "<group>";
 		};
+		6DF41C011ADF043600F5DFDA /* EditUserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6DF41C021ADF044E00F5DFDA /* EditUserViewController.h */,
+				6DF41C031ADF044E00F5DFDA /* EditUserViewController.m */,
+			);
+			name = EditUserViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -555,10 +563,10 @@
 				6D1B56B71A464407009B50C1 /* FirstPageViewController.m in Sources */,
 				6D67D2851A409C7500F49CDE /* Task_Heroes.xcdatamodeld in Sources */,
 				6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */,
-				6D0E2D591AD18C0300E24046 /* TasksListViewController.m in Sources */,
 				6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */,
 				6D0E2D501AD1717400E24046 /* ToDoItem.m in Sources */,
 				6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */,
+				6DF41C041ADF044E00F5DFDA /* EditUserViewController.m in Sources */,
 				6DBBDA781A54231B00B31D2D /* OrganisationProfileViewController.m in Sources */,
 				6D1B56A71A45D177009B50C1 /* HomeViewController.m in Sources */,
 				6DBBDA7C1A5424F000B31D2D /* ProjectsViewController.m in Sources */,

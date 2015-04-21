@@ -8,8 +8,10 @@
 
 #import "HomeViewController.h"
 #import "Globals.h"
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
 
-
+BOOL semafor = false;
 
 @interface HomeViewController ()
 
@@ -55,7 +57,7 @@
     else if (!pass) {
         msg = @"Enter a password. ";
     }
-    else if([self Login] == 1) {
+    else if([self Login] == true) {
          [self performSegueWithIdentifier: @"LogIn" sender: self];
     }
 	else msg = @"User or password incorrect";
@@ -88,15 +90,49 @@
 	
 	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
 	//requestReply = [NSString stringWithFormat:@"msg"];
-
-	BOOL log = false;
-	if(![requestReply isEqualToString:@"{\"msg\":\"user not found\"}"]) {
-		log = true;
+	
+	//Check if the user/pass exists
+	if ([requestReply rangeOfString:@"_id"].location != NSNotFound) {
+		semafor = true;
 	}
-	NSLog(@"requestReply: %@", requestReply);
-	return log;
+	
+	if (semafor == true) {
+		NSLog(@"requestReply: %@", requestReply);
+		NSArray *components = [requestReply componentsSeparatedByString:@","];
+		NSLog(@"%@",components);
+		
+		//Save data about User
+		NSArray* id_user = [[[[requestReply componentsSeparatedByString:@"_id\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSArray *last_name = [[[[requestReply componentsSeparatedByString:@"last_name\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSArray *first_name = [[[[requestReply componentsSeparatedByString:@"first_name\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSArray *email = [[[[requestReply componentsSeparatedByString:@"email\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSString *aux = [[[[requestReply componentsSeparatedByString:@"points\":"]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		float points = [aux floatValue];
+		
+		NSLog(@"\n ID: %@ \n lastname: %@ \n firstname: %@ \n email: %@\n points: %f",id_user, last_name, first_name, email, points);
+		
+		//save to Core Data
+		// Create a new managed object
+		NSManagedObjectContext *context = [self managedObjectContext];
+		NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:context];
+		[newUser setValue:id_user forKey:@"id"];
+	}
+	
+	return semafor;
 }
 
+- (NSManagedObjectContext *)managedObjectContext {
+	NSManagedObjectContext *context = nil;
+	id delegate = [[UIApplication sharedApplication] delegate];
+	if ([delegate performSelector:@selector(managedObjectContext)]) {
+		context = [delegate managedObjectContext];
+	}
+	return context;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+	semafor = false;
+}
 
 /*
 #pragma mark - Navigation

@@ -89,14 +89,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Task Heroes/ViewControllers/ChoosePhotoViewController/ChoosePhotoViewController.m"
-            timestampString = "450568921.352151"
+            filePath = "Task Heroes/ViewControllers/HomeViewController/HomeViewController.m"
+            timestampString = "451345681.283719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "@implementation ChoosePhotoViewController"
-            landmarkType = "3">
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-Login"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
