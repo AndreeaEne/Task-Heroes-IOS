@@ -84,7 +84,7 @@ BOOL semafor = false;
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
 	
-	//And finally, we can send our request, and read the reply:
+	//Send the request, and read the reply:
 	NSURLResponse *requestResponse;
 	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
 	
@@ -97,25 +97,57 @@ BOOL semafor = false;
 	}
 	
 	if (semafor == true) {
-		NSLog(@"requestReply: %@", requestReply);
 		NSArray *components = [requestReply componentsSeparatedByString:@","];
 		NSLog(@"%@",components);
 		
 		//Save data about User
-		NSArray* id_user = [[[[requestReply componentsSeparatedByString:@"_id\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
-		NSArray *last_name = [[[[requestReply componentsSeparatedByString:@"last_name\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
-		NSArray *first_name = [[[[requestReply componentsSeparatedByString:@"first_name\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
-		NSArray *email = [[[[requestReply componentsSeparatedByString:@"email\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSString* id_user = [[[[requestReply componentsSeparatedByString:@"_id\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSString *last_name = [[[[requestReply componentsSeparatedByString:@"last_name\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSString *first_name = [[[[requestReply componentsSeparatedByString:@"first_name\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+		NSString *email = [[[[requestReply componentsSeparatedByString:@"email\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
 		NSString *aux = [[[[requestReply componentsSeparatedByString:@"points\":"]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
 		float points = [aux floatValue];
 		
 		NSLog(@"\n ID: %@ \n lastname: %@ \n firstname: %@ \n email: %@\n points: %f",id_user, last_name, first_name, email, points);
-		
-		//save to Core Data
+	
+		// Save to Core Data
 		// Create a new managed object
 		NSManagedObjectContext *context = [self managedObjectContext];
 		NSManagedObject *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:context];
-		[newUser setValue:id_user forKey:@"id"];
+		[newUser setValue:id_user forKey:@"id_user"];
+		[newUser setValue:last_name forKey:@"last_name"];
+		[newUser setValue:first_name forKey:@"first_name"];
+		[newUser setValue:email forKey:@"email"];
+		[newUser setValue:[NSNumber numberWithFloat:points]  forKey:@"points"];
+		
+		//Test
+		// Fetching
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+		
+		// Add Sort Descriptor
+		//NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"email" ascending:YES];
+		//[fetchRequest setSortDescriptors:@[sortDescriptor]];
+		
+		// Execute Fetch Request
+		NSError *fetchError = nil;
+		NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+		
+		if (!fetchError) {
+			for (NSManagedObject *managedObject in result) {
+				NSLog(@"%@, %@, %@, %@", [managedObject valueForKey:@"email"], [managedObject valueForKey:@"last_name"], [managedObject valueForKey:@"id_user"], [managedObject valueForKey:@"points"]);
+			}
+			
+		} else {
+			NSLog(@"Error fetching data.");
+			NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+		}
+		
+		NSError *error;
+		NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+		if (fetchedObjects == nil) {
+			// Handle the error.
+		}
+
 	}
 	
 	return semafor;

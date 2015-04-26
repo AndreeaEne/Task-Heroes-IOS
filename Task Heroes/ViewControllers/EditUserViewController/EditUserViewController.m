@@ -9,6 +9,10 @@
 #import "EditUserViewController.h"
 #import "SWRevealViewController.h"
 #import "UIViewController+NavigationBar.h"
+#import <CoreData/CoreData.h>
+
+NSString *id_user;
+
 
 @interface EditUserViewController ()
 
@@ -20,6 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	[self setupNavigationBar];
+	//[self getUserData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,37 +50,136 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)saveAction:(id)sender {
+- (IBAction)saveButton:(id)sender {
 	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
-	//for LoggedUser
-	NSString *postLogged = [NSString stringWithFormat:@""];
-	NSString *post = [NSString stringWithFormat:@"username=%@&pass=%@&username=%@&pass=%@&pass=%@", _firstName.text, _lastName.text, _password, _verifyPassword, _email];
+	NSString *post = [NSString stringWithFormat:@"first_name=%@&last_name=%@&email=%@&_id=%@", _firstName.text, _lastName.text, _email.text, id_user];
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Next up, we read the postData's length, so we can pass it along in the request.
 	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-	NSData *postDataLogged = [postLogged dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	//NSData *postDataLogged = [postLogged dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:@"http://localhost:8081/login/user"]];
+	[request setURL:[NSURL URLWithString:@"http://localhost:8081/update/user"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
 	
-	//And finally, we can send our request, and read the reply:
+	//Send the request, and read the reply:
 	NSURLResponse *requestResponse;
 	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
 	
 	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-	//requestReply = [NSString stringWithFormat:@"msg"];
 	
+	//Pass Request
+	NSString *postPass = [NSString stringWithFormat:@"old=%@&new=%@&_id=%@", _password.text, _verifyPassword.text, id_user];
+	NSData *postDataPass = [postPass dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	
+	//Next up, we read the postData's length, so we can pass it along in the request.
+	NSString *postLengthPass = [NSString stringWithFormat:@"%d", [postDataPass length]];
+	
+	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+	NSMutableURLRequest *requestPass = [[NSMutableURLRequest alloc] init];
+	[requestPass setURL:[NSURL URLWithString:@"http://localhost:8081/change/password"]];
+	[requestPass setHTTPMethod:@"POST"];
+	[requestPass setValue:postLengthPass forHTTPHeaderField:@"Content-Length"];
+	[requestPass setHTTPBody:postDataPass];
+	
+	//Send the request, and read the reply:
+	NSURLResponse *requestResponsePass;
+	NSData *requestHandlerPass = [NSURLConnection sendSynchronousRequest:requestPass returningResponse:&requestResponsePass error:nil];
+	
+	NSString *requestReplyPass = [[NSString alloc] initWithBytes:[requestHandlerPass bytes] length:[requestHandlerPass length] encoding:NSASCIIStringEncoding];
+
+#warning "Nu verifica daca trimit text gol"
 	BOOL log = false;
-	if(![requestReply isEqualToString:@"{\"msg\":\"user not found\"}"] || ![requestReply isEqualToString:@""]) {
-		log = true;
+	BOOL passLog = false;
+	if([requestReply isEqualToString:@"{\"msg\":\"success update!\"}"] || ![requestReply isEqualToString:@""]) {
+		if(![_lastName.text isEqualToString:@""] || ![_firstName.text isEqualToString:@""] || ![_email.text isEqualToString:@""]){
+			log = true;
+			NSLog(@"ie bine");
+		}
 	}
+	if(![_password.text isEqual:@""] && ![_verifyPassword.text isEqual:@""])
+		if([requestReplyPass isEqualToString:@"{\"msg\":\"update succesful\"}"] || ![requestReplyPass isEqualToString:@""]) {
+		passLog = true;
+	}
+	NSLog(@"\nlog:%hhd\npassLog: %hhd", log, passLog);
 	NSLog(@"requestReply: %@", requestReply);
+	NSLog(@"requestReplyPass: %@", requestReplyPass);
+	
+	UIAlertView *alert;
+	if(log == true && passLog == true) {
+		alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The user info and the pass have been succesfully updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+	}
+	else if (log == false & passLog == true) {
+		alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The pass has been succesfully updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+	}
+	else if (log == true & passLog == false) {
+		alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The user info has been succesfully updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+		[alert show];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"The user info has not been updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+	}
 	
 }
+
+- (void) getUserData {
+	// Fetching
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+	// Add Sort Descriptor
+	//NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"email" ascending:YES];
+	//[fetchRequest setSortDescriptors:@[sortDescriptor]];
+	
+	// Execute Fetch Request
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSError *fetchError = nil;
+	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+	
+	if (!fetchError) {
+		for (NSManagedObject *managedObject in result) {
+			NSString *email_user = [managedObject valueForKey:@"email"];
+			NSString *last_name_user = [managedObject valueForKey:@"last_name"];
+			NSString *first_name_user = [managedObject valueForKey:@"first_name"];
+			id_user = [managedObject valueForKey:@"id_user"];
+			_firstName.text = first_name_user;
+			_lastName.text = last_name_user;
+			_email.text = email_user;
+			
+			NSLog(@"email: %@,\nfirst: %@,\nlast:%@,", email_user, first_name_user, last_name_user);
+		}
+		
+	} else {
+		NSLog(@"Error fetching data.");
+		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+	}
+	
+	
+	NSError *error;
+	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+	if (fetchedObjects == nil) {
+		// Handle the error.
+	}
+}
+
+- (NSManagedObjectContext *) managedObjectContext {
+	NSManagedObjectContext *context = nil;
+	id delegate = [[UIApplication sharedApplication] delegate];
+	if ([delegate performSelector:@selector(managedObjectContext)]) {
+		context = [delegate managedObjectContext];
+	}
+	return context;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+	[self getUserData];
+
+}
+
 
 @end

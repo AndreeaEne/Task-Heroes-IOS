@@ -269,10 +269,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUe-1D-fgX">
-                                <rect key="frame" x="32" y="311" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="old password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUe-1D-fgX">
+                                <rect key="frame" x="31" y="311" width="114" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oef-dK-Xtw">
                                 <rect key="frame" x="104" y="411" width="103" height="36"/>
@@ -287,13 +287,13 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="saveAction:" destination="J6H-wq-73c" eventType="touchUpInside" id="hN2-Ul-65a"/>
+                                    <action selector="saveButton:" destination="J6H-wq-73c" eventType="touchUpInside" id="zdj-uB-xcd"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iLn-tP-CtY">
-                                <rect key="frame" x="170" y="311" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iLn-tP-CtY">
+                                <rect key="frame" x="173" y="311" width="114" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -301,12 +301,11 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="backButton" destination="Oef-dK-Xtw" id="c8v-ZF-Sup"/>
                         <outlet property="email" destination="Y09-bD-v6g" id="OGv-x3-EaP"/>
                         <outlet property="firstName" destination="KAG-Xa-88A" id="xyM-Im-XfJ"/>
                         <outlet property="lastName" destination="68E-XN-9Kr" id="tbO-vX-VeW"/>
                         <outlet property="password" destination="cUe-1D-fgX" id="yuL-2I-2rd"/>
-                        <outlet property="saveButton" destination="Oef-dK-Xtw" id="Z27-Vu-guO"/>
+                        <outlet property="saveButton" destination="Oef-dK-Xtw" id="b72-Vg-LoM"/>
                         <outlet property="verifyPassword" destination="iLn-tP-CtY" id="wvN-oa-GpQ"/>
                     </connections>
                 </viewController>
