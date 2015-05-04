@@ -10,4 +10,5 @@
 
 @interface ProjectsViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *projectsTable;
 @end

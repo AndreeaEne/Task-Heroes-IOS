@@ -23,6 +23,7 @@
 		6D1B56B31A45D2C3009B50C1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56B01A45D2C3009B50C1 /* logo.png */; };
 		6D1B56B71A464407009B50C1 /* FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B56B61A464407009B50C1 /* FirstPageViewController.m */; };
 		6D1B56BA1A464569009B50C1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D1B56B91A464569009B50C1 /* background.png */; };
+		6D2B0C9E1AF51C5900E2D88A /* baboo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D2B0C9D1AF51C5900E2D88A /* baboo.png */; };
 		6D30480C1A477FC10059159B /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D30480B1A477FC10059159B /* Globals.m */; };
 		6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D30481D1A48A7880059159B /* DashboardViewController.m */; };
 		6D3048251A48ABD70059159B /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3048241A48ABD70059159B /* TableViewController.m */; };
@@ -78,6 +79,7 @@
 		6D1B56B51A464407009B50C1 /* FirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstPageViewController.h; sourceTree = "<group>"; };
 		6D1B56B61A464407009B50C1 /* FirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstPageViewController.m; sourceTree = "<group>"; };
 		6D1B56B91A464569009B50C1 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		6D2B0C9D1AF51C5900E2D88A /* baboo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baboo.png; sourceTree = "<group>"; };
 		6D30480A1A477FC10059159B /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		6D30480B1A477FC10059159B /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		6D30481C1A48A7880059159B /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		6D1B56AF1A45D2C3009B50C1 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6D2B0C9D1AF51C5900E2D88A /* baboo.png */,
 				6D1B56B01A45D2C3009B50C1 /* logo.png */,
 			);
 			path = HomeViewController;
@@ -533,6 +536,7 @@
 				6D1B56B31A45D2C3009B50C1 /* logo.png in Resources */,
 				6D14528F1AD9F9CF004EBE50 /* wallpaper2.jpg in Resources */,
 				6D67D28D1A409C7500F49CDE /* Images.xcassets in Resources */,
+				6D2B0C9E1AF51C5900E2D88A /* baboo.png in Resources */,
 				6D1B56B11A45D2C3009B50C1 /* greenButton.png in Resources */,
 				6D14528D1AD9E6D9004EBE50 /* wallpaper.jpg in Resources */,
 				6DB8125F1A4A07380031FF4D /* Header.png in Resources */,
@@ -633,6 +637,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -650,7 +655,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -674,6 +679,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -685,7 +691,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -696,6 +702,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Task Heroes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -708,6 +715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Task Heroes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

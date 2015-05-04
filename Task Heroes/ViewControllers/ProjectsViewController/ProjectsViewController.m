@@ -10,6 +10,9 @@
 #import "SWRevealViewController.h"
 #import "UIViewController+NavigationBar.h"
 
+NSArray *projectName;
+NSArray *publicTimeline;
+
 @interface ProjectsViewController ()
 
 @end
@@ -20,6 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	[self setupNavigationBar];
+	[self.projectsTable reloadData];
+	[self.projectsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,15 +64,66 @@
 	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
 	//requestReply = [NSString stringWithFormat:@"msg"];
 	
-		NSArray *components = [requestReply componentsSeparatedByString:@"},"];
-		NSLog(@"%@",components);
+//		NSArray *components = [requestReply componentsSeparatedByString:@"},"];
+		NSLog(@"\nRequest: %@",requestReply);
 	
+	//JSON Parse
+
+	NSData *response = [NSURLConnection sendSynchronousRequest:request
+											 returningResponse:nil error:nil];
+	NSError *jsonParsingError = nil;
+	publicTimeline = [NSJSONSerialization JSONObjectWithData:response
+															  options:0 error:&jsonParsingError];
 	
-	
+	NSDictionary *project;
+
+	for(int i=0; i < [publicTimeline count];i++)
+	{
+		project= [publicTimeline objectAtIndex:i];
+		NSLog(@"Project Description: %@", [project objectForKey:@"project_description"]);
+		projectName = [project objectForKey:@"project_name"];
+		NSLog(@"Project_name: %@", projectName );
+		NSLog(@"Project manager: %@", [project objectForKey:@"project_manager"]);
+		NSLog(@"_id: %@", [project objectForKey:@"_id"]);
+		NSLog(@"project_members: %@", [project objectForKey:@"project_members"]);
+//		NSDictionary *project_members = [project objectForKey:@"project_members"];
+//		for (int j=0; j < [project_members count]; j++) {
+//			NSLog(@"Is this working? : %@", project_members);}
+	}
 }
+
+- (NSInteger)ProjectsTable:(UITableView *) ProjectsTable
+ numberOfRowsInSection:(NSInteger)section
+{
+	return [projectName count];
+}
+
 
 - (void) viewWillAppear:(BOOL)animated {
 	[self getProjects];
+}
+
+
+-(UITableViewCell *)ProjectsTable:(UITableView *)ProjectsTable
+		cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	UITableViewCell *cell = [ProjectsTable dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	
+	NSDictionary *tempDictionary= [publicTimeline objectAtIndex:indexPath.row];
+	
+	cell.textLabel.text = [tempDictionary objectForKey:@"project_name"];
+	
+	if([tempDictionary objectForKey:@"_id"] != NULL)
+	{
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"Rating: %@ of 5",[tempDictionary   objectForKey:@"_id"]];
+	}
+	else
+	{
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"Not Rated"];
+	}
+	
+	return cell;
 }
 
 /*
