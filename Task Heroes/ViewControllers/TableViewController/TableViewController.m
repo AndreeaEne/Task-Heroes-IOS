@@ -61,8 +61,6 @@
 	
     cell.textLabel.text = [content objectAtIndex:indexPath.row];
     return cell;
-	
-	
 }
 
 - (void)didReceiveMemoryWarning {

@@ -61,7 +61,7 @@ NSString *id_user;
 	
 	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:@"http://localhost:8081/update/user"]];
+	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/update/user"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
@@ -81,7 +81,7 @@ NSString *id_user;
 	
 	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
 	NSMutableURLRequest *requestPass = [[NSMutableURLRequest alloc] init];
-	[requestPass setURL:[NSURL URLWithString:@"http://localhost:8081/change/password"]];
+	[requestPass setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/change/password"]];
 	[requestPass setHTTPMethod:@"POST"];
 	[requestPass setValue:postLengthPass forHTTPHeaderField:@"Content-Length"];
 	[requestPass setHTTPBody:postDataPass];

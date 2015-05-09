@@ -110,8 +110,7 @@
 	[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-	
-	// Fetch Fruit
+
 	NSString *dataTest = [self.dataTest objectAtIndex:[indexPath row]];
 	
 	[cell.textLabel setText:dataTest];

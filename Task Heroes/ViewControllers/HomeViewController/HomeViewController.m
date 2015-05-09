@@ -79,7 +79,7 @@ BOOL semafor = false;
 	
 	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:@"http://localhost:8081/login/user"]];
+	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/login/user"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];

@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProjectsViewController : UIViewController
+@interface ProjectsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *projectsTable;
+
+@property (strong, nonatomic) NSMutableArray *organisationID;
+@property (strong, nonatomic) NSMutableArray *projectID;
+//@property (strong, nonatomic) NSMutableArrayg *project_description;
+@property (strong, nonatomic) NSMutableArray *project_name;
+@property (strong, nonatomic) NSMutableArray *organisation_name;
+
 @end
+
+
+
+
+
+
