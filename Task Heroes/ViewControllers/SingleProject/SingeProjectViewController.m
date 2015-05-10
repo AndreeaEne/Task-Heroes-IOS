@@ -24,6 +24,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setProjectTitle:(NSString *)projectTitle{
+	_projectTitle.text = projectTitle;
+//	NSString* result = [NSString stringWithFormat:@"%@", projectTitle.text];
+//	self.projectTitle.text = result;
+}
+
 /*
 #pragma mark - Navigation
 

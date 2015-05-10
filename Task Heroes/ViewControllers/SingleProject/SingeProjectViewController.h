@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SingeProjectViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *projectTitle;
+- (void)setProjectTitle:(NSString *)projectTitle;
 
 @end

@@ -10,8 +10,9 @@
 #import "SWRevealViewController.h"
 #import "UIViewController+NavigationBar.h"
 #import <CoreData/CoreData.h>
+#import "SingeProjectViewController.h"
 
-NSArray *projectName;
+//NSArray *projectName;
 NSArray *publicTimeline;
 NSString *id_user;
 NSMutableDictionary *proiecte;
@@ -26,6 +27,7 @@ NSArray *valueArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSLog(@"Se apeleaza viewDidLoad");
     // Do any additional setup after loading the view.
 	_projectID = [[NSMutableArray alloc] init];
 	_organisationID = [[NSMutableArray alloc] init];
@@ -35,10 +37,9 @@ NSArray *valueArray;
 	
 //	UINib *cellNib = [UINib nibWithNibName:@"Cell" bundle:nil];
 //	[self.projectsTable registerNib:cellNib forCellReuseIdentifier:@"Cell"];
-	
-	[self setupNavigationBar];
 //	[self.projectsTable reloadData];
 //	[self.projectsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+	[self setupNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,14 +97,14 @@ NSArray *valueArray;
 	[request setHTTPBody:postData];
 	
 	//Send the request, and read the reply:
-	NSURLResponse *requestResponse;
-	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+//	NSURLResponse *requestResponse;
+//	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
 	
-	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+//	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
 	//requestReply = [NSString stringWithFormat:@"msg"];
 	
 //		NSArray *components = [requestReply componentsSeparatedByString:@"},"];
-		NSLog(@"\nRequest: %@",requestReply);
+//		NSLog(@"\nRequest: %@",requestReply);
 	
 	//JSON Parse
 	NSData *response = [NSURLConnection sendSynchronousRequest:request
@@ -112,14 +113,14 @@ NSArray *valueArray;
 	publicTimeline = [NSJSONSerialization JSONObjectWithData:response
 															  options:0 error:&jsonParsingError];
 	
-	NSLog(@"%@", publicTimeline);
+//	NSLog(@"publicTimeline:\n%@", publicTimeline);
 	
 	if (!publicTimeline) {
 		NSLog(@"Error parsing JSON: %@", fetchError);
 	}
 	else {
 		for(NSDictionary *item in publicTimeline) {
-			[_projectID addObject:item[@"_id"]];
+//			[_projectID addObject:item[@"_id"]];
 			[_organisation_name addObject:item[@"organization_name"]];
 			NSString *orgName = item[@"organization_name"];
 			
@@ -128,21 +129,26 @@ NSArray *valueArray;
 			for(NSDictionary *projName in [item objectForKey:@"organization_projects"]) {
 				[_project_name addObject:projName[@"project_name"]];
 				[_organisationID addObject:projName[@"org"]];
+				[_projectID addObject:projName[@"_id"]];
 				
 				
 				NSString *ceva = projName[@"project_name"];
 				[aux addObject:ceva];
+				
+//				NSString *ceva2 = projName[@"_id"];
+//				[aux addObject:ceva2];
 //				proiecte[ceva]=orgName;
 			}
 			proiecte[orgName] = aux;
 			
+			
 		}
-		NSLog(@"Dictionary: %@", proiecte);
+//		NSLog(@"Dictionary: %@", proiecte);
 		
 		keyArray = [proiecte allKeys];
-		NSLog(@"%@", keyArray);
+//		NSLog(@"%@", keyArray);
 		valueArray = [proiecte allValues];
-		NSLog(@"%@", valueArray);
+//		NSLog(@"%@", valueArray);
 		
 //		for (NSString *item in _project_name)
 //			NSLog(@"obj: %@", item);
@@ -237,30 +243,10 @@ NSArray *valueArray;
 	{
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
 	}
-//	if (indexPath.section == 1)
-//		i++;
-//	NSLog(@"indexPath.row = %ld, indexPath.section = %ld", (long)indexPath.row, (long)indexPath.section);
+
 	NSArray *projectListPerOrg =[proiecte valueForKey:keyArray[indexPath.section]];
-//	NSLog(@"projectListPerOrg: %@", projectListPerOrg);
 	cell.textLabel.text = projectListPerOrg[indexPath.row];
-	
-	
-//	if(indexPath.section==0)
-//	{
-//		NSArray *projectListPerOrg =[proiecte valueForKey:keyArray[indexPath.row]];
-//		NSLog(@"projectListPerOrg: %@", projectListPerOrg);
-//		for (NSInteger i = 0; i < [projectListPerOrg count]; i++) {
-//			NSString *textAux = projectListPerOrg[i];
-////			NSLog(@"textAux: %@", textAux);
-//			cell.textLabel.text = textAux;
-//			NSLog(@"celdata: %@",cell.textLabel.text);
-//		}
-////		
-//	}else
-//	{
-//		[cell.textLabel setText:[keyArray objectAtIndex:indexPath.row]];
-//	}
-//	NSLog(@"celdata: %@",cell.textLabel.text);
+
 	return cell;
 }
 
@@ -268,8 +254,40 @@ NSArray *valueArray;
 	return [keyArray objectAtIndex:section];
 }
 
+//send data to SingleProject
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	NSString *orgID;
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	NSString *currentSection = keyArray[indexPath.section];
+	
+	for(NSDictionary *item in publicTimeline) {
+		NSString *orgName = item[@"organization_name"];
+		if([orgName isEqualToString:currentSection]) {
+			for(NSDictionary *projName in [item objectForKey:@"organization_projects"])
+			{
+				NSString *currentProject = projName[@"project_name"];
+				if([cell.textLabel.text isEqualToString:currentProject])
+				{
+					orgID = projName[@"_id"];
+					NSLog(@"a gasit");
+					break;
+				}
+			}
+			break;
+		}
+
+	}
+	
+	//	NSLog(@"Row Selected = %@",indexPath);
+	NSLog(@"Proiectul are id-ul = %@", orgID);
+	[self performSegueWithIdentifier:@"goToSingleProject" sender:self.view];
+	SingeProjectViewController *theInstance = [[SingeProjectViewController alloc] init];
+	[theInstance setTitle:orgID];
+	
+}
 
 - (void) viewWillAppear:(BOOL)animated {
+	NSLog(@"Se apeleaza viewWillAppear");
 	[self getProjects];
 }
 
