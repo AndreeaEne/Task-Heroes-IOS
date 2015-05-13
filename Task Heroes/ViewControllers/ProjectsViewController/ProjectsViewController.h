@@ -14,9 +14,9 @@
 
 @property (strong, nonatomic) NSMutableArray *organisationID;
 @property (strong, nonatomic) NSMutableArray *projectID;
-//@property (strong, nonatomic) NSMutableArrayg *project_description;
 @property (strong, nonatomic) NSMutableArray *project_name;
 @property (strong, nonatomic) NSMutableArray *organisation_name;
+//@property (strong, nonatomic) NSMutableArrayg *project_description;
 
 @end
 

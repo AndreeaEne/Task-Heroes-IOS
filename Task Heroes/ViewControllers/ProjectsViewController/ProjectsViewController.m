@@ -13,11 +13,10 @@
 #import "SingeProjectViewController.h"
 
 //NSArray *projectName;
-NSArray *publicTimeline;
-NSString *id_user;
+NSString *id_user, *orgID;
 NSMutableDictionary *proiecte;
-NSArray *keyArray;
-NSArray *valueArray;
+NSArray *publicTimeline, *keyArray, *valueArray;
+
 
 @interface ProjectsViewController ()
 
@@ -34,11 +33,7 @@ NSArray *valueArray;
 	_project_name = [[NSMutableArray alloc] init];
 	_organisation_name = [[NSMutableArray alloc] init];
 	proiecte = [[NSMutableDictionary alloc] init];
-	
-//	UINib *cellNib = [UINib nibWithNibName:@"Cell" bundle:nil];
-//	[self.projectsTable registerNib:cellNib forCellReuseIdentifier:@"Cell"];
-//	[self.projectsTable reloadData];
-//	[self.projectsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+
 	[self setupNavigationBar];
 }
 
@@ -73,7 +68,6 @@ NSArray *valueArray;
 		NSLog(@"Error fetching data.");
 		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
 	}
-	
 	
 	NSError *error;
 	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
@@ -123,8 +117,7 @@ NSArray *valueArray;
 //			[_projectID addObject:item[@"_id"]];
 			[_organisation_name addObject:item[@"organization_name"]];
 			NSString *orgName = item[@"organization_name"];
-			
-			
+	
 			NSMutableArray *aux = [[NSMutableArray alloc] init];
 			for(NSDictionary *projName in [item objectForKey:@"organization_projects"]) {
 				[_project_name addObject:projName[@"project_name"]];
@@ -174,9 +167,7 @@ NSArray *valueArray;
 //			NSLog(@"%@", _projectID);
 //		}
 //}
-
-		
-//		
+	
 //		for (int j = i; j < [publicTimeline count]; j++) {
 //			_project_name = [project objectForKey:@"project_name"];
 ////			NSLog(@"Project Name: %@", [orga objectForKey:@"project_description"]);
@@ -256,7 +247,7 @@ NSArray *valueArray;
 
 //send data to SingleProject
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	NSString *orgID;
+	
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	NSString *currentSection = keyArray[indexPath.section];
 	
@@ -278,11 +269,20 @@ NSArray *valueArray;
 
 	}
 	
-	//	NSLog(@"Row Selected = %@",indexPath);
-	NSLog(@"Proiectul are id-ul = %@", orgID);
+//	NSLog(@"Row Selected = %@",indexPath);
+//	NSLog(@"Proiectul are id-ul = %@", orgID);
+
 	[self performSegueWithIdentifier:@"goToSingleProject" sender:self.view];
-	SingeProjectViewController *theInstance = [[SingeProjectViewController alloc] init];
-	[theInstance setTitle:orgID];
+	
+}
+
+//Send orgID to SingleProjectViewController
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+	NSLog(@"prepareForSegue: %@", segue.identifier);
+	if([segue.identifier isEqualToString:@"goToSingleProject"]){
+		SingeProjectViewController *singleProjectController = segue.destinationViewController;
+		singleProjectController.projectID = orgID;
+	}
 	
 }
 

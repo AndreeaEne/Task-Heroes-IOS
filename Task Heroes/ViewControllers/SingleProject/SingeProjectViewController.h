@@ -10,6 +10,7 @@
 
 @interface SingeProjectViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *projectTitle;
-- (void)setProjectTitle:(NSString *)projectTitle;
+@property (strong, nonatomic) NSString *projectID;
 
+- (void) getData;
 @end
