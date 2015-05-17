@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D0AC0BD1AFD699200667188 /* SingeProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0BC1AFD699200667188 /* SingeProjectViewController.m */; };
+		6D0AC0BD1AFD699200667188 /* SingleProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0BC1AFD699200667188 /* SingleProjectViewController.m */; };
 		6D0E2D501AD1717400E24046 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D4F1AD1717400E24046 /* ToDoItem.m */; };
 		6D0E2D5B1AD1D01700E24046 /* Green Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5A1AD1D01700E24046 /* Green Header.png */; };
 		6D0E2D5E1AD1D82000E24046 /* index logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5D1AD1D82000E24046 /* index logo.png */; };
@@ -58,8 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6D0AC0BB1AFD699200667188 /* SingeProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingeProjectViewController.h; path = SingleProject/SingeProjectViewController.h; sourceTree = "<group>"; };
-		6D0AC0BC1AFD699200667188 /* SingeProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingeProjectViewController.m; path = SingleProject/SingeProjectViewController.m; sourceTree = "<group>"; };
+		6D0AC0BB1AFD699200667188 /* SingleProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleProjectViewController.h; path = SingleProject/SingleProjectViewController.h; sourceTree = "<group>"; };
+		6D0AC0BC1AFD699200667188 /* SingleProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleProjectViewController.m; path = SingleProject/SingleProjectViewController.m; sourceTree = "<group>"; };
 		6D0E2D4E1AD1717400E24046 /* ToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
 		6D0E2D4F1AD1717400E24046 /* ToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
 		6D0E2D5A1AD1D01700E24046 /* Green Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Header.png"; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 		6D0AC0BE1AFD699800667188 /* SingleProjectViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6D0AC0BB1AFD699200667188 /* SingeProjectViewController.h */,
-				6D0AC0BC1AFD699200667188 /* SingeProjectViewController.m */,
+				6D0AC0BB1AFD699200667188 /* SingleProjectViewController.h */,
+				6D0AC0BC1AFD699200667188 /* SingleProjectViewController.m */,
 			);
 			name = SingleProjectViewController;
 			sourceTree = "<group>";
@@ -578,7 +578,7 @@
 				6D322A851A52FB720052D2A0 /* MembersViewController.m in Sources */,
 				6D3048251A48ABD70059159B /* TableViewController.m in Sources */,
 				6D1B56B71A464407009B50C1 /* FirstPageViewController.m in Sources */,
-				6D0AC0BD1AFD699200667188 /* SingeProjectViewController.m in Sources */,
+				6D0AC0BD1AFD699200667188 /* SingleProjectViewController.m in Sources */,
 				6D67D2851A409C7500F49CDE /* Task_Heroes.xcdatamodeld in Sources */,
 				6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */,
 				6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */,

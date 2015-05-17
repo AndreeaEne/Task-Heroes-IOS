@@ -10,19 +10,21 @@
 #import "SWRevealViewController.h"
 #import "UIViewController+NavigationBar.h"
 #import <CoreData/CoreData.h>
-#import "SingeProjectViewController.h"
+#import "SingleProjectViewController.h"
+#import "AppDelegate.h"
 
 //NSArray *projectName;
 NSString *id_user, *orgID;
 NSMutableDictionary *proiecte;
 NSArray *publicTimeline, *keyArray, *valueArray;
 
-
 @interface ProjectsViewController ()
 
 @end
 
 @implementation ProjectsViewController
+
+@synthesize projectsTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -270,7 +272,7 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 	}
 	
 //	NSLog(@"Row Selected = %@",indexPath);
-//	NSLog(@"Proiectul are id-ul = %@", orgID);
+	NSLog(@"Proiectul are id-ul = %@", orgID);
 
 	[self performSegueWithIdentifier:@"goToSingleProject" sender:self.view];
 	
@@ -278,10 +280,28 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 
 //Send orgID to SingleProjectViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-	NSLog(@"prepareForSegue: %@", segue.identifier);
+//	NSLog(@"prepareForSegue: %@", segue.identifier);
+	
 	if([segue.identifier isEqualToString:@"goToSingleProject"]){
-		SingeProjectViewController *singleProjectController = segue.destinationViewController;
+		SingleProjectViewController *singleProjectController = segue.destinationViewController;
+		
+//		NSLog(@"before setting projectID = %@", singleProjectController.projectID);
 		singleProjectController.projectID = orgID;
+//		NSLog(@"after setting projectID = %@", singleProjectController.projectID);
+		
+		NSIndexPath *indexPath = [self.projectsTable indexPathForSelectedRow];
+		UITableViewCell *cell = [projectsTable cellForRowAtIndexPath:indexPath];
+		
+//		NSLog(@"before setting = %@", singleProjectController.projectTitle);
+		singleProjectController.projectTitle = cell.textLabel.text;
+//		NSLog(@"after setting = %@", singleProjectController.projectTitle);
+		
+//
+//		singleProjectController.projectTitle = [valueArray objectAtIndex:indexPath.row];
+//		[singleProjectController.setProjectTitle setText:[valueArray objectAtIndex:indexPath.row]];
+		
+		
+	
 	}
 	
 }
