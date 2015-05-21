@@ -224,10 +224,10 @@
                                 <rect key="frame" x="-7" y="64" width="327" height="504"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq3-57-zzp">
-                                <rect key="frame" x="31" y="82" width="248" height="248"/>
+                                <rect key="frame" x="31" y="129" width="248" height="201"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-yv-tUt">
-                                        <rect key="frame" x="76" y="8" width="97" height="21"/>
+                                        <rect key="frame" x="76" y="-39" width="97" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -238,7 +238,7 @@
                                 </connections>
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-YC-SIF">
-                                <rect key="frame" x="-83" y="398" width="144" height="126"/>
+                                <rect key="frame" x="88" y="344" width="144" height="126"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Rgx-FS-il7" id="H8u-hf-urZ"/>
@@ -251,6 +251,12 @@
                                     <action selector="changeScreen:" destination="Rgx-FS-il7" eventType="valueChanged" id="ThH-3x-KW9"/>
                                 </connections>
                             </pageControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c58-5B-T4p">
+                                <rect key="frame" x="40" y="64" width="230" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
@@ -288,6 +294,7 @@
                     <connections>
                         <outlet property="barButton" destination="JAM-kC-ZCy" id="DzX-XD-tzI"/>
                         <outlet property="pageControl" destination="wjQ-OR-Jm5" id="zJc-1b-Jk8"/>
+                        <outlet property="points" destination="c58-5B-T4p" id="VaC-3r-fdQ"/>
                         <outlet property="quitButton" destination="gI4-PD-k2n" id="mj6-UX-yiJ"/>
                         <outlet property="scrollView" destination="gq3-57-zzp" id="ahz-cn-Nbx"/>
                         <outlet property="tableView" destination="8GP-YC-SIF" id="Tl0-Ng-3dp"/>

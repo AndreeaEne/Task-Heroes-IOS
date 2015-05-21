@@ -9,6 +9,11 @@
 #import "DashboardViewController.h"
 #import "SWRevealViewController.h"
 #import "FirstPageViewController.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
+
+float points;
+NSString *id_user;
 
 @interface DashboardViewController ()
 
@@ -40,6 +45,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	_points.text = [NSString stringWithFormat: @"You have %.2f points", points];
+	
+	// Fetching
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+
+	// Execute Fetch Request
+	NSError *fetchError = nil;
+	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+	if (!fetchError) {
+		for (NSManagedObject *managedObject in result) {
+			NSString *auxPoints = [managedObject valueForKey:@"points"];
+			points = [auxPoints floatValue];
+		}
+		
+	} else {
+		NSLog(@"Error fetching data.");
+		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+	}
+	NSError *error;
+	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+	if (fetchedObjects == nil) {
+		// Handle the error.
+	}
+	
 	
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0f/255.0f green:108.0f/255.0f blue:164.0f/255.0f alpha:1.0f];
 	self.navigationController.navigationBar.translucent = NO;
@@ -87,11 +118,6 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -136,8 +162,7 @@
 	[alert show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex != 0)  // 0 == the cancel button
 	{
 		[self.navigationController popToRootViewControllerAnimated:YES];
@@ -146,7 +171,19 @@
 	}
 }
 
+- (NSManagedObjectContext *) managedObjectContext {
+	NSManagedObjectContext *context = nil;
+	id delegate = [[UIApplication sharedApplication] delegate];
+	if ([delegate performSelector:@selector(managedObjectContext)]) {
+		context = [delegate managedObjectContext];
+	}
+	return context;
+}
 
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+}
 
 /*
 #pragma mark - Navigation

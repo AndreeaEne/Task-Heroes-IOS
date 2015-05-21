@@ -22,4 +22,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *wallImage;
 
+@property (weak, nonatomic) IBOutlet UILabel *points;
+
 @end
