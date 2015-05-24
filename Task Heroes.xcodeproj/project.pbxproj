@@ -44,6 +44,7 @@
 		6DBBDA781A54231B00B31D2D /* OrganisationProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA771A54231B00B31D2D /* OrganisationProfileViewController.m */; };
 		6DBBDA7C1A5424F000B31D2D /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA7B1A5424F000B31D2D /* ProjectsViewController.m */; };
 		6DBBDA7F1A54318B00B31D2D /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DBBDA7E1A54318B00B31D2D /* logout.png */; };
+		6DF237C71B10A08F000C46EA /* SingleTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF237C61B10A08F000C46EA /* SingleTaskViewController.m */; };
 		6DF41C041ADF044E00F5DFDA /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF41C031ADF044E00F5DFDA /* EditUserViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,8 @@
 		6DBBDA7A1A5424F000B31D2D /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectsViewController.h; path = ProjectsViewController/ProjectsViewController.h; sourceTree = "<group>"; };
 		6DBBDA7B1A5424F000B31D2D /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectsViewController.m; path = ProjectsViewController/ProjectsViewController.m; sourceTree = "<group>"; };
 		6DBBDA7E1A54318B00B31D2D /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		6DF237C51B10A08F000C46EA /* SingleTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleTaskViewController.h; path = SingleTaskViewController/SingleTaskViewController.h; sourceTree = "<group>"; };
+		6DF237C61B10A08F000C46EA /* SingleTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleTaskViewController.m; path = SingleTaskViewController/SingleTaskViewController.m; sourceTree = "<group>"; };
 		6DF41C021ADF044E00F5DFDA /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditUserViewController.h; path = EditUserViewController/EditUserViewController.h; sourceTree = "<group>"; };
 		6DF41C031ADF044E00F5DFDA /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditUserViewController.m; path = EditUserViewController/EditUserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +196,7 @@
 		6D1B569C1A45D044009B50C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6DF237C41B10A07C000C46EA /* SingleTaskViewController */,
 				6D0AC0BE1AFD699800667188 /* SingleProjectViewController */,
 				6DF41C011ADF043600F5DFDA /* EditUserViewController */,
 				6D0E2D6C1AD3232F00E24046 /* ChoosePhotoViewController */,
@@ -451,6 +455,15 @@
 			name = ProjectsViewController;
 			sourceTree = "<group>";
 		};
+		6DF237C41B10A07C000C46EA /* SingleTaskViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6DF237C51B10A08F000C46EA /* SingleTaskViewController.h */,
+				6DF237C61B10A08F000C46EA /* SingleTaskViewController.m */,
+			);
+			name = SingleTaskViewController;
+			sourceTree = "<group>";
+		};
 		6DF41C011ADF043600F5DFDA /* EditUserViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +596,7 @@
 				6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */,
 				6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */,
 				6D0E2D501AD1717400E24046 /* ToDoItem.m in Sources */,
+				6DF237C71B10A08F000C46EA /* SingleTaskViewController.m in Sources */,
 				6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */,
 				6DF41C041ADF044E00F5DFDA /* EditUserViewController.m in Sources */,
 				6DBBDA781A54231B00B31D2D /* OrganisationProfileViewController.m in Sources */,

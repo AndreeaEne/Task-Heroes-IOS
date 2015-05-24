@@ -299,9 +299,6 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 //
 //		singleProjectController.projectTitle = [valueArray objectAtIndex:indexPath.row];
 //		[singleProjectController.setProjectTitle setText:[valueArray objectAtIndex:indexPath.row]];
-		
-		
-	
 	}
 	
 }

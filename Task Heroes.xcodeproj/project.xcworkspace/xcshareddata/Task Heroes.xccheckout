@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>688E6D14-47B5-4C95-BE23-32A081DD84E7</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Task Heroes</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>0C9A7AECB3AA99A82E01FA47233BD5E3DFFA2069</key>
 		<string>https://github.com/AndreeaEne/Task-Heroes-IOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Task Heroes.xcodeproj/project.xcworkspace</string>
+	<string>Task Heroes.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0C9A7AECB3AA99A82E01FA47233BD5E3DFFA2069</key>

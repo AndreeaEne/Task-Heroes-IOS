@@ -14,6 +14,10 @@
 
 float points;
 NSString *id_user;
+NSDictionary *responseFromServer;
+NSMutableArray *task_name;
+
+NSArray *keyArray, *valueArray;
 
 @interface DashboardViewController ()
 
@@ -46,8 +50,12 @@ NSString *id_user;
 {
     [super viewDidLoad];
 	
-	_points.text = [NSString stringWithFormat: @"You have %.2f points", points];
+	[self getPoints];
+	[self getData];
 	
+}
+
+- (void) getPoints {
 	// Fetching
 	NSManagedObjectContext *context = [self managedObjectContext];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
@@ -58,6 +66,7 @@ NSString *id_user;
 	if (!fetchError) {
 		for (NSManagedObject *managedObject in result) {
 			NSString *auxPoints = [managedObject valueForKey:@"points"];
+			id_user = [managedObject valueForKey:@"id_user"];
 			points = [auxPoints floatValue];
 		}
 		
@@ -70,7 +79,7 @@ NSString *id_user;
 	if (fetchedObjects == nil) {
 		// Handle the error.
 	}
-	
+	_points.text = [NSString stringWithFormat: @"You have %.2f points", points];
 	
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0f/255.0f green:108.0f/255.0f blue:164.0f/255.0f alpha:1.0f];
 	self.navigationController.navigationBar.translucent = NO;
@@ -82,7 +91,6 @@ NSString *id_user;
     
     SWRevealViewController *revealController = [self revealViewController];
 	
-    
     [revealController panGestureRecognizer];
     [revealController tapGestureRecognizer];
     
@@ -107,8 +115,6 @@ NSString *id_user;
 		UILabel *taskSection = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x + 90, frame.origin.y, 97, 21)];
 		[taskSection setText:[NSString stringWithFormat:@"%@",[titles objectAtIndex:i]]];
 		
-		
-		
 		[self.scrollView addSubview:imageView];
 		[self.scrollView addSubview:taskSection];
 		
@@ -119,30 +125,28 @@ NSString *id_user;
 
 
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return 1;//[self.dataTest count];
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	return [task_name count];
+	
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSInteger numberOfRows = [self.dataTest count];
-	return numberOfRows;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *CellIdentifier = @"Cell Identifier";
+	UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"cell"];
 	
-	[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+	if (cell == nil)
+	{
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+	}
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-	NSString *dataTest = [self.dataTest objectAtIndex:[indexPath row]];
+	cell.textLabel.text = task_name[indexPath.row];
 	
-	[cell.textLabel setText:dataTest];
 	
 	return cell;
 }
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
@@ -168,6 +172,45 @@ NSString *id_user;
 		[self.navigationController popToRootViewControllerAnimated:YES];
 		//UINavigationController *nav = self.navigationController;
 		//[nav pushViewController:UINavigationControllerOperationNone animated:YES];
+	}
+}
+
+- (void) getData {
+	NSError *fetchError = nil;
+	
+	//We begin by creating our POST's body as an NSString, and converting it to NSData.
+	NSString *post = [NSString stringWithFormat:@"_id=%@", id_user];
+	NSLog(@"iduser: %@", id_user);
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	
+	//Next up, we read the postData's length, so we can pass it along in the request.
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+	
+	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/get/undonetasks"]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:postData];
+	
+	
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSError *jsonParsingError = nil;
+	responseFromServer = [NSJSONSerialization JSONObjectWithData:response
+														 options:0 error:&jsonParsingError];
+	NSLog(@"Response: %@", responseFromServer);
+	task_name = [[NSMutableArray alloc] init];
+	
+	if (!responseFromServer) {
+		NSLog(@"Error parsing JSON: %@", fetchError);
+	}
+	else {
+		
+		for(NSDictionary *item in responseFromServer) {
+			NSLog(@"item: %@ ", item[@"task_name"]);
+			[task_name addObject:item[@"task_name"]];
+		}
+		NSLog(@"taskName: %@", task_name);
 	}
 }
 
