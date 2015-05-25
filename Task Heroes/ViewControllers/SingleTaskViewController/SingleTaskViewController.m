@@ -16,14 +16,20 @@
 
 NSDictionary *responseFromServer;
 NSArray *content;
+
 @synthesize taskName, setTaskName;
 
 - (void)viewDidLoad {
+	 [super viewDidLoad];
 	
 //	[[self navigationController] setNavigationBarHidden:YES animated:YES];
 	_projectTo = @"backlog";
 	content = [NSArray arrayWithObjects:@"Backlog", @"Waiting", @"Doing", @"Done", nil];
 	
+	float auxPoints = [_points floatValue];
+	_pointsField.text = [NSString stringWithFormat: @"%.2f", auxPoints];
+	
+	[_toSectionPicker setAlpha:0];
 	[setTaskName setText:taskName];
 	
 //	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
@@ -33,8 +39,6 @@ NSArray *content;
 	self.popUpView.layer.shadowOpacity = 0.8;
 	self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
 	
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void) saveTask {
@@ -44,7 +48,7 @@ NSArray *content;
 	
 	//We begin by creating our POST's body as an NSString, and converting it to NSData.
 	NSString *post = [NSString stringWithFormat:@"project_id=%@&task_id=%@&from=%@&to=%@", _projectID, _taskID, [_projectFrom lowercaseString], [_projectTo lowercaseString]];
-	NSLog(@"projectID: %@, taskID: %@, projecTO: %@, projectFROM: %@", _projectID, _taskID, _projectTo, _projectFrom);
+	NSLog(@"projectID: %@, taskID: %@, From: %@, To: %@", _projectID, _taskID, [_projectFrom lowercaseString], [_projectTo lowercaseString]);
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Next up, we read the postData's length, so we can pass it along in the request.
@@ -127,6 +131,20 @@ NSArray *content;
 
 - (IBAction)closePopup:(id)sender {
 	[self saveTask];
+	NSString *messageString = [NSString stringWithFormat:@"The task has been moved to %@", _projectTo];
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Save"
+						  message:messageString
+						  delegate:self
+						  cancelButtonTitle:@"Cancel"
+						  otherButtonTitles:@"OK", nil];
+	[alert show];
+	
+	[self removeAnimate];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)closePopupBack:(id)sender {
 	[self removeAnimate];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }

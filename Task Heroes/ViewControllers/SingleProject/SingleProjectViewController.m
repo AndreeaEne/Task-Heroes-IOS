@@ -11,9 +11,9 @@
 #import "AppDelegate.h"
 
 NSDictionary *responseFromServer;
-NSMutableDictionary *taskList, *taskID;
+NSMutableDictionary *taskList, *taskID, *taskPoints;
 NSMutableArray *task_name;
-NSString *results;
+NSString *results, *singleTaskPoints;
 NSArray *keyArray, *valueArray;
 
 @interface SingleProjectViewController ()
@@ -35,6 +35,7 @@ NSArray *keyArray, *valueArray;
 	[self getData];
 	
 	results = [[NSString alloc] init ];
+	singleTaskPoints = [[NSString alloc] init ];
 
 	tasksTable.dataSource = self;
 	tasksTable.delegate = self;
@@ -93,6 +94,7 @@ NSArray *keyArray, *valueArray;
 	}
 	else {
 		taskID = [[NSMutableDictionary alloc] init];
+		taskPoints = [[NSMutableDictionary alloc] init];
 		NSMutableArray *backlog = [[NSMutableArray alloc] init];
 		NSMutableArray *waiting = [[NSMutableArray alloc] init];
 		NSMutableArray *doing = [[NSMutableArray alloc] init];
@@ -101,21 +103,25 @@ NSArray *keyArray, *valueArray;
 			[backlog addObject:[item objectForKey:@"task_name"]];
 //			[taskID addObject:[item objectForKey:@"_id"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
+			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		for(NSDictionary *item in responseFromServer[@"waiting"]) {
 			[waiting addObject:[item objectForKey:@"task_name"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
+			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		for(NSDictionary *item in responseFromServer[@"doing"]) {
 			[doing addObject:[item objectForKey:@"task_name"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
+			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		for(NSDictionary *item in responseFromServer[@"done"]) {
 			[done addObject:[item objectForKey:@"task_name"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
+			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		taskList = [[NSMutableDictionary alloc] init];
@@ -199,6 +205,13 @@ NSArray *keyArray, *valueArray;
 			break;
 		}
 	}
+	for (NSString *key in [taskPoints allKeys]) {
+		if ([key isEqualToString:cell.textLabel.text]) {
+			singleTaskPoints = [taskPoints objectForKey:key];
+			//			NSLog(@"results: %@", results);
+			break;
+		}
+	}
 	[self performSegueWithIdentifier:@"goToSingleTask" sender:self.view];
 }
 
@@ -228,6 +241,7 @@ NSArray *keyArray, *valueArray;
 				break;
 		}
 		singleTaskViewController.taskID = results;
+		singleTaskViewController.points = singleTaskPoints;
 			
 		self.definesPresentationContext = YES; //self is presenting view controller
 		
