@@ -15,25 +15,29 @@
 @implementation SingleTaskViewController
 
 NSDictionary *responseFromServer;
-NSArray *content;
+NSMutableArray *content;
+bool pressed;
 
 @synthesize taskName, setTaskName;
 
 - (void)viewDidLoad {
-	 [super viewDidLoad];
+	[super viewDidLoad];
+	
+//	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
+//	self.view.backgroundColor = color;
+	
+	_projectTo = @"backlog";
+	content = [NSMutableArray arrayWithObjects:@"Backlog", @"Waiting", @"Doing", @"Done", nil];
+	
+	[content removeObject:_projectFrom];
 	
 //	[[self navigationController] setNavigationBarHidden:YES animated:YES];
-	_projectTo = @"backlog";
-	content = [NSArray arrayWithObjects:@"Backlog", @"Waiting", @"Doing", @"Done", nil];
 	
 	float auxPoints = [_points floatValue];
 	_pointsField.text = [NSString stringWithFormat: @"%.2f", auxPoints];
 	
 	[_toSectionPicker setAlpha:0];
 	[setTaskName setText:taskName];
-	
-//	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
-//	self.view.backgroundColor = color;
 	
 	self.popUpView.layer.cornerRadius = 5;
 	self.popUpView.layer.shadowOpacity = 0.8;
@@ -102,6 +106,7 @@ NSArray *content;
 
 - (IBAction)selectPicker:(id)sender
 {
+	pressed = 1;
 	[UIView animateWithDuration:0.6 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		[_toSectionPicker setAlpha:1];
 	} completion:nil];
@@ -130,18 +135,30 @@ NSArray *content;
 }
 
 - (IBAction)closePopup:(id)sender {
-	[self saveTask];
-	NSString *messageString = [NSString stringWithFormat:@"The task has been moved to %@", _projectTo];
-	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"Save"
-						  message:messageString
-						  delegate:self
-						  cancelButtonTitle:@"Cancel"
-						  otherButtonTitles:@"OK", nil];
-	[alert show];
+	if (pressed == 1) {
+		[self saveTask];
+		NSString *messageString = [NSString stringWithFormat:@"The task %@ has been moved to %@", taskName, _projectTo];
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:@"Save"
+							  message:messageString
+							  delegate:self
+							  cancelButtonTitle:@"Cancel"
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+		
+		[self removeAnimate];
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:@"Save"
+							  message:@"Please select the list where you want to move the task!"
+							  delegate:self
+							  cancelButtonTitle:@"Cancel"
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+	}
 	
-	[self removeAnimate];
-	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)closePopupBack:(id)sender {
@@ -155,6 +172,38 @@ NSArray *content;
 	if (animated) {
 		[self showAnimate];
 	}
+}
+
+- (IBAction)eraseButton:(id)sender {
+	NSError *fetchError = nil;
+	NSString *post = [NSString stringWithFormat:@"project_id=%@&task_id=%@", _projectID, _taskID];
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/mobile/erase/task"]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:postData];
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSError *jsonParsingError = nil;
+	responseFromServer = [NSJSONSerialization JSONObjectWithData:response
+														 options:0 error:&jsonParsingError];
+	NSLog(@"Response: %@", responseFromServer);
+	
+	if (!responseFromServer) {
+		NSLog(@"Error parsing JSON: %@", fetchError);
+	}
+	else {
+		//warning
+	}
+	NSString *messageString = [NSString stringWithFormat:@"The task %@ has been erased", taskName];
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Save"
+						  message:messageString
+						  delegate:self
+						  cancelButtonTitle:@"Cancel"
+						  otherButtonTitles:@"OK", nil];
+	[alert show];
 }
 
 - (void)didReceiveMemoryWarning {

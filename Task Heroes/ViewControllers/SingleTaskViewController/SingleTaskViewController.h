@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *toSectionPicker;
 @property (weak, nonatomic) IBOutlet UIView *backButton;
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
+@property (weak, nonatomic) IBOutlet UIButton *eraseButton;
 
 @property (strong, nonatomic) NSString *taskName, *projectID, *taskID, *projectFrom, *projectTo, *points;
 

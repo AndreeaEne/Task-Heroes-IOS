@@ -625,12 +625,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eV9-Fd-LJB">
                                 <rect key="frame" x="36" y="100" width="248" height="311"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyN-Tw-DpM">
-                                        <rect key="frame" x="68" y="8" width="123" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
-                                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjk-ST-tdF">
                                         <rect key="frame" x="194" y="269" width="46" height="34"/>
                                         <constraints>
@@ -646,6 +640,12 @@
                                             <action selector="closePopup:" destination="Ic2-g8-FOG" eventType="touchUpInside" id="IPU-w2-Qkj"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyN-Tw-DpM">
+                                        <rect key="frame" x="68" y="8" width="123" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noOfPoints" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9u-lZ-hkE">
                                         <rect key="frame" x="102" y="44" width="86" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -665,7 +665,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIs-GZ-NHW">
-                                        <rect key="frame" x="-36" y="126" width="320" height="162"/>
+                                        <rect key="frame" x="-36" y="122" width="320" height="162"/>
                                         <connections>
                                             <outlet property="dataSource" destination="Ic2-g8-FOG" id="f9a-uy-Dmg"/>
                                             <outlet property="delegate" destination="Ic2-g8-FOG" id="8Wt-wU-oGl"/>
@@ -685,11 +685,17 @@
                                             <action selector="selectPicker:" destination="Ic2-g8-FOG" eventType="touchUpInside" id="edu-D0-jUR"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fj7-Ri-ztM">
+                                        <rect key="frame" x="31" y="44" width="54" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNo-eQ-W7U">
-                                        <rect key="frame" x="8" y="269" width="57" height="34"/>
+                                        <rect key="frame" x="8" y="267" width="57" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="57" id="BDU-Xz-zrM"/>
-                                            <constraint firstAttribute="height" constant="34" id="D0N-nH-g3i"/>
+                                            <constraint firstAttribute="height" constant="36" id="D0N-nH-g3i"/>
                                         </constraints>
                                         <state key="normal" title="Back" backgroundImage="graySection.png">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -699,22 +705,33 @@
                                             <action selector="closePopupBack:" destination="Ic2-g8-FOG" eventType="touchUpInside" id="lGc-kj-SoL"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fj7-Ri-ztM">
-                                        <rect key="frame" x="31" y="44" width="54" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ChW-Kh-oW7">
+                                        <rect key="frame" x="101" y="269" width="46" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="I7N-aW-uB3"/>
+                                            <constraint firstAttribute="width" constant="46" id="mIL-15-xPA"/>
+                                        </constraints>
+                                        <state key="normal" title="Erase" backgroundImage="redButton.png">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="eraseButton:" destination="Ic2-g8-FOG" eventType="touchUpInside" id="ArF-dA-NVX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="sjk-ST-tdF" firstAttribute="bottom" secondItem="ChW-Kh-oW7" secondAttribute="bottom" id="0qg-Ji-Zcd"/>
                                     <constraint firstItem="aDE-B1-SFd" firstAttribute="centerX" secondItem="RIs-GZ-NHW" secondAttribute="centerX" constant="0.5" id="1NX-eC-Bvw"/>
                                     <constraint firstAttribute="centerY" secondItem="FyN-Tw-DpM" secondAttribute="centerY" constant="137" id="5YG-do-Ld7"/>
                                     <constraint firstItem="yA6-ww-Ffo" firstAttribute="top" secondItem="N9u-lZ-hkE" secondAttribute="bottom" constant="8" symbolic="YES" id="5nS-dO-uKJ"/>
                                     <constraint firstItem="N9u-lZ-hkE" firstAttribute="leading" secondItem="Fj7-Ri-ztM" secondAttribute="trailing" constant="17" id="5ut-Y4-naO"/>
+                                    <constraint firstAttribute="centerX" secondItem="ChW-Kh-oW7" secondAttribute="centerX" id="AX9-fv-EBI"/>
                                     <constraint firstItem="yA6-ww-Ffo" firstAttribute="leading" secondItem="N9u-lZ-hkE" secondAttribute="leading" id="Ald-wp-dxe"/>
                                     <constraint firstAttribute="trailing" secondItem="RIs-GZ-NHW" secondAttribute="trailing" constant="-36" id="BQr-kp-t1H"/>
-                                    <constraint firstAttribute="bottom" secondItem="RIs-GZ-NHW" secondAttribute="bottom" constant="40" id="FMu-Rg-vJL"/>
+                                    <constraint firstAttribute="bottom" secondItem="RIs-GZ-NHW" secondAttribute="bottom" constant="50" id="FMu-Rg-vJL"/>
+                                    <constraint firstItem="ChW-Kh-oW7" firstAttribute="bottom" secondItem="jNo-eQ-W7U" secondAttribute="bottom" id="Fh9-Vi-kGU"/>
                                     <constraint firstAttribute="bottom" secondItem="sjk-ST-tdF" secondAttribute="bottom" constant="8" id="M3v-LO-nA2"/>
                                     <constraint firstItem="yA6-ww-Ffo" firstAttribute="baseline" secondItem="mCx-sD-uqw" secondAttribute="baseline" id="Pg3-MT-jjf"/>
                                     <constraint firstItem="Fj7-Ri-ztM" firstAttribute="baseline" secondItem="N9u-lZ-hkE" secondAttribute="baseline" id="RsV-tM-Ggz"/>
@@ -747,6 +764,7 @@
                     <connections>
                         <outlet property="backButton" destination="eV9-Fd-LJB" id="H4p-2B-3kp"/>
                         <outlet property="deadlineField" destination="yA6-ww-Ffo" id="xdu-3t-GWT"/>
+                        <outlet property="eraseButton" destination="ChW-Kh-oW7" id="kdd-fd-TLe"/>
                         <outlet property="pointsField" destination="N9u-lZ-hkE" id="ZSY-1Y-8Tg"/>
                         <outlet property="popUpView" destination="eV9-Fd-LJB" id="lz3-WU-rEd"/>
                         <outlet property="setTaskName" destination="FyN-Tw-DpM" id="3DV-Wo-XAA"/>
