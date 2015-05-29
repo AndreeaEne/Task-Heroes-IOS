@@ -64,12 +64,12 @@ UIRefreshControl *refreshControl;
     // Dispose of any resources that can be recreated.
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self getData];
-	[tasksTable reloadData];
-	NSLog(@"SingleProject: viewWillAppear called");
-}
+//- (void) viewWillAppear:(BOOL)animated {
+//	[super viewWillAppear:animated];
+//	[self getData];
+//	[tasksTable reloadData];
+//	NSLog(@"SingleProject: viewWillAppear called");
+//}
 
 - (void) getData {
 	NSError *fetchError = nil;
@@ -105,13 +105,13 @@ UIRefreshControl *refreshControl;
 		taskID = [[NSMutableDictionary alloc] init];
 		taskPoints = [[NSMutableDictionary alloc] init];
 		addedDate = [[NSMutableDictionary alloc] init];
+
 		NSMutableArray *backlog = [[NSMutableArray alloc] init];
 		NSMutableArray *waiting = [[NSMutableArray alloc] init];
 		NSMutableArray *doing = [[NSMutableArray alloc] init];
 		NSMutableArray *done = [[NSMutableArray alloc] init];
 		for(NSDictionary *item in responseFromServer[@"backlog"]) {
 			[backlog addObject:[item objectForKey:@"task_name"]];
-//			[taskID addObject:[item objectForKey:@"_id"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
 			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
 			[addedDate setObject:[item objectForKey:@"added_on"] forKey:[item objectForKey:@"task_name"]];
@@ -137,7 +137,7 @@ UIRefreshControl *refreshControl;
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
 			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
 			[addedDate setObject:[item objectForKey:@"added_on"] forKey:[item objectForKey:@"task_name"]];
-//			NSLog(@"%@",[item objectForKey:@"task_name"]);
+//			NSLog(@"%@",[item objectForKey:@"org_id"]);
 		}
 		taskList = [[NSMutableDictionary alloc] init];
 		[taskList setObject:backlog forKey:@"Backlog"];
@@ -231,6 +231,13 @@ UIRefreshControl *refreshControl;
 			break;
 		}
 	}
+	
+//	for (NSString *key in [orgID allKeys]) {
+//		if ([key isEqualToString:cell.textLabel.text]) {
+//			singleOrgID = [orgID objectForKey:key];
+//			break;
+//		}
+//	}
 	[self performSegueWithIdentifier:@"goToSingleTask" sender:self.view];
 }
 
@@ -269,10 +276,13 @@ UIRefreshControl *refreshControl;
 		singleTaskViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 	}
 	else if([segue.identifier isEqualToString:@"addNewTask"]){
+		singleTaskViewController.orgID = _organisationID;
+		singleTaskViewController.projectID = projectID;
+		
 		singleTaskViewController.taskName = @"Add New Task";
 		self.definesPresentationContext = YES; //self is presenting view controller
 		
-		singleTaskViewController.
+		singleTaskViewController.changeTask = 1;
 		singleTaskViewController.view.backgroundColor = self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];//[UIColor colorWithWhite:1.0 alpha:0.5];
 		singleTaskViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 	}

@@ -21,9 +21,21 @@ bool pressed;
 @synthesize taskName, setTaskName;
 
 - (void)viewDidLoad {
+	NSLog(@"orgID: %@", _orgID);
+	
 	[super viewDidLoad];
 //	NSLog(@"Added date: %@", _addedDate);
 	[self parseDate];
+	
+	if(_changeTask == 1) {
+		_moveToButton.hidden = TRUE;
+		_eraseButton.hidden = TRUE;
+		_pointsField.hidden = TRUE;
+		_pointsText.hidden = TRUE;
+		_addedOnText.hidden = TRUE;
+		_addTaskNameField.hidden = FALSE;
+		_addTaskNameLabel.hidden = FALSE;
+	}
 	
 //	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
 //	self.view.backgroundColor = color;
@@ -32,7 +44,6 @@ bool pressed;
 	
 	[content removeObject:_projectFrom];
 	_projectTo = content[0];
-	
 //	[[self navigationController] setNavigationBarHidden:YES animated:YES];
 	
 	float auxPoints = [_points floatValue];
@@ -48,37 +59,61 @@ bool pressed;
 }
 
 - (void) saveTask {
-	NSError *fetchError = nil;
-	//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
-	//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-	
-	//We begin by creating our POST's body as an NSString, and converting it to NSData.
-	NSString *post = [NSString stringWithFormat:@"project_id=%@&task_id=%@&from=%@&to=%@", _projectID, _taskID, [_projectFrom lowercaseString], [_projectTo lowercaseString]];
-	NSLog(@"projectID: %@, taskID: %@, From: %@, To: %@", _projectID, _taskID, [_projectFrom lowercaseString], [_projectTo lowercaseString]);
-	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
-	//Next up, we read the postData's length, so we can pass it along in the request.
-	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-	
-	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/mobile/move/to"]];
-	[request setHTTPMethod:@"POST"];
-	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-	[request setHTTPBody:postData];
-	
-	
-	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSError *jsonParsingError = nil;
-	responseFromServer = [NSJSONSerialization JSONObjectWithData:response
-														 options:0 error:&jsonParsingError];
-	NSLog(@"Response: %@", responseFromServer);
-	
-	if (!responseFromServer) {
-		NSLog(@"Error parsing JSON: %@", fetchError);
+	if(_changeTask == 1) {
+		NSLog(@"Save button pressed!");
+		
+		//We begin by creating our POST's body as an NSString, and converting it to NSData.
+		NSString *post = [NSString stringWithFormat:@"task=%@&project_id=%@&org=%@", _addTaskNameField.text, _projectID, _orgID];
+		NSLog(@"A fost adaugat task-ul cu numele %@, proiectul cu ID-ul %@, orgID = %@", _addTaskNameField.text, _projectID, _orgID);
+		NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+		
+		//Next up, we read the postData's length, so we can pass it along in the request.
+		NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+		
+		//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+		[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/add/backlog"]];
+		[request setHTTPMethod:@"POST"];
+		[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+		[request setHTTPBody:postData];
+		
+		
+		NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+		NSError *jsonParsingError = nil;
+		responseFromServer = [NSJSONSerialization JSONObjectWithData:response
+															 options:0 error:&jsonParsingError];
+		NSLog(@"Response: %@", responseFromServer);
 	}
 	else {
-		//warning
+		NSError *fetchError = nil;
+		//We begin by creating our POST's body as an NSString, and converting it to NSData.
+		NSString *post = [NSString stringWithFormat:@"project_id=%@&task_id=%@&from=%@&to=%@", _projectID, _taskID, [_projectFrom lowercaseString], [_projectTo lowercaseString]];
+		NSLog(@"projectID: %@, taskID: %@, From: %@, To: %@", _projectID, _taskID, [_projectFrom lowercaseString], [_projectTo lowercaseString]);
+		NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+		
+		//Next up, we read the postData's length, so we can pass it along in the request.
+		NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+		
+		//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+		[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/mobile/move/to"]];
+		[request setHTTPMethod:@"POST"];
+		[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+		[request setHTTPBody:postData];
+		
+		
+		NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+		NSError *jsonParsingError = nil;
+		responseFromServer = [NSJSONSerialization JSONObjectWithData:response
+															 options:0 error:&jsonParsingError];
+		NSLog(@"Response: %@", responseFromServer);
+		
+		if (!responseFromServer) {
+			NSLog(@"Error parsing JSON: %@", fetchError);
+		}
+		else {
+			//warning
+		}
 	}
 }
 
@@ -140,6 +175,21 @@ bool pressed;
 	if (pressed == 1) {
 		[self saveTask];
 		NSString *messageString = [NSString stringWithFormat:@"The task %@ has been moved to %@", taskName, _projectTo];
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:@"Save"
+							  message:messageString
+							  delegate:self
+							  cancelButtonTitle:@"Cancel"
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+		
+		[self removeAnimate];
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
+	else if(_changeTask == 1)
+	{
+		[self saveTask];
+		NSString *messageString = [NSString stringWithFormat:@"The task %@ has been added to Backlog", _addTaskNameField.text];
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle:@"Save"
 							  message:messageString

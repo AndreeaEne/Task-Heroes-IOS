@@ -11,7 +11,7 @@
 @interface SingleProjectViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *setProjectTitle;
 
-@property (strong, nonatomic) NSString *projectID, *projectTitle;
+@property (strong, nonatomic) NSString *projectID, *projectTitle, *organisationID;
 
 @property (weak, nonatomic) IBOutlet UITableView *tasksTable;
 

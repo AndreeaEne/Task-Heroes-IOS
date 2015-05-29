@@ -11,11 +11,12 @@
 #import "UIViewController+NavigationBar.h"
 #import <CoreData/CoreData.h>
 #import "SingleProjectViewController.h"
+#import "SingleTaskViewController.h"
 #import "AppDelegate.h"
 
 //NSArray *projectName;
-NSString *id_user, *orgID;
-NSMutableDictionary *proiecte;
+NSString *id_user, *orgID, *orgIDtoSingleTask;
+NSMutableDictionary *proiecte, *organisationIDtoSingleTask;
 NSArray *publicTimeline, *keyArray, *valueArray;
 UIRefreshControl *refreshControl;
 
@@ -36,6 +37,8 @@ UIRefreshControl *refreshControl;
 	_project_name = [[NSMutableArray alloc] init];
 	_organisation_name = [[NSMutableArray alloc] init];
 	proiecte = [[NSMutableDictionary alloc] init];
+	organisationIDtoSingleTask = [[NSMutableDictionary alloc] init];
+	orgIDtoSingleTask = [[NSString alloc] init];
 
 	[self setupNavigationBar];
 	
@@ -137,7 +140,7 @@ UIRefreshControl *refreshControl;
 				[_project_name addObject:projName[@"project_name"]];
 				[_organisationID addObject:projName[@"org"]];
 				[_projectID addObject:projName[@"_id"]];
-				
+				[organisationIDtoSingleTask setObject:projName[@"org"] forKey:item[@"organization_name"]];
 				
 				NSString *ceva = projName[@"project_name"];
 				[aux addObject:ceva];
@@ -151,6 +154,7 @@ UIRefreshControl *refreshControl;
 			
 		}
 //		NSLog(@"Dictionary: %@", proiecte);
+//		NSLog(@"organisationIDtoSingleTask: %@",organisationIDtoSingleTask);
 		
 		keyArray = [proiecte allKeys];
 //		NSLog(@"%@", keyArray);
@@ -283,6 +287,14 @@ UIRefreshControl *refreshControl;
 
 	}
 	
+	for (NSString *key in [organisationIDtoSingleTask allKeys]) {
+		if ([key isEqualToString:currentSection]) {
+			orgIDtoSingleTask = [organisationIDtoSingleTask objectForKey:key];
+			NSLog(@"orgIDtoSingleTask: %@",orgIDtoSingleTask);
+			break;
+		}
+	}
+	
 //	NSLog(@"Row Selected = %@",indexPath);
 //	NSLog(@"Proiectul are id-ul = %@", orgID);
 
@@ -296,6 +308,7 @@ UIRefreshControl *refreshControl;
 	
 	if([segue.identifier isEqualToString:@"goToSingleProject"]){
 		SingleProjectViewController *singleProjectController = segue.destinationViewController;
+//		SingleTaskViewController *singleTaskViewController = [[SingleTaskViewController alloc] init];
 		
 //		NSLog(@"before setting projectID = %@", singleProjectController.projectID);
 		singleProjectController.projectID = orgID;
@@ -306,6 +319,9 @@ UIRefreshControl *refreshControl;
 		
 //		NSLog(@"before setting = %@", singleProjectController.projectTitle);
 		singleProjectController.projectTitle = cell.textLabel.text;
+		singleProjectController.organisationID = orgIDtoSingleTask;
+
+//		singleTaskViewController.orgID = orgIDtoSingleTask;
 //		NSLog(@"after setting = %@", singleProjectController.projectTitle);
 		
 //

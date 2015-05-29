@@ -15,11 +15,17 @@
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
 @property (weak, nonatomic) IBOutlet UIButton *eraseButton;
 
-@property (strong, nonatomic) NSString *taskName, *projectID, *taskID, *projectFrom, *projectTo, *points, *addedDate;
+@property (weak, nonatomic) IBOutlet UILabel *addedOnText;
+@property (weak, nonatomic) IBOutlet UITextField *addTaskNameField;
+@property (weak, nonatomic) IBOutlet UILabel *addTaskNameLabel;
+@property (strong, nonatomic) NSString *taskName, *projectID, *taskID, *projectFrom, *projectTo, *points, *addedDate, *orgID;
+@property (nonatomic) bool changeTask;
 
+@property (weak, nonatomic) IBOutlet UIButton *moveToButton;
 @property (strong, nonatomic) IBOutlet UILabel *pointsField;
 @property (strong, nonatomic) IBOutlet UILabel *addedOn;
 @property (strong, nonatomic) IBOutlet UILabel *setTaskName;
+@property (weak, nonatomic) IBOutlet UILabel *pointsText;
 
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
 //task aka task name + project_ID + org aka orgID -> /add/backlog
