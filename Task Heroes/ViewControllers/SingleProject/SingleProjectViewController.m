@@ -11,10 +11,11 @@
 #import "AppDelegate.h"
 
 NSDictionary *responseFromServer;
-NSMutableDictionary *taskList, *taskID, *taskPoints;
+NSMutableDictionary *taskList, *taskID, *taskPoints, *addedDate;
 NSMutableArray *task_name;
-NSString *results, *singleTaskPoints;
+NSString *results, *singleTaskPoints, *singleAddedDate;
 NSArray *keyArray, *valueArray;
+UIRefreshControl *refreshControl;
 
 @interface SingleProjectViewController ()
 
@@ -34,8 +35,9 @@ NSArray *keyArray, *valueArray;
 	// Do any additional setup after loading the view.
 	[self getData];
 	
-	results = [[NSString alloc] init ];
-	singleTaskPoints = [[NSString alloc] init ];
+	results = [[NSString alloc] init];
+	singleTaskPoints = [[NSString alloc] init];
+	singleAddedDate = [[NSString alloc] init];
 
 	tasksTable.dataSource = self;
 	tasksTable.delegate = self;
@@ -44,11 +46,17 @@ NSArray *keyArray, *valueArray;
 	
 	setProjectTitle.text = projectTitle;
 	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
-//	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
-//	self.view.backgroundColor = color;
 	
-//	NSLog(@"projectTitle in SingleProject: %@", projectTitle);
-	
+	refreshControl = [[UIRefreshControl alloc]init];
+	[self.tasksTable addSubview:refreshControl];
+	[refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)refreshTable {
+	//TODO: refresh your data
+	[self getData];
+	[refreshControl endRefreshing];
+	[self.tasksTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,9 +65,10 @@ NSArray *keyArray, *valueArray;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	[self getData];
 	[tasksTable reloadData];
-	NSLog(@"se apeleaza viewwillappear");
+	NSLog(@"SingleProject: viewWillAppear called");
 }
 
 - (void) getData {
@@ -69,7 +78,7 @@ NSArray *keyArray, *valueArray;
 	
 	//We begin by creating our POST's body as an NSString, and converting it to NSData.
 	NSString *post = [NSString stringWithFormat:@"_id=%@", projectID];
-	NSLog(@"projectID: %@", projectID);
+//	NSLog(@"projectID: %@", projectID);
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Next up, we read the postData's length, so we can pass it along in the request.
@@ -95,6 +104,7 @@ NSArray *keyArray, *valueArray;
 	else {
 		taskID = [[NSMutableDictionary alloc] init];
 		taskPoints = [[NSMutableDictionary alloc] init];
+		addedDate = [[NSMutableDictionary alloc] init];
 		NSMutableArray *backlog = [[NSMutableArray alloc] init];
 		NSMutableArray *waiting = [[NSMutableArray alloc] init];
 		NSMutableArray *doing = [[NSMutableArray alloc] init];
@@ -104,24 +114,29 @@ NSArray *keyArray, *valueArray;
 //			[taskID addObject:[item objectForKey:@"_id"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
 			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
+			[addedDate setObject:[item objectForKey:@"added_on"] forKey:[item objectForKey:@"task_name"]];
+			
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		for(NSDictionary *item in responseFromServer[@"waiting"]) {
 			[waiting addObject:[item objectForKey:@"task_name"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
 			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
+			[addedDate setObject:[item objectForKey:@"added_on"] forKey:[item objectForKey:@"task_name"]];
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		for(NSDictionary *item in responseFromServer[@"doing"]) {
 			[doing addObject:[item objectForKey:@"task_name"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
 			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
+			[addedDate setObject:[item objectForKey:@"added_on"] forKey:[item objectForKey:@"task_name"]];
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		for(NSDictionary *item in responseFromServer[@"done"]) {
 			[done addObject:[item objectForKey:@"task_name"]];
 			[taskID setObject:[item objectForKey:@"_id"] forKey:[item objectForKey:@"task_name"]];
 			[taskPoints setObject:[item objectForKey:@"points"] forKey:[item objectForKey:@"task_name"]];
+			[addedDate setObject:[item objectForKey:@"added_on"] forKey:[item objectForKey:@"task_name"]];
 //			NSLog(@"%@",[item objectForKey:@"task_name"]);
 		}
 		taskList = [[NSMutableDictionary alloc] init];
@@ -138,7 +153,6 @@ NSArray *keyArray, *valueArray;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	NSLog(@"se apeleaza");
 	return [keyArray count];
 }
 
@@ -208,7 +222,12 @@ NSArray *keyArray, *valueArray;
 	for (NSString *key in [taskPoints allKeys]) {
 		if ([key isEqualToString:cell.textLabel.text]) {
 			singleTaskPoints = [taskPoints objectForKey:key];
-			//			NSLog(@"results: %@", results);
+			break;
+		}
+	}
+	for (NSString *key in [addedDate allKeys]) {
+		if ([key isEqualToString:cell.textLabel.text]) {
+			singleAddedDate = [addedDate objectForKey:key];
 			break;
 		}
 	}
@@ -242,6 +261,7 @@ NSArray *keyArray, *valueArray;
 		}
 		singleTaskViewController.taskID = results;
 		singleTaskViewController.points = singleTaskPoints;
+		singleTaskViewController.addedDate = singleAddedDate;
 			
 		self.definesPresentationContext = YES; //self is presenting view controller
 		
@@ -252,6 +272,7 @@ NSArray *keyArray, *valueArray;
 		singleTaskViewController.taskName = @"Add New Task";
 		self.definesPresentationContext = YES; //self is presenting view controller
 		
+		singleTaskViewController.
 		singleTaskViewController.view.backgroundColor = self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];//[UIColor colorWithWhite:1.0 alpha:0.5];
 		singleTaskViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 	}
@@ -279,6 +300,7 @@ NSArray *keyArray, *valueArray;
 	}
 	return context;
 }
+
 
 /*
 #pragma mark - Navigation

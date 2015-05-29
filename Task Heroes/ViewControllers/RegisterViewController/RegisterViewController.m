@@ -180,7 +180,7 @@
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Next up, we read the postData's length, so we can pass it along in the request.
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	
 	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

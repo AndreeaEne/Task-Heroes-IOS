@@ -56,7 +56,7 @@ NSString *id_user;
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Next up, we read the postData's length, so we can pass it along in the request.
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	//NSData *postDataLogged = [postLogged dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
@@ -77,7 +77,7 @@ NSString *id_user;
 	NSData *postDataPass = [postPass dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
 	//Next up, we read the postData's length, so we can pass it along in the request.
-	NSString *postLengthPass = [NSString stringWithFormat:@"%d", [postDataPass length]];
+	NSString *postLengthPass = [NSString stringWithFormat:@"%lu", (unsigned long)[postDataPass length]];
 	
 	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
 	NSMutableURLRequest *requestPass = [[NSMutableURLRequest alloc] init];
@@ -105,9 +105,9 @@ NSString *id_user;
 		if([requestReplyPass isEqualToString:@"{\"msg\":\"update succesful\"}"] || ![requestReplyPass isEqualToString:@""]) {
 		passLog = true;
 	}
-	NSLog(@"\nlog:%hhd\npassLog: %hhd", log, passLog);
-	NSLog(@"requestReply: %@", requestReply);
-	NSLog(@"requestReplyPass: %@", requestReplyPass);
+//	NSLog(@"\nlog:%hhd\npassLog: %hhd", log, passLog);
+//	NSLog(@"requestReply: %@", requestReply);
+//	NSLog(@"requestReplyPass: %@", requestReplyPass);
 	
 	UIAlertView *alert;
 	if(log == true && passLog == true) {

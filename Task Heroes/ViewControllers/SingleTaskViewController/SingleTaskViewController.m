@@ -22,14 +22,16 @@ bool pressed;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+//	NSLog(@"Added date: %@", _addedDate);
+	[self parseDate];
 	
 //	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
 //	self.view.backgroundColor = color;
 	
-	_projectTo = @"backlog";
 	content = [NSMutableArray arrayWithObjects:@"Backlog", @"Waiting", @"Doing", @"Done", nil];
 	
 	[content removeObject:_projectFrom];
+	_projectTo = content[0];
 	
 //	[[self navigationController] setNavigationBarHidden:YES animated:YES];
 	
@@ -204,6 +206,18 @@ bool pressed;
 						  cancelButtonTitle:@"Cancel"
 						  otherButtonTitles:@"OK", nil];
 	[alert show];
+}
+
+- (void)parseDate {
+	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+	
+	NSDate *date = [dateFormat dateFromString:_addedDate];
+	NSDateFormatter *newDateFormatter = [[NSDateFormatter alloc]init];
+	[newDateFormatter setDateFormat:@"dd MMMM yyyy"];
+	NSString *newString = [newDateFormatter stringFromDate:date];
+//	NSLog(@"Date: %@, formatted date: %@", date, newString);
+	[_addedOn setText:newString];
 }
 
 - (void)didReceiveMemoryWarning {

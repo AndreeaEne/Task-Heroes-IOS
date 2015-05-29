@@ -17,6 +17,7 @@
 NSString *id_user, *orgID;
 NSMutableDictionary *proiecte;
 NSArray *publicTimeline, *keyArray, *valueArray;
+UIRefreshControl *refreshControl;
 
 @interface ProjectsViewController ()
 
@@ -28,7 +29,7 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog(@"Se apeleaza viewDidLoad");
+//	NSLog(@"Se apeleaza viewDidLoad");
     // Do any additional setup after loading the view.
 	_projectID = [[NSMutableArray alloc] init];
 	_organisationID = [[NSMutableArray alloc] init];
@@ -37,6 +38,17 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 	proiecte = [[NSMutableDictionary alloc] init];
 
 	[self setupNavigationBar];
+	
+	refreshControl = [[UIRefreshControl alloc]init];
+	[self.projectsTable addSubview:refreshControl];
+	[refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)refreshTable {
+	//TODO: refresh your data
+	[self getProjects];
+	[refreshControl endRefreshing];
+	[self.projectsTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -262,7 +274,7 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 				if([cell.textLabel.text isEqualToString:currentProject])
 				{
 					orgID = projName[@"_id"];
-					NSLog(@"a gasit");
+//					NSLog(@"a gasit");
 					break;
 				}
 			}
@@ -272,7 +284,7 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 	}
 	
 //	NSLog(@"Row Selected = %@",indexPath);
-	NSLog(@"Proiectul are id-ul = %@", orgID);
+//	NSLog(@"Proiectul are id-ul = %@", orgID);
 
 	[self performSegueWithIdentifier:@"goToSingleProject" sender:self.view];
 	
@@ -304,7 +316,7 @@ NSArray *publicTimeline, *keyArray, *valueArray;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	NSLog(@"Se apeleaza viewWillAppear");
+//	NSLog(@"Se apeleaza viewWillAppear");
 	[self getProjects];
 }
 
