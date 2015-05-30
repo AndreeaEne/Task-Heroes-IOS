@@ -36,8 +36,7 @@ BOOL semafor = false;
 
 //Hide Keyboard
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"Hide keyboard");
-    //NSLog(@"touchesBegan:withEvent:");
+//    NSLog(@"Hide keyboard");
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
 }

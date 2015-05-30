@@ -8,6 +8,7 @@
 
 #import "SingleTaskViewController.h"
 #import "SingleProjectViewController.h"
+#import <CoreData/CoreData.h>
 
 @interface SingleTaskViewController ()
 @end
@@ -16,14 +17,14 @@
 
 NSDictionary *responseFromServer;
 NSMutableArray *content;
+NSString *userID;
 bool pressed;
 
 @synthesize taskName, setTaskName;
 
 - (void)viewDidLoad {
-	NSLog(@"orgID: %@", _orgID);
-	
 	[super viewDidLoad];
+	[self getUserData];
 //	NSLog(@"Added date: %@", _addedDate);
 	[self parseDate];
 	
@@ -35,6 +36,7 @@ bool pressed;
 		_addedOnText.hidden = TRUE;
 		_addTaskNameField.hidden = FALSE;
 		_addTaskNameLabel.hidden = FALSE;
+		_iVolunteerButton.hidden = TRUE;
 	}
 	
 //	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
@@ -56,6 +58,12 @@ bool pressed;
 	self.popUpView.layer.shadowOpacity = 0.8;
 	self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
 	
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//	NSLog(@"Hide keyboard");
+	[self.view endEditing:YES];
+	[super touchesBegan:touches withEvent:event];
 }
 
 - (void) saveTask {
@@ -268,6 +276,75 @@ bool pressed;
 	NSString *newString = [newDateFormatter stringFromDate:date];
 //	NSLog(@"Date: %@, formatted date: %@", date, newString);
 	[_addedOn setText:newString];
+}
+
+- (void) getUserData {
+	// Fetching
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+	
+	// Execute Fetch Request
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSError *fetchError = nil;
+	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+	
+	if (!fetchError) {
+		for (NSManagedObject *managedObject in result)
+			userID = [managedObject valueForKey:@"id_user"];
+		
+	} else {
+		NSLog(@"Error fetching data.");
+		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+	}
+	
+	NSError *error;
+	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+	if (fetchedObjects == nil) {
+		// Handle the error.
+	}
+}
+
+- (NSManagedObjectContext *) managedObjectContext {
+	NSManagedObjectContext *context = nil;
+	id delegate = [[UIApplication sharedApplication] delegate];
+	if ([delegate performSelector:@selector(managedObjectContext)]) {
+		context = [delegate managedObjectContext];
+	}
+	return context;
+}
+
+- (IBAction)iVolunteerAction:(id)sender {
+	NSError *fetchError = nil;
+	NSString *post = [NSString stringWithFormat:@"user_id=%@&task_id=%@", userID, _taskID];
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/mobile/i/volunteer"]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:postData];
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSError *jsonParsingError = nil;
+	responseFromServer = [NSJSONSerialization JSONObjectWithData:response
+														 options:0 error:&jsonParsingError];
+	NSLog(@"Response: %@", responseFromServer);
+	
+	NSString *messageString = [NSString stringWithFormat:@"You are now volunteering to %@", taskName];
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@""
+						  message:messageString
+						  delegate:self
+						  cancelButtonTitle:@""
+						  otherButtonTitles:@"OK", nil];
+	
+	if (!responseFromServer) {
+		NSLog(@"Error parsing JSON: %@", fetchError);
+	}
+	else {
+		[alert show];
+		//warning
+	}
+	
+	
 }
 
 - (void)didReceiveMemoryWarning {

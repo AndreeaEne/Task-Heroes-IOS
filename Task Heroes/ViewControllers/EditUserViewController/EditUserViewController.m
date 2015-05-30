@@ -41,6 +41,12 @@ NSString *id_user;
 	[self setRevealButtonWithImage: [UIImage imageNamed:@"reveal-icon.png"]];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+	//	NSLog(@"Hide keyboard");
+	[self.view endEditing:YES];
+	[super touchesBegan:touches withEvent:event];
+}
+
 /*
 #pragma mark - Navigation
 

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
 @property (weak, nonatomic) IBOutlet UIButton *eraseButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *iVolunteerButton;
 @property (weak, nonatomic) IBOutlet UILabel *addedOnText;
 @property (weak, nonatomic) IBOutlet UITextField *addTaskNameField;
 @property (weak, nonatomic) IBOutlet UILabel *addTaskNameLabel;
