@@ -8,6 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "HomeViewController.h"
+#import <CoreData/CoreData.h>
 
 @interface RegisterViewController ()
 
@@ -17,9 +18,11 @@
 {
     NSArray *content;
     BOOL checkSignUp;
+	NSManagedObjectID *moID;
 }
 
-@synthesize firstnameField, lastnameField, emailField, passField, passConfirmField, OrgNameField, orgTypeButton, orgTypePicker;
+@synthesize firstnameField, lastnameField, emailField, passField, passConfirmField, OrgNameField, orgTypeButton, orgTypePicker, userData;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -173,8 +176,7 @@
 }
 */
 
-- (BOOL)Register
-{
+- (BOOL)Register {
 	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
 	NSString *post = [NSString stringWithFormat:@"Email=%@&Pass1=%@&First=%@&Last=%@", emailField.text, passField.text, firstnameField.text, lastnameField.text];
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
@@ -199,10 +201,115 @@
 	BOOL log = false;
 	if([requestReply isEqualToString:@"{\"success\":\"User Inserted successfuly!\"}"]) {
 		log = true;
+		
+		//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
+		NSString *post = [NSString stringWithFormat:@"username=%@&pass=%@", emailField.text, passField.text];
+		NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+		
+		//Next up, we read the postData's length, so we can pass it along in the request.
+		NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+		
+		//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+		[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/login/user"]];
+		[request setHTTPMethod:@"POST"];
+		[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+		[request setHTTPBody:postData];
+		
+		//Send the request, and read the reply:
+		NSURLResponse *requestResponse;
+		NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+		
+		NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+		//requestReply = [NSString stringWithFormat:@"msg"];
+		
+			NSArray *components = [requestReply componentsSeparatedByString:@","];
+			NSLog(@"%@",components);
+			
+			//Save data about User
+			NSString* id_user = [[[[requestReply componentsSeparatedByString:@"_id\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
+			
+			NSLog(@"\n ID: %@",id_user);
+		
+		//Save to Core Data
+		userData = (UserData *)[self.managedObjectContext
+								existingObjectWithID:moID
+								error:nil];
+		userData.email = emailField.text;
+		userData.last_name = lastnameField.text;
+		userData.first_name = firstnameField.text;
+		userData.doneTasks = nil;
+		userData.undoneTasks = nil;
+		userData.points = nil;
+		userData.id_user = id_user;
+		
+		[self.managedObjectContext save:nil];
 	}
 	NSLog(@"requestReply: %@", requestReply);
 	return log;
 }
+
+-(void)performFetch {
+	NSManagedObjectContext *moc = [self managedObjectContext];
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"UserData" inManagedObjectContext:moc];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+ 
+	NSError *error;
+	NSArray *array = [moc executeFetchRequest:request error:&error];
+	if (array == nil)
+	{
+		// Deal with error...
+	}
+	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
+	for (NSManagedObject *managedObject in array) {
+		moID = [managedObject objectID];
+		NSLog(@"moID: %@", moID);
+	}
+}
+
+- (NSManagedObjectContext *) managedObjectContext {
+	//	NSLog(@"viewDidLoad: moID: %@", moID);
+	
+	NSManagedObjectContext *context = nil;
+	id delegate = [[UIApplication sharedApplication] delegate];
+	if ([delegate performSelector:@selector(managedObjectContext)]) {
+		context = [delegate managedObjectContext];
+	}
+	return context;
+}
+
+- (void) setupFetchedResultsController {
+	// 1 - Decide what Entity you want
+	NSString *entityName = @"UserData"; // Put your entity name here
+	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+ 
+	// 2 - Request that Entity
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+ 
+	// 3 - Filter it if you want
+	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
+ 
+	// 4 - Sort it if you want
+	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
+																					 ascending:YES
+																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
+	// 5 - Fetch it
+	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+																		managedObjectContext:self.managedObjectContext
+																		  sectionNameKeyPath:nil
+																				   cacheName:nil];
+	[self performFetch];
+}
+
+- (void) viewWillAppear:(BOOL) animated {
+	[super viewWillAppear:animated];
+	[self setupFetchedResultsController];
+}
+
 
 @end
 

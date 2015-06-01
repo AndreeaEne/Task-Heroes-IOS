@@ -26,8 +26,7 @@
                             <exclude reference="7No-2W-5dV"/>
                         </mask>
                     </variation>
-                    <variation key="heightClass=regular" misplaced="YES">
-                        <rect key="frame" x="21" y="312" width="335" height="43"/>
+                    <variation key="heightClass=regular">
                         <mask key="constraints">
                             <include reference="3wJ-Pd-69A"/>
                             <include reference="7No-2W-5dV"/>

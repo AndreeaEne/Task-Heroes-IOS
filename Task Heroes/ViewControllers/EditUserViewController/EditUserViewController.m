@@ -20,6 +20,8 @@ NSString *id_user;
 
 @implementation EditUserViewController
 
+@synthesize userData;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -157,6 +159,7 @@ NSString *id_user;
 			_lastName.text = last_name_user;
 			_email.text = email_user;
 			
+			NSLog(@"[Edit User] Managed Object: %@", managedObject);
 			NSLog(@"email: %@,\nfirst: %@,\nlast:%@,", email_user, first_name_user, last_name_user);
 		}
 		
@@ -171,6 +174,18 @@ NSString *id_user;
 	if (fetchedObjects == nil) {
 		// Handle the error.
 	}
+	
+//	NSString *email_user = userData.email;
+//	NSString *last_name_user = userData.last_name;
+//	NSString *first_name_user = userData.first_name;
+//	id_user = userData.id_user;
+//	_firstName.text = first_name_user;
+//	_lastName.text = last_name_user;
+//	_email.text = email_user;
+}
+
+- (void) performFetch {
+	NSLog(@"[EditUser][Fetch]userData: %@", userData);
 }
 
 - (NSManagedObjectContext *) managedObjectContext {
@@ -184,7 +199,32 @@ NSString *id_user;
 
 - (void) viewWillAppear:(BOOL)animated {
 	[self getUserData];
+	[self setupFetchedResultsController];
 
+}
+
+- (void) setupFetchedResultsController
+{
+	// 1 - Decide what Entity you want
+	NSString *entityName = @"UserData"; // Put your entity name here
+	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+ 
+	// 2 - Request that Entity
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+ 
+	// 3 - Filter it if you want
+	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
+ 
+	// 4 - Sort it if you want
+	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
+																					 ascending:YES
+																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
+	// 5 - Fetch it
+	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+																		managedObjectContext:self.managedObjectContext
+																		  sectionNameKeyPath:nil
+																				   cacheName:nil];
+	[self performFetch];
 }
 
 

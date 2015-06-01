@@ -37,7 +37,7 @@
 
 	
    // [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organisation Profile", @"Projects", @"Edit User Profile", nil];
+    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organisation Profile", @"Projects", @"Edit User Profile", @"Log Out", nil];
 //	if([content isEqual: @"Members"]) {
 //		[self performSegueWithIdentifier: @"segueToMembers" sender: self];
 //	}
@@ -88,9 +88,24 @@
 	}
 	else if([cell.textLabel.text isEqual: @"Edit User Profile"]){
 			[self performSegueWithIdentifier: @"segueToUser" sender: self];
-		
 	}
-	
+	else if([cell.textLabel.text isEqual: @"Log Out"]){
+		
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Confirmation"
+													   message:@"Do you want to Log Out?"
+												   delegate:self
+										  cancelButtonTitle:@"Cancel"
+										  otherButtonTitles:@"OK", nil];
+		[alert show];
+	}
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex != 0)  // 0 == Cancel button
+	{
+		
+		[self performSegueWithIdentifier: @"LogOut" sender: self];
+	}
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

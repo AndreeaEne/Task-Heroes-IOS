@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSMutableArray *organisation_name;
 //@property (strong, nonatomic) NSMutableArray *project_description;
 
+@property (strong, nonatomic) UIBarButtonItem *addTask;
+
 @end
 
 

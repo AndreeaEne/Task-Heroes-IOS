@@ -19,14 +19,17 @@ NSDictionary *responseFromServer;
 NSMutableArray *content;
 NSString *userID;
 bool pressed;
+NSManagedObjectID *moID;
 
-@synthesize taskName, setTaskName;
+@synthesize taskName, setTaskName, userData;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self getUserData];
-//	NSLog(@"Added date: %@", _addedDate);
+	//	NSLog(@"Added date: %@", _addedDate);
 	[self parseDate];
+	//	[self changeVolunteerStatus];
+	[self printCoreData];
 	
 	if(_changeTask == 1) {
 		_moveToButton.hidden = TRUE;
@@ -39,14 +42,14 @@ bool pressed;
 		_iVolunteerButton.hidden = TRUE;
 	}
 	
-//	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
-//	self.view.backgroundColor = color;
+	//	UIColor *color = [UIColor colorWithRed:0.251 green:0.62 blue:0.765 alpha:1];
+	//	self.view.backgroundColor = color;
 	
 	content = [NSMutableArray arrayWithObjects:@"Backlog", @"Waiting", @"Doing", @"Done", nil];
 	
 	[content removeObject:_projectFrom];
 	_projectTo = content[0];
-//	[[self navigationController] setNavigationBarHidden:YES animated:YES];
+	//	[[self navigationController] setNavigationBarHidden:YES animated:YES];
 	
 	float auxPoints = [_points floatValue];
 	_pointsField.text = [NSString stringWithFormat: @"%.2f", auxPoints];
@@ -61,7 +64,7 @@ bool pressed;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//	NSLog(@"Hide keyboard");
+	//	NSLog(@"Hide keyboard");
 	[self.view endEditing:YES];
 	[super touchesBegan:touches withEvent:event];
 }
@@ -69,9 +72,10 @@ bool pressed;
 - (void) saveTask {
 	if(_changeTask == 1) {
 		NSLog(@"Save button pressed!");
+		NSLog(@"projectID: %@, taskIDL %@", _projectID, _taskID);
 		
 		//We begin by creating our POST's body as an NSString, and converting it to NSData.
-		NSString *post = [NSString stringWithFormat:@"task=%@&project_id=%@&org=%@", _addTaskNameField.text, _projectID, _orgID];
+		NSString *post = [NSString stringWithFormat:@"task=%@&project_id=%@&org=%@&mobile=1", _addTaskNameField.text, _projectID, _orgID];
 		NSLog(@"A fost adaugat task-ul cu numele %@, proiectul cu ID-ul %@, orgID = %@", _addTaskNameField.text, _projectID, _orgID);
 		NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 		
@@ -125,40 +129,34 @@ bool pressed;
 	}
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
 	return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	return [content count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	return [content objectAtIndex:row];
 }
 
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	
-//	NSLog(@"Selected content: %@. Index of selected color: %ld", [content objectAtIndex:row], (long)row);
+	//	NSLog(@"Selected content: %@. Index of selected color: %ld", [content objectAtIndex:row], (long)row);
 	_projectTo = [content objectAtIndex:row];
-//	NSLog(@"ProjectTO = %@", _projectTo);
+	//	NSLog(@"ProjectTO = %@", _projectTo);
 }
 
 
-- (IBAction)selectPicker:(id)sender
-{
+- (IBAction)selectPicker:(id)sender {
 	pressed = 1;
 	[UIView animateWithDuration:0.6 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		[_toSectionPicker setAlpha:1];
 	} completion:nil];
 }
 
-- (void)showAnimate
-{
+- (void)showAnimate {
 	self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
 	self.view.alpha = 0;
 	[UIView animateWithDuration:.25 animations:^{
@@ -167,8 +165,7 @@ bool pressed;
 	}];
 }
 
-- (void)removeAnimate
-{
+- (void)removeAnimate {
 	[UIView animateWithDuration:.25 animations:^{
 		self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
 		self.view.alpha = 0.0;
@@ -218,7 +215,6 @@ bool pressed;
 							  otherButtonTitles:@"OK", nil];
 		[alert show];
 	}
-	
 }
 
 - (IBAction)closePopupBack:(id)sender {
@@ -226,8 +222,7 @@ bool pressed;
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)showInView:(UIView *)aView animated:(BOOL)animated
-{
+- (void)showInView:(UIView *)aView animated:(BOOL)animated {
 	[aView addSubview:self.view];
 	if (animated) {
 		[self showAnimate];
@@ -274,33 +269,37 @@ bool pressed;
 	NSDateFormatter *newDateFormatter = [[NSDateFormatter alloc]init];
 	[newDateFormatter setDateFormat:@"dd MMMM yyyy"];
 	NSString *newString = [newDateFormatter stringFromDate:date];
-//	NSLog(@"Date: %@, formatted date: %@", date, newString);
+	//	NSLog(@"Date: %@, formatted date: %@", date, newString);
 	[_addedOn setText:newString];
 }
 
 - (void) getUserData {
-	// Fetching
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
-	
-	// Execute Fetch Request
-	NSManagedObjectContext *context = [self managedObjectContext];
-	NSError *fetchError = nil;
-	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-	
-	if (!fetchError) {
-		for (NSManagedObject *managedObject in result)
-			userID = [managedObject valueForKey:@"id_user"];
-		
-	} else {
-		NSLog(@"Error fetching data.");
-		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
-	}
-	
-	NSError *error;
-	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-	if (fetchedObjects == nil) {
-		// Handle the error.
-	}
+//	// Fetching
+//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+//	
+//	// Execute Fetch Request
+//	NSManagedObjectContext *context = [self managedObjectContext];
+//	NSError *fetchError = nil;
+//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+//	
+//	if (!fetchError) {
+//		for (NSManagedObject *managedObject in result)
+//			userID = [managedObject valueForKey:@"id_user"];
+//		
+//	} else {
+//		NSLog(@"Error fetching data.");
+//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+//	}
+//	
+//	NSError *error;
+//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//	if (fetchedObjects == nil) {
+//		// Handle the error.
+//	}
+	userData = (UserData *)[self.managedObjectContext
+							existingObjectWithID:moID
+							error:nil];
+	userID = userData.id_user;
 }
 
 - (NSManagedObjectContext *) managedObjectContext {
@@ -330,10 +329,10 @@ bool pressed;
 	
 	NSString *messageString = [NSString stringWithFormat:@"You are now volunteering to %@", taskName];
 	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@""
+						  initWithTitle:@"You are a HERO!"
 						  message:messageString
 						  delegate:self
-						  cancelButtonTitle:@""
+						  cancelButtonTitle:@"Cancel"
 						  otherButtonTitles:@"OK", nil];
 	
 	if (!responseFromServer) {
@@ -343,23 +342,165 @@ bool pressed;
 		[alert show];
 		//warning
 	}
+}
+
+//- (void) changeVolunteerStatus {
+//	NSError *fetchError = nil;
+//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+//	NSString *doneTask; //= [[NSString alloc] init];
+//	NSString *undoneTask; //= [[NSString alloc] init];
+//
+//	for (NSManagedObject *managedObject in result) {
+//		doneTask = [managedObject valueForKey:@"doneTasks"];
+//		undoneTask = [managedObject valueForKey:@"undoneTasks"];
+//		NSLog(@"[single]done: %@, \nundone: %@, \n user: %@", [managedObject valueForKey:@"doneTasks"], undoneTask, [managedObject valueForKey:@"points"]);
+//	}
+//
+//	if ([undoneTask containsString:_taskID]) {
+////		[_iVolunteerButton setTitle:@"your title" forState:UIControlStateNormal];
+//		NSLog(@"am gasit Undone");
+//	}
+//	if ([doneTask containsString:_taskID]) {
+//		//		[_iVolunteerButton setTitle:@"your title" forState:UIControlStateNormal];
+//		NSLog(@"am gasit Done");
+//	}
+//}
+
+- (void) printCoreData {
+//	// Fetching
+//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+//	// Add Sort Descriptor
+//	//NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"email" ascending:YES];
+//	//[fetchRequest setSortDescriptors:@[sortDescriptor]];
+//	
+//	// Execute Fetch Request
+//	NSManagedObjectContext *context = [self managedObjectContext];
+//	NSError *fetchError = nil;
+//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+//	
+//	if (!fetchError) {
+//		for (NSManagedObject *managedObject in result) {
+//			NSLog(@"[SingleTask] ManagedObject: %@", managedObject);
+//			NSString *done = [managedObject valueForKey:@"doneTasks"];
+//			NSString *undone = [managedObject valueForKey:@"undoneTasks"];
+//			
+//			if ([undone containsString:_taskID]) {
+//				[_iVolunteerButton setTitle:@"This is your task! " forState:UIControlStateNormal];
+//				_iVolunteerButton.enabled = false;
+//				[_iVolunteerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//				NSLog(@"am gasit Undone");
+//			}
+//			else if ([done containsString:_taskID]) {
+//				[_iVolunteerButton setTitle:@"Done" forState:UIControlStateNormal];
+//				_iVolunteerButton.enabled = false;
+//				[_iVolunteerButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+//				NSLog(@"am gasit Done");
+//			}
+//			else {
+//				//[_iVolunteerButton setBackgroundColor:[UIColor greenColor]];
+//			}
+//			//NSLog(@"nfirst: %@,\nlast:%@,", done, undone);
+////			break;
+//		}
+//	} else {
+//		NSLog(@"Error fetching data.");
+//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+//	}
+//	NSError *error;
+//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//	if (fetchedObjects == nil) {
+//		// Handle the error.
+//	}
+	
+	//get Core Data with objects
+	userData = (UserData *)[self.managedObjectContext
+							existingObjectWithID:moID
+							error:nil];
+	
+	NSString *done = userData.doneTasks;
+	NSString *undone = userData.undoneTasks;
+	
+	if ([undone containsString:_taskID]) {
+		[_iVolunteerButton setTitle:@"This is your task! " forState:UIControlStateNormal];
+		_iVolunteerButton.enabled = false;
+		[_iVolunteerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+		NSLog(@"am gasit Undone");
+	}
+	else if ([done containsString:_taskID]) {
+		[_iVolunteerButton setTitle:@"Done" forState:UIControlStateNormal];
+		_iVolunteerButton.enabled = false;
+		[_iVolunteerButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+		NSLog(@"am gasit Done");
+	}
+	else {
+		//[_iVolunteerButton setBackgroundColor:[UIColor greenColor]];
+	}
+	//NSLog(@"nfirst: %@,\nlast:%@,", done, undone);
+	//			break;
 	
 	
+}
+
+- (void) setupFetchedResultsController
+{
+	// 1 - Entity name
+	NSString *entityName = @"UserData";
+	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+ 
+	// 2 - Request  Entity
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+ 
+	// 3 - Filter it if you want
+	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
+ 
+	// 4 - Sort it if you want
+	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
+																					 ascending:YES
+																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
+	// 5 - Fetch it
+	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+																		managedObjectContext:self.managedObjectContext
+																		  sectionNameKeyPath:nil
+																				   cacheName:nil];
+	[self performFetch];
+}
+
+-(void)performFetch{
+	NSManagedObjectContext *moc = [self managedObjectContext];
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"UserData" inManagedObjectContext:moc];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+ 
+	NSError *error;
+	NSArray *array = [moc executeFetchRequest:request error:&error];
+	if (array == nil)
+	{
+		// Deal with error...
+	}
+	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
+	for (NSManagedObject *managedObject in array) {
+		moID = [managedObject objectID];
+		NSLog(@"moID: %@", moID);
+	}
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

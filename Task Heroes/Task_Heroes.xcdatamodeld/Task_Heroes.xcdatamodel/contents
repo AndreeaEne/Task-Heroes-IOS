@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="UserData" isAbstract="YES" syncable="YES">
+    <entity name="UserData" representedClassName="UserData" isAbstract="YES" syncable="YES">
+        <attribute name="doneTasks" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id_user" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="points" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="undoneTasks" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserData" positionX="-5913" positionY="-2529" width="128" height="120"/>
+        <element name="UserData" positionX="-5913" positionY="-2529" width="128" height="148"/>
     </elements>
 </model>

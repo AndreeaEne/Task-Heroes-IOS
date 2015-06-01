@@ -19,6 +19,7 @@ NSString *id_user, *orgID, *orgIDtoSingleTask;
 NSMutableDictionary *proiecte, *organisationIDtoSingleTask;
 NSArray *publicTimeline, *keyArray, *valueArray;
 UIRefreshControl *refreshControl;
+//UIBarButtonItem *addTask;
 
 @interface ProjectsViewController ()
 
@@ -65,8 +66,40 @@ UIRefreshControl *refreshControl;
 	[[UIApplication sharedApplication] setStatusBarHidden: NO];
 	[self.navigationController setNavigationBarHidden: NO];
 	
+	_addTask = [[UIBarButtonItem alloc] initWithTitle:@"+ Add Project" style:UIBarButtonItemStylePlain target:self action:@selector(addTask:)];
+	self.navigationItem.rightBarButtonItem = _addTask;
+//	[anotherButton release];
+	
 	[self setTitle:@"Projects"];
 	[self setRevealButtonWithImage: [UIImage imageNamed:@"reveal-icon.png"]];
+}
+
+-(IBAction)addTask:(id)sender{
+//	UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add a new project! " message:@"This is an example alert!" delegate:self cancelButtonTitle:@"Hide" otherButtonTitles:nil];
+//	alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+//	[alert show];
+////	[alert release];
+	//Create the alert then add any labels and text fields as subviews.
+	//You can pad out an alertView by adding newline characters in the message.  This will
+	// give the alertView more space to draw the text fields.
+	UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Change Password"
+													 message:@""
+													delegate:self
+										   cancelButtonTitle:@"Cancel"
+										   otherButtonTitles:@"OK", nil];
+	
+	alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+	UITextField * alertTextField1 = [alert textFieldAtIndex:0];
+	alertTextField1.keyboardType = UIKeyboardTypeDefault;
+	alertTextField1.placeholder = @"Type Current password";
+	[[alert textFieldAtIndex:0] setSecureTextEntry:YES];
+	
+	UITextField * alertTextField2 = [alert textFieldAtIndex:1];
+	alertTextField2.keyboardType = UIKeyboardTypeDefault;
+	alertTextField2.placeholder = @"Type New Password";
+	
+	[alert show];
+
 }
 
 - (void) getProjects {

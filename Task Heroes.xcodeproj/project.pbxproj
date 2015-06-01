@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6D0AC0BD1AFD699200667188 /* SingleProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0BC1AFD699200667188 /* SingleProjectViewController.m */; };
-		6D0E2D501AD1717400E24046 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D4F1AD1717400E24046 /* ToDoItem.m */; };
 		6D0E2D5B1AD1D01700E24046 /* Green Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5A1AD1D01700E24046 /* Green Header.png */; };
 		6D0E2D5E1AD1D82000E24046 /* index logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D5D1AD1D82000E24046 /* index logo.png */; };
 		6D0E2D651AD1DB0700E24046 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D641AD1DB0700E24046 /* WelcomeViewController.m */; };
 		6D0E2D681AD31AFC00E24046 /* Default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D0E2D671AD31AFC00E24046 /* Default.jpg */; };
 		6D0E2D6F1AD3232F00E24046 /* ChoosePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E2D6E1AD3232F00E24046 /* ChoosePhotoViewController.m */; };
+		6D144A4D1B1C3FF10044E84D /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D144A4C1B1C3FF10044E84D /* UserData.m */; };
 		6D14528B1AD98CBE004EBE50 /* graySection.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D14528A1AD98CBE004EBE50 /* graySection.png */; };
 		6D14528D1AD9E6D9004EBE50 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14528C1AD9E6D9004EBE50 /* wallpaper.jpg */; };
 		6D14528F1AD9F9CF004EBE50 /* wallpaper2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14528E1AD9F9CF004EBE50 /* wallpaper2.jpg */; };
@@ -61,8 +61,6 @@
 /* Begin PBXFileReference section */
 		6D0AC0BB1AFD699200667188 /* SingleProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleProjectViewController.h; path = SingleProject/SingleProjectViewController.h; sourceTree = "<group>"; };
 		6D0AC0BC1AFD699200667188 /* SingleProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleProjectViewController.m; path = SingleProject/SingleProjectViewController.m; sourceTree = "<group>"; };
-		6D0E2D4E1AD1717400E24046 /* ToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
-		6D0E2D4F1AD1717400E24046 /* ToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
 		6D0E2D5A1AD1D01700E24046 /* Green Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Header.png"; sourceTree = "<group>"; };
 		6D0E2D5D1AD1D82000E24046 /* index logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "index logo.png"; sourceTree = "<group>"; };
 		6D0E2D631AD1DB0700E24046 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -70,6 +68,8 @@
 		6D0E2D671AD31AFC00E24046 /* Default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Default.jpg; sourceTree = "<group>"; };
 		6D0E2D6D1AD3232F00E24046 /* ChoosePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePhotoViewController.h; sourceTree = "<group>"; };
 		6D0E2D6E1AD3232F00E24046 /* ChoosePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePhotoViewController.m; sourceTree = "<group>"; };
+		6D144A4B1B1C3FF10044E84D /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserData.h; path = NSManagedObjectClass/UserData.h; sourceTree = "<group>"; };
+		6D144A4C1B1C3FF10044E84D /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserData.m; path = NSManagedObjectClass/UserData.m; sourceTree = "<group>"; };
 		6D14528A1AD98CBE004EBE50 /* graySection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graySection.png; sourceTree = "<group>"; };
 		6D14528C1AD9E6D9004EBE50 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
 		6D14528E1AD9F9CF004EBE50 /* wallpaper2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper2.jpg; sourceTree = "<group>"; };
@@ -150,15 +150,6 @@
 			name = SingleProjectViewController;
 			sourceTree = "<group>";
 		};
-		6D0E2D4D1AD1717400E24046 /* ToDoItem */ = {
-			isa = PBXGroup;
-			children = (
-				6D0E2D4E1AD1717400E24046 /* ToDoItem.h */,
-				6D0E2D4F1AD1717400E24046 /* ToDoItem.m */,
-			);
-			path = ToDoItem;
-			sourceTree = "<group>";
-		};
 		6D0E2D5C1AD1D82000E24046 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +184,24 @@
 			path = ChoosePhotoViewController;
 			sourceTree = "<group>";
 		};
+		6D144A4A1B1C3FCE0044E84D /* NSManagedObjectClass */ = {
+			isa = PBXGroup;
+			children = (
+				6D144A4B1B1C3FF10044E84D /* UserData.h */,
+				6D144A4C1B1C3FF10044E84D /* UserData.m */,
+			);
+			name = NSManagedObjectClass;
+			sourceTree = "<group>";
+		};
+		6D144A4E1B1C40070044E84D /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				6D67D2801A409C7500F49CDE /* AppDelegate.h */,
+				6D67D2811A409C7500F49CDE /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
 		6D1B569C1A45D044009B50C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,7 +210,6 @@
 				6DF41C011ADF043600F5DFDA /* EditUserViewController */,
 				6D0E2D6C1AD3232F00E24046 /* ChoosePhotoViewController */,
 				6D0E2D621AD1DB0700E24046 /* WelcomeViewController */,
-				6D0E2D4D1AD1717400E24046 /* ToDoItem */,
 				6DBBDA7D1A5424F800B31D2D /* ProjectsViewController */,
 				6DBBDA791A54232B00B31D2D /* OrganisationProfileViewController */,
 				6DBBDA721A532FA200B31D2D /* UIViewController+NavigationBar */,
@@ -355,8 +363,6 @@
 				6D1B569C1A45D044009B50C1 /* ViewControllers */,
 				6D3048091A477FC10059159B /* Globals */,
 				6DB812611A4A212A0031FF4D /* Uitls */,
-				6D67D2801A409C7500F49CDE /* AppDelegate.h */,
-				6D67D2811A409C7500F49CDE /* AppDelegate.m */,
 				6D67D28C1A409C7500F49CDE /* Images.xcassets */,
 				6D67D28E1A409C7500F49CDE /* LaunchScreen.xib */,
 				6D67D2831A409C7500F49CDE /* Task_Heroes.xcdatamodeld */,
@@ -423,6 +429,8 @@
 		6DB812611A4A212A0031FF4D /* Uitls */ = {
 			isa = PBXGroup;
 			children = (
+				6D144A4A1B1C3FCE0044E84D /* NSManagedObjectClass */,
+				6D144A4E1B1C40070044E84D /* AppDelegate */,
 				6D54C9021A48C4240023032E /* SWRevealViewController */,
 			);
 			name = Uitls;
@@ -595,7 +603,6 @@
 				6D67D2851A409C7500F49CDE /* Task_Heroes.xcdatamodeld in Sources */,
 				6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */,
 				6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */,
-				6D0E2D501AD1717400E24046 /* ToDoItem.m in Sources */,
 				6DF237C71B10A08F000C46EA /* SingleTaskViewController.m in Sources */,
 				6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */,
 				6DF41C041ADF044E00F5DFDA /* EditUserViewController.m in Sources */,
@@ -603,6 +610,7 @@
 				6D1B56A71A45D177009B50C1 /* HomeViewController.m in Sources */,
 				6DBBDA7C1A5424F000B31D2D /* ProjectsViewController.m in Sources */,
 				6D54C9051A48C4240023032E /* SWRevealViewController.m in Sources */,
+				6D144A4D1B1C3FF10044E84D /* UserData.m in Sources */,
 				6D0E2D651AD1DB0700E24046 /* WelcomeViewController.m in Sources */,
 				6D30480C1A477FC10059159B /* Globals.m in Sources */,
 				6D67D27F1A409C7500F49CDE /* main.m in Sources */,
