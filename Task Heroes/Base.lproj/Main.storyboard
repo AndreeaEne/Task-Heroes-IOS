@@ -250,9 +250,9 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-YC-SIF">
-                                <rect key="frame" x="57" y="338" width="197" height="172"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" pagingEnabled="YES" indicatorStyle="black" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-YC-SIF">
+                                <rect key="frame" x="57" y="142" width="197" height="267"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Rgx-FS-il7" id="H8u-hf-urZ"/>
                                     <outlet property="delegate" destination="Rgx-FS-il7" id="M7E-22-J2R"/>
@@ -264,13 +264,15 @@
                             <bool key="isElement" value="YES"/>
                         </accessibility>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="8GP-YC-SIF" secondAttribute="trailing" constant="50" id="9Li-Z9-64u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Dkh-3I-8gC" secondAttribute="trailing" constant="-16" id="KWm-XG-Amb"/>
+                            <constraint firstItem="8GP-YC-SIF" firstAttribute="leading" secondItem="cTk-HC-0DN" secondAttribute="leadingMargin" constant="9" id="MSd-F1-dCv"/>
+                            <constraint firstAttribute="centerY" secondItem="8GP-YC-SIF" secondAttribute="centerY" constant="56" id="QKj-Ny-idi"/>
                             <constraint firstItem="Dkh-3I-8gC" firstAttribute="top" secondItem="gxy-aT-94g" secondAttribute="bottom" id="UAA-Tc-p62"/>
                             <constraint firstItem="Dkh-3I-8gC" firstAttribute="leading" secondItem="cTk-HC-0DN" secondAttribute="leadingMargin" constant="-23" id="cy9-Rd-bbZ"/>
                             <constraint firstItem="c58-5B-T4p" firstAttribute="top" secondItem="gxy-aT-94g" secondAttribute="bottom" constant="44" id="dkV-h1-yMG"/>
                             <constraint firstAttribute="centerX" secondItem="c58-5B-T4p" secondAttribute="centerX" constant="5" id="feo-bo-rCv"/>
-                            <constraint firstAttribute="centerX" secondItem="8GP-YC-SIF" secondAttribute="centerX" constant="4.5" id="iUe-q0-Pb3"/>
-                            <constraint firstAttribute="centerY" secondItem="8GP-YC-SIF" secondAttribute="centerY" constant="-140" id="t6O-mG-ex5"/>
+                            <constraint firstAttribute="centerX" secondItem="8GP-YC-SIF" secondAttribute="centerX" constant="4.5" id="pOv-V4-kfa"/>
                             <constraint firstItem="Dkh-3I-8gC" firstAttribute="bottom" secondItem="cTk-HC-0DN" secondAttribute="bottomMargin" id="tdo-C9-3bk"/>
                         </constraints>
                     </view>

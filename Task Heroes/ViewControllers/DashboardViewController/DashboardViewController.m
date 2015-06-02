@@ -99,8 +99,8 @@ NSArray *keyArray, *valueArray;
 	
 	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
 	
-	self.dataTest = @[@"Data1", @"Data2", @"Data3", @"Data4", @"Data5"];
-	NSArray *titles = @[@"Backlog", @"Waiting", @"Doing", @"Done"];
+//	self.dataTest = @[@"Data1", @"Data2", @"Data3", @"Data4", @"Data5"];
+//	NSArray *titles = @[@"Backlog", @"Waiting", @"Doing", @"Done"];
 	
 	SWRevealViewController *revealController = [self revealViewController];
 	
@@ -113,27 +113,28 @@ NSArray *keyArray, *valueArray;
 	self.navigationItem.leftBarButtonItem = revealButtonItem;
 	//	[[[self navigationItem] leftBarButtonItem] setTintColor:[UIColor whiteColor]];
 	
-	imageArray = [[NSArray alloc] initWithObjects:@"graySection.png", @"graySection.png", @"graySection.png", @"graySection.png", nil];
-	
-	for (int i = 0; i < [imageArray count]; i++) {
-		//We'll create an imageView object in every 'page' of our scrollView.
-		CGRect frame;
-		frame.origin.x = self.scrollView.frame.size.width * i;
-		frame.origin.y = 0;
-		frame.size = self.scrollView.frame.size;
-		
-		UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-		imageView.image = [UIImage imageNamed:[imageArray objectAtIndex:i]];
-		
-		UILabel *taskSection = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x + 90, frame.origin.y, 97, 21)];
-		[taskSection setText:[NSString stringWithFormat:@"%@",[titles objectAtIndex:i]]];
-		
-		[self.scrollView addSubview:imageView];
-		[self.scrollView addSubview:taskSection];
-		
-	}
-	//	Set the content size of our scrollview according to the total width of our imageView objects.
-	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [imageArray count], scrollView.frame.size.height);
+	//Scroll Section
+//	imageArray = [[NSArray alloc] initWithObjects:@"graySection.png", @"graySection.png", @"graySection.png", @"graySection.png", nil];
+//	
+//	for (int i = 0; i < [imageArray count]; i++) {
+//		//We'll create an imageView object in every 'page' of our scrollView.
+//		CGRect frame;
+//		frame.origin.x = self.scrollView.frame.size.width * i;
+//		frame.origin.y = 0;
+//		frame.size = self.scrollView.frame.size;
+//		
+//		UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+//		imageView.image = [UIImage imageNamed:[imageArray objectAtIndex:i]];
+//		
+//		UILabel *taskSection = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x + 90, frame.origin.y, 97, 21)];
+//		[taskSection setText:[NSString stringWithFormat:@"%@",[titles objectAtIndex:i]]];
+//		
+//		[self.scrollView addSubview:imageView];
+//		[self.scrollView addSubview:taskSection];
+//		
+//	}
+//	//	Set the content size of our scrollview according to the total width of our imageView objects.
+//	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [imageArray count], scrollView.frame.size.height);
 }
 
 
