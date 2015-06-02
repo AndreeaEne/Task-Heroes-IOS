@@ -23,15 +23,15 @@ NSString *id_user;
 @synthesize userData;
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
 	[self setupNavigationBar];
 	//[self getUserData];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 - (void) setupNavigationBar
@@ -50,14 +50,14 @@ NSString *id_user;
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 - (IBAction)saveButton:(id)sender {
 	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
 	NSString *post = [NSString stringWithFormat:@"first_name=%@&last_name=%@&email=%@&_id=%@", _firstName.text, _lastName.text, _email.text, id_user];
@@ -99,7 +99,7 @@ NSString *id_user;
 	NSData *requestHandlerPass = [NSURLConnection sendSynchronousRequest:requestPass returningResponse:&requestResponsePass error:nil];
 	
 	NSString *requestReplyPass = [[NSString alloc] initWithBytes:[requestHandlerPass bytes] length:[requestHandlerPass length] encoding:NSASCIIStringEncoding];
-
+	
 #warning "Nu verifica daca trimit text gol"
 	BOOL log = false;
 	BOOL passLog = false;
@@ -111,20 +111,20 @@ NSString *id_user;
 	}
 	if(![_password.text isEqual:@""] && ![_verifyPassword.text isEqual:@""])
 		if([requestReplyPass isEqualToString:@"{\"msg\":\"update succesful\"}"] || ![requestReplyPass isEqualToString:@""]) {
-		passLog = true;
-	}
-//	NSLog(@"\nlog:%hhd\npassLog: %hhd", log, passLog);
-//	NSLog(@"requestReply: %@", requestReply);
-//	NSLog(@"requestReplyPass: %@", requestReplyPass);
+			passLog = true;
+		}
+	//	NSLog(@"\nlog:%hhd\npassLog: %hhd", log, passLog);
+	//	NSLog(@"requestReply: %@", requestReply);
+	//	NSLog(@"requestReplyPass: %@", requestReplyPass);
 	
 	UIAlertView *alert;
 	if(log == true && passLog == true) {
 		alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The user info and the pass have been succesfully updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-			[alert show];
+		[alert show];
 	}
 	else if (log == false & passLog == true) {
 		alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The pass has been succesfully updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-			[alert show];
+		[alert show];
 	}
 	else if (log == true & passLog == false) {
 		alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The user info has been succesfully updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -132,7 +132,7 @@ NSString *id_user;
 	}
 	else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"The user info has not been updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-			[alert show];
+		[alert show];
 	}
 	
 }
@@ -175,13 +175,13 @@ NSString *id_user;
 		// Handle the error.
 	}
 	
-//	NSString *email_user = userData.email;
-//	NSString *last_name_user = userData.last_name;
-//	NSString *first_name_user = userData.first_name;
-//	id_user = userData.id_user;
-//	_firstName.text = first_name_user;
-//	_lastName.text = last_name_user;
-//	_email.text = email_user;
+	//	NSString *email_user = userData.email;
+	//	NSString *last_name_user = userData.last_name;
+	//	NSString *first_name_user = userData.first_name;
+	//	id_user = userData.id_user;
+	//	_firstName.text = first_name_user;
+	//	_lastName.text = last_name_user;
+	//	_email.text = email_user;
 }
 
 - (void) performFetch {
@@ -200,7 +200,7 @@ NSString *id_user;
 - (void) viewWillAppear:(BOOL)animated {
 	[self getUserData];
 	[self setupFetchedResultsController];
-
+	
 }
 
 - (void) setupFetchedResultsController

@@ -18,29 +18,29 @@
 @implementation FirstPageViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-//    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
+	[super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+//	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
 	
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+	[[self navigationController] setNavigationBarHidden:YES animated:YES];
 	
 	//UIViewController *rmvc = (UINavigationController *)[[self revealViewController] frontViewController];
 	//NSLog(@"%@", [rmvc class]);
 	
-//Deschide Dashboard <3
-//	SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
-//	[rmvc performSegueWithIdentifier:@"segueToProjects" sender:rmvc];
+	//Deschide Dashboard <3
+	//	SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
+	//	[rmvc performSegueWithIdentifier:@"segueToProjects" sender:rmvc];
 	
-    
+	
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+	[[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 

@@ -16,14 +16,14 @@
 @implementation ChoosePhotoViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	//imageView.image = [UIImage imageNamed:@"Default.jpg"];
-    // Do any additional setup after loading the view.
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 
@@ -56,14 +56,14 @@
 	NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Default.jpg"]];//, imageView.image]]; //add our image to the path
 	if (imageView.image != nil) {
 		[fileManager createFileAtPath:fullPath contents:imageData attributes:nil]; //finally save the path (image)
-//		[self listFileAtPath:documentsDirectory];
+		//		[self listFileAtPath:documentsDirectory];
 		NSLog(@"image saved");
 	}
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-	
-	//---> DELETING <---///
+
+//---> DELETING <---///
 //	NSFileManager *fileMgr = [[NSFileManager alloc] init];
 //	NSError *error = nil;
 //	NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error];
@@ -79,7 +79,7 @@
 // } else {
 //	 // Error handling
 //	 NSLog(@"Eroare");
-//	 
+//
 // }
 //}
 
@@ -88,9 +88,9 @@
 //{
 //	//-----> LIST ALL FILES <-----//
 //	NSLog(@"LISTING ALL FILES FOUND");
-//	
+//
 //	int count;
-//	
+//
 //	NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
 //	for (count = 0; count < (int)[directoryContent count]; count++)
 //	{

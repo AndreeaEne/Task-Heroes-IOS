@@ -63,29 +63,29 @@ NSArray *keyArray, *valueArray;
 }
 
 - (void) getPoints {
-//	// Fetching
-//	NSManagedObjectContext *context = [self managedObjectContext];
-//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
-//	
-//	// Execute Fetch Request
-//	NSError *fetchError = nil;
-//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-//	if (!fetchError) {
-//		for (NSManagedObject *managedObject in result) {
-//			NSString *auxPoints = [managedObject valueForKey:@"points"];
-//			id_user = [managedObject valueForKey:@"id_user"];
-//			points = [auxPoints floatValue];
-//		}
-//		
-//	} else {
-//		NSLog(@"Error fetching data.");
-//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
-//	}
-//	NSError *error;
-//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//	if (fetchedObjects == nil) {
-//		// Handle the error.
-//	}
+	//	// Fetching
+	//	NSManagedObjectContext *context = [self managedObjectContext];
+	//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+	//
+	//	// Execute Fetch Request
+	//	NSError *fetchError = nil;
+	//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+	//	if (!fetchError) {
+	//		for (NSManagedObject *managedObject in result) {
+	//			NSString *auxPoints = [managedObject valueForKey:@"points"];
+	//			id_user = [managedObject valueForKey:@"id_user"];
+	//			points = [auxPoints floatValue];
+	//		}
+	//
+	//	} else {
+	//		NSLog(@"Error fetching data.");
+	//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+	//	}
+	//	NSError *error;
+	//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+	//	if (fetchedObjects == nil) {
+	//		// Handle the error.
+	//	}
 	userData = (UserData *)[self.managedObjectContext
 							existingObjectWithID:moID
 							error:nil];

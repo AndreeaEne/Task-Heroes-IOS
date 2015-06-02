@@ -341,23 +341,18 @@ UITextField *alertTextField1 , *alertTextField2;
 //	return cell;
 //}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return [keyArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	
 	return [valueArray[section] count];
-	
 }
 
--(UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"cell"];
 	
-	if (cell == nil)
-	{
+	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
 	}
 	
@@ -367,12 +362,12 @@ UITextField *alertTextField1 , *alertTextField2;
 	return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	return [keyArray objectAtIndex:section];
 }
 
 //send data to SingleProject
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	NSString *currentSection = keyArray[indexPath.section];
@@ -380,13 +375,10 @@ UITextField *alertTextField1 , *alertTextField2;
 	for(NSDictionary *item in publicTimeline) {
 		NSString *orgName = item[@"organization_name"];
 		if([orgName isEqualToString:currentSection]) {
-			for(NSDictionary *projName in [item objectForKey:@"organization_projects"])
-			{
+			for(NSDictionary *projName in [item objectForKey:@"organization_projects"]) {
 				NSString *currentProject = projName[@"project_name"];
-				if([cell.textLabel.text isEqualToString:currentProject])
-				{
+				if([cell.textLabel.text isEqualToString:currentProject]) {
 					orgID = projName[@"_id"];
-					//					NSLog(@"a gasit");
 					break;
 				}
 			}
@@ -395,8 +387,8 @@ UITextField *alertTextField1 , *alertTextField2;
 		
 	}
 	
-	for (NSString *key in [organisationIDtoSingleTask allKeys]) {
-		if ([key isEqualToString:currentSection]) {
+	for(NSString *key in [organisationIDtoSingleTask allKeys]) {
+		if([key isEqualToString:currentSection]) {
 			orgIDtoSingleTask = [organisationIDtoSingleTask objectForKey:key];
 			NSLog(@"orgIDtoSingleTask: %@",orgIDtoSingleTask);
 			break;
@@ -411,49 +403,46 @@ UITextField *alertTextField1 , *alertTextField2;
 }
 
 //Send orgID to SingleProjectViewController
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	//	NSLog(@"prepareForSegue: %@", segue.identifier);
 	
-	if([segue.identifier isEqualToString:@"goToSingleProject"]){
+	if([segue.identifier isEqualToString:@"goToSingleProject"]) {
 		SingleProjectViewController *singleProjectController = segue.destinationViewController;
-		//		SingleTaskViewController *singleTaskViewController = [[SingleTaskViewController alloc] init];
+		//SingleTaskViewController *singleTaskViewController = [[SingleTaskViewController alloc] init];
 		
-		//		NSLog(@"before setting projectID = %@", singleProjectController.projectID);
+		//NSLog(@"before setting projectID = %@", singleProjectController.projectID);
 		singleProjectController.projectID = orgID;
 		//		NSLog(@"after setting projectID = %@", singleProjectController.projectID);
 		
 		NSIndexPath *indexPath = [self.projectsTable indexPathForSelectedRow];
 		UITableViewCell *cell = [projectsTable cellForRowAtIndexPath:indexPath];
 		
-		//		NSLog(@"before setting = %@", singleProjectController.projectTitle);
+		//NSLog(@"before setting = %@", singleProjectController.projectTitle);
 		singleProjectController.projectTitle = cell.textLabel.text;
 		singleProjectController.organisationID = orgIDtoSingleTask;
 		
-		//		singleTaskViewController.orgID = orgIDtoSingleTask;
-		//		NSLog(@"after setting = %@", singleProjectController.projectTitle);
+		//singleTaskViewController.orgID = orgIDtoSingleTask;
+		//NSLog(@"after setting = %@", singleProjectController.projectTitle);
 		
 		//
-		//		singleProjectController.projectTitle = [valueArray objectAtIndex:indexPath.row];
-		//		[singleProjectController.setProjectTitle setText:[valueArray objectAtIndex:indexPath.row]];
+		//singleProjectController.projectTitle = [valueArray objectAtIndex:indexPath.row];
+		//[singleProjectController.setProjectTitle setText:[valueArray objectAtIndex:indexPath.row]];
 	}
-	
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-	//	NSLog(@"Se apeleaza viewWillAppear");
+- (void)viewWillAppear:(BOOL)animated {
+	//NSLog(@"Se apeleaza viewWillAppear");
 	[self getProjects];
 }
 
 - (NSManagedObjectContext *) managedObjectContext {
 	NSManagedObjectContext *context = nil;
 	id delegate = [[UIApplication sharedApplication] delegate];
-	if ([delegate performSelector:@selector(managedObjectContext)]) {
+	if([delegate performSelector:@selector(managedObjectContext)]) {
 		context = [delegate managedObjectContext];
 	}
 	return context;
 }
-
-
 
 // Init the object with information from a dictionary
 //- (id)initWithJSONDictionary:(NSDictionary *)jsonDictionary {

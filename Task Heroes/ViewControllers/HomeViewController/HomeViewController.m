@@ -41,7 +41,7 @@ NSManagedObjectID *moID;
 }
 
 //Hide Keyboard
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	//    NSLog(@"Hide keyboard");
 	[self.view endEditing:YES];
 	[super touchesBegan:touches withEvent:event];
@@ -73,8 +73,7 @@ NSManagedObjectID *moID;
 	}
 }
 
-- (BOOL) Login
-{
+- (BOOL) Login {
 	//	cell.textLabel.text = use.name;
 	
 	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
@@ -129,15 +128,15 @@ NSManagedObjectID *moID;
 		// Save to Core Data [with objects]
 		
 		
-//		userData = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:self.managedObjectContext];
+		//		userData = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:self.managedObjectContext];
 		
-//		NSManagedObjectID *moID = [userData objectID];
-//		NSLog(@"userID: %@", moID);
+		//		NSManagedObjectID *moID = [userData objectID];
+		//		NSLog(@"userID: %@", moID);
 		
-
+		
 		userData = (UserData *)[self.managedObjectContext
-											  existingObjectWithID:moID
-											  error:nil];
+								existingObjectWithID:moID
+								error:nil];
 		
 		userData.email = emailField.text;
 		userData.id_user = id_user;
@@ -147,51 +146,51 @@ NSManagedObjectID *moID;
 		
 		[self.managedObjectContext save:nil];
 		
-//		[[userData objectID] URIRepresentation];
-//		NSManagedObjectID* moid = [storeCoordinator managedObjectIDForURIRepresentation:[[userData objectID] URIRepresentation]];
+		//		[[userData objectID] URIRepresentation];
+		//		NSManagedObjectID* moid = [storeCoordinator managedObjectIDForURIRepresentation:[[userData objectID] URIRepresentation]];
 		
 		NSLog(@"[Home]_userData: %@", userData);
 		NSLog(@"viewDidLoad: moID: %@", moID);
-//		NSManagedObjectID *moID = [userData objectID];
-//		NSLog(@"moID: %@", moID);
+		//		NSManagedObjectID *moID = [userData objectID];
+		//		NSLog(@"moID: %@", moID);
 		
 		
-//		NSLog(@"userData: %@", userData);
+		//		NSLog(@"userData: %@", userData);
 	}
 	return semafor;
 }
 
 - (void) performFetch {
-//	NSManagedObjectContext *context = [self managedObjectContext];
+	//	NSManagedObjectContext *context = [self managedObjectContext];
 	// Fetching
-//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+	//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
 	
-//	// Execute Fetch Request
-//	NSError *fetchError = nil;
-//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-//	
-//	if (!fetchError) {
-//		for (NSManagedObject *managedObject in result) {
-//			NSLog(@"[Home] ManagedObject: %@", managedObject);
-//			
-//			NSLog(@"%@, %@, %@, %@", [managedObject valueForKey:@"email"], [managedObject valueForKey:@"last_name"], [managedObject valueForKey:@"id_user"], [managedObject valueForKey:@"points"]);
-//		}
-//	} else {
-//		NSLog(@"Error fetching data.");
-//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
-//	}
-//	
-//	NSError *error;
-//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//	if (fetchedObjects == nil) {
-//		// Handle the error.
-//	}
-//	NSLog(@"email: %@, last_name: %@, id_user: %@, points: %@", _userData.email, _userData.last_name, _userData.id_user, _userData.points);
-//	_userData = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:context];
+	//	// Execute Fetch Request
+	//	NSError *fetchError = nil;
+	//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+	//
+	//	if (!fetchError) {
+	//		for (NSManagedObject *managedObject in result) {
+	//			NSLog(@"[Home] ManagedObject: %@", managedObject);
+	//
+	//			NSLog(@"%@, %@, %@, %@", [managedObject valueForKey:@"email"], [managedObject valueForKey:@"last_name"], [managedObject valueForKey:@"id_user"], [managedObject valueForKey:@"points"]);
+	//		}
+	//	} else {
+	//		NSLog(@"Error fetching data.");
+	//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+	//	}
+	//
+	//	NSError *error;
+	//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+	//	if (fetchedObjects == nil) {
+	//		// Handle the error.
+	//	}
+	//	NSLog(@"email: %@, last_name: %@, id_user: %@, points: %@", _userData.email, _userData.last_name, _userData.id_user, _userData.points);
+	//	_userData = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:context];
 	
-//	NSLog(@"[Home][Fetch]userData: %@", userData);
-//	[self.managedObjectContext _userData];
-//	[self.managedObjectContext save:nil];
+	//	NSLog(@"[Home][Fetch]userData: %@", userData);
+	//	[self.managedObjectContext _userData];
+	//	[self.managedObjectContext save:nil];
 	
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -199,12 +198,11 @@ NSManagedObjectID *moID;
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription];
-
+	
  
 	NSError *error;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
-	if (array == nil)
-	{
+	if (array == nil) {
 		// Deal with error...
 	}
 	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
@@ -219,8 +217,8 @@ NSManagedObjectID *moID;
 		NSLog(@"moID: %@", moID);
 	}
 	
-//	userData = [self managedObjectContext];
-
+	//	userData = [self managedObjectContext];
+	
 	
 }
 
@@ -235,16 +233,16 @@ NSManagedObjectID *moID;
 //								   error:(NSError **)error {
 //	NSManagedObjectID *moID = [userData objectID];
 //	NSLog(@"moID: %@", moID);
-//	
+//
 //	userData = (UserData *)[self.managedObjectContext
 //									  existingObjectWithID:moID
 //									  error:nil];
-//	
+//
 //	return userData;
-//	
+//
 //}
 - (NSManagedObjectContext *) managedObjectContext {
-//	NSLog(@"viewDidLoad: moID: %@", moID);
+	//	NSLog(@"viewDidLoad: moID: %@", moID);
 	
 	NSManagedObjectContext *context = nil;
 	id delegate = [[UIApplication sharedApplication] delegate];
@@ -267,9 +265,9 @@ NSManagedObjectID *moID;
 	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
  
 	// 4 - Sort it if you want
-		request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
-																						 ascending:YES
-																						  selector:@selector(localizedCaseInsensitiveCompare:)]];
+	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
+																					 ascending:YES
+																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
 	// 5 - Fetch it
 	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
 																		managedObjectContext:self.managedObjectContext
