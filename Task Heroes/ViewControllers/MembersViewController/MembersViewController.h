@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserData.h"
 
-@interface MembersViewController : UIViewController
+@interface MembersViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+	@property (weak, nonatomic) IBOutlet UITableView *membersTable;
+
+	//CoreData
+	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+	@property (strong, nonatomic) UserData *userData;
 
 @end

@@ -33,7 +33,6 @@ NSManagedObjectID *moID;
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
 	//	[self performSegueWithIdentifier: @"LogIn" sender: self];
 	moID = [[NSManagedObjectID alloc] init];
-	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -209,6 +208,12 @@ NSManagedObjectID *moID;
 		// Deal with error...
 	}
 	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
+	if([array count] == 0) {
+		NSLog(@"ajunge?");
+		userData = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:self.managedObjectContext];
+		userData.email = @"a";
+		[self.managedObjectContext save:nil];
+	}
 	for (NSManagedObject *managedObject in array) {
 		moID = [managedObject objectID];
 		NSLog(@"moID: %@", moID);

@@ -71,7 +71,7 @@ NSManagedObjectID *moID;
 
 - (void) saveTask {
 	if(_changeTask == 1) {
-		NSLog(@"Save button pressed!");
+//		NSLog(@"Save button pressed!");
 		NSLog(@"projectID: %@, taskIDL %@", _projectID, _taskID);
 		
 		//We begin by creating our POST's body as an NSString, and converting it to NSData.
@@ -274,28 +274,28 @@ NSManagedObjectID *moID;
 }
 
 - (void) getUserData {
-//	// Fetching
-//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
-//	
-//	// Execute Fetch Request
-//	NSManagedObjectContext *context = [self managedObjectContext];
-//	NSError *fetchError = nil;
-//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-//	
-//	if (!fetchError) {
-//		for (NSManagedObject *managedObject in result)
-//			userID = [managedObject valueForKey:@"id_user"];
-//		
-//	} else {
-//		NSLog(@"Error fetching data.");
-//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
-//	}
-//	
-//	NSError *error;
-//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//	if (fetchedObjects == nil) {
-//		// Handle the error.
-//	}
+	//	// Fetching
+	//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+	//
+	//	// Execute Fetch Request
+	//	NSManagedObjectContext *context = [self managedObjectContext];
+	//	NSError *fetchError = nil;
+	//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+	//
+	//	if (!fetchError) {
+	//		for (NSManagedObject *managedObject in result)
+	//			userID = [managedObject valueForKey:@"id_user"];
+	//
+	//	} else {
+	//		NSLog(@"Error fetching data.");
+	//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+	//	}
+	//
+	//	NSError *error;
+	//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+	//	if (fetchedObjects == nil) {
+	//		// Handle the error.
+	//	}
 	userData = (UserData *)[self.managedObjectContext
 							existingObjectWithID:moID
 							error:nil];
@@ -368,50 +368,50 @@ NSManagedObjectID *moID;
 //}
 
 - (void) printCoreData {
-//	// Fetching
-//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
-//	// Add Sort Descriptor
-//	//NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"email" ascending:YES];
-//	//[fetchRequest setSortDescriptors:@[sortDescriptor]];
-//	
-//	// Execute Fetch Request
-//	NSManagedObjectContext *context = [self managedObjectContext];
-//	NSError *fetchError = nil;
-//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-//	
-//	if (!fetchError) {
-//		for (NSManagedObject *managedObject in result) {
-//			NSLog(@"[SingleTask] ManagedObject: %@", managedObject);
-//			NSString *done = [managedObject valueForKey:@"doneTasks"];
-//			NSString *undone = [managedObject valueForKey:@"undoneTasks"];
-//			
-//			if ([undone containsString:_taskID]) {
-//				[_iVolunteerButton setTitle:@"This is your task! " forState:UIControlStateNormal];
-//				_iVolunteerButton.enabled = false;
-//				[_iVolunteerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//				NSLog(@"am gasit Undone");
-//			}
-//			else if ([done containsString:_taskID]) {
-//				[_iVolunteerButton setTitle:@"Done" forState:UIControlStateNormal];
-//				_iVolunteerButton.enabled = false;
-//				[_iVolunteerButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-//				NSLog(@"am gasit Done");
-//			}
-//			else {
-//				//[_iVolunteerButton setBackgroundColor:[UIColor greenColor]];
-//			}
-//			//NSLog(@"nfirst: %@,\nlast:%@,", done, undone);
-////			break;
-//		}
-//	} else {
-//		NSLog(@"Error fetching data.");
-//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
-//	}
-//	NSError *error;
-//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//	if (fetchedObjects == nil) {
-//		// Handle the error.
-//	}
+	//	// Fetching
+	//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
+	//	// Add Sort Descriptor
+	//	//NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"email" ascending:YES];
+	//	//[fetchRequest setSortDescriptors:@[sortDescriptor]];
+	//
+	//	// Execute Fetch Request
+	//	NSManagedObjectContext *context = [self managedObjectContext];
+	//	NSError *fetchError = nil;
+	//	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+	//
+	//	if (!fetchError) {
+	//		for (NSManagedObject *managedObject in result) {
+	//			NSLog(@"[SingleTask] ManagedObject: %@", managedObject);
+	//			NSString *done = [managedObject valueForKey:@"doneTasks"];
+	//			NSString *undone = [managedObject valueForKey:@"undoneTasks"];
+	//
+	//			if ([undone containsString:_taskID]) {
+	//				[_iVolunteerButton setTitle:@"This is your task! " forState:UIControlStateNormal];
+	//				_iVolunteerButton.enabled = false;
+	//				[_iVolunteerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+	//				NSLog(@"am gasit Undone");
+	//			}
+	//			else if ([done containsString:_taskID]) {
+	//				[_iVolunteerButton setTitle:@"Done" forState:UIControlStateNormal];
+	//				_iVolunteerButton.enabled = false;
+	//				[_iVolunteerButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+	//				NSLog(@"am gasit Done");
+	//			}
+	//			else {
+	//				//[_iVolunteerButton setBackgroundColor:[UIColor greenColor]];
+	//			}
+	//			//NSLog(@"nfirst: %@,\nlast:%@,", done, undone);
+	////			break;
+	//		}
+	//	} else {
+	//		NSLog(@"Error fetching data.");
+	//		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
+	//	}
+	//	NSError *error;
+	//	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+	//	if (fetchedObjects == nil) {
+	//		// Handle the error.
+	//	}
 	
 	//get Core Data with objects
 	userData = (UserData *)[self.managedObjectContext
@@ -425,13 +425,13 @@ NSManagedObjectID *moID;
 		[_iVolunteerButton setTitle:@"This is your task! " forState:UIControlStateNormal];
 		_iVolunteerButton.enabled = false;
 		[_iVolunteerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-		NSLog(@"am gasit Undone");
+		//		NSLog(@"am gasit Undone");
 	}
 	else if ([done containsString:_taskID]) {
 		[_iVolunteerButton setTitle:@"Done" forState:UIControlStateNormal];
 		_iVolunteerButton.enabled = false;
 		[_iVolunteerButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-		NSLog(@"am gasit Done");
+		//		NSLog(@"am gasit Done");
 	}
 	else {
 		//[_iVolunteerButton setBackgroundColor:[UIColor greenColor]];

@@ -37,7 +37,7 @@
 
 	
    // [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    content = [NSArray arrayWithObjects:@"Dashboard", @"Members", @"Organisation Profile", @"Projects", @"Edit User Profile", @"Log Out", nil];
+    content = [NSArray arrayWithObjects:@"Dashboard", @"Volunteers", @"Organisations", @"Projects", @"Edit User Profile", @"Log Out", nil];
 //	if([content isEqual: @"Members"]) {
 //		[self performSegueWithIdentifier: @"segueToMembers" sender: self];
 //	}
@@ -71,11 +71,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	
-	if([cell.textLabel.text isEqual: @"Members"]){
+	if([cell.textLabel.text isEqual: @"Volunteers"]){
 		[self performSegueWithIdentifier: @"segueToMembers" sender: self];
 		
 	}
-	else if([cell.textLabel.text isEqual: @"Organisation Profile"]){
+	else if([cell.textLabel.text isEqual: @"Organisations"]){
 		[self performSegueWithIdentifier: @"segueToOrganisationProfile" sender: self];
 		
 	}
