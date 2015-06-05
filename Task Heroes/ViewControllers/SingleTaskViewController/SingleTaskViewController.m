@@ -184,7 +184,7 @@ NSManagedObjectID *moID;
 							  initWithTitle:@"Save"
 							  message:messageString
 							  delegate:self
-							  cancelButtonTitle:@"Cancel"
+							  cancelButtonTitle:nil
 							  otherButtonTitles:@"OK", nil];
 		[alert show];
 		
@@ -199,7 +199,7 @@ NSManagedObjectID *moID;
 							  initWithTitle:@"Save"
 							  message:messageString
 							  delegate:self
-							  cancelButtonTitle:@"Cancel"
+							  cancelButtonTitle:nil
 							  otherButtonTitles:@"OK", nil];
 		[alert show];
 		
@@ -211,7 +211,7 @@ NSManagedObjectID *moID;
 							  initWithTitle:@"Save"
 							  message:@"Please select the list where you want to move the task!"
 							  delegate:self
-							  cancelButtonTitle:@"Cancel"
+							  cancelButtonTitle:nil
 							  otherButtonTitles:@"OK", nil];
 		[alert show];
 	}
@@ -256,9 +256,11 @@ NSManagedObjectID *moID;
 						  initWithTitle:@"Save"
 						  message:messageString
 						  delegate:self
-						  cancelButtonTitle:@"Cancel"
+						  cancelButtonTitle:nil
 						  otherButtonTitles:@"OK", nil];
 	[alert show];
+	[self removeAnimate];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)parseDate {

@@ -13,6 +13,8 @@
 
 	@property (weak, nonatomic) IBOutlet UITableView *orgTable;
 
+	@property (strong, nonatomic) UIBarButtonItem *addOrg;
+
 	//CoreData
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

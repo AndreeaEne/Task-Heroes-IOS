@@ -16,7 +16,7 @@
 
 //NSArray *projectName;
 NSString *id_user, *orgID, *orgIDtoSingleTask, *orgIDAddProject, *orgInTextField;
-NSMutableDictionary *proiecte, *organisationIDtoSingleTask;
+NSMutableDictionary *proiecte, *organisationIDtoSingleTask, *orgIDWithoutProjects;
 NSArray *publicTimeline, *keyArray, *valueArray;
 UIRefreshControl *refreshControl;
 UIAlertView *alert;
@@ -41,6 +41,7 @@ UITextField *alertTextField1 , *alertTextField2;
 	_organisation_name = [[NSMutableArray alloc] init];
 	proiecte = [[NSMutableDictionary alloc] init];
 	organisationIDtoSingleTask = [[NSMutableDictionary alloc] init];
+	orgIDWithoutProjects = [[NSMutableDictionary alloc] init];
 	orgIDtoSingleTask = [[NSString alloc] init];
 	orgInTextField = [[NSString alloc] init];
 	
@@ -69,7 +70,7 @@ UITextField *alertTextField1 , *alertTextField2;
 }
 
 - (void)refreshTable {
-	//TODO: refresh your data
+	//Refresh data from the table
 	[self getProjects];
 	[refreshControl endRefreshing];
 	[self.projectsTable reloadData];
@@ -136,12 +137,14 @@ UITextField *alertTextField1 , *alertTextField2;
 		NSDate *targetDate = [gregorian dateByAddingComponents:dateComponents toDate:date  options:0];
 		int timestamp = [targetDate timeIntervalSince1970];
 		
-		for (id key in organisationIDtoSingleTask)
+		NSLog(@"organisationIDToSingleTask = %@", orgIDWithoutProjects);
+		for (id key in orgIDWithoutProjects)
 		{
-			if([key isEqualToString:orgInTextField])
-				orgIDAddProject = [organisationIDtoSingleTask objectForKey:key];
+			if([key isEqualToString:orgInTextField]){
+				orgIDAddProject = [orgIDWithoutProjects objectForKey:key];
+				NSLog(@"A gasit, orgIDAddProject: %@", orgIDAddProject);
+			}
 		}
-		NSLog(@"A gasit, ordIDAddProject: %@", orgIDAddProject);
 		
 		if(orgIDAddProject != NULL) {
 			
@@ -170,10 +173,52 @@ UITextField *alertTextField1 , *alertTextField2;
 			NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
 			
 			NSLog(@"request: %@", requestReply);
+			
+			NSString *successMessage = [NSString stringWithFormat:@"Project %@ has beend added to %@", alertTextField1.text, alertTextField2.text];
+			UIAlertView *alert = [[UIAlertView alloc]
+								  initWithTitle: @"Announcement"
+								  message: successMessage
+								  delegate: nil
+								  cancelButtonTitle:@"OK"
+								  otherButtonTitles:nil];
+			[alert show];
 		}
-		else
-			NSLog(@"nu a gasit ID-ul");
-		
+		else if (alertTextField1.text.length == 0 && alertTextField2.text.length == 0){
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle: @"Announcement"
+							  message: @"Please type Project Name and Organization Name!"
+							  delegate: nil
+							  cancelButtonTitle:@"OK"
+							  otherButtonTitles:nil];
+		[alert show];
+		}
+		else if (alertTextField1.text.length == 0){
+			UIAlertView *alert = [[UIAlertView alloc]
+								  initWithTitle: @"Announcement"
+								  message: @"Please type Project Name"
+								  delegate: nil
+								  cancelButtonTitle:@"OK"
+								  otherButtonTitles:nil];
+			[alert show];
+		}
+		else if (alertTextField2.text.length == 0 && alertTextField2.text.length == 0){
+			UIAlertView *alert = [[UIAlertView alloc]
+								  initWithTitle: @"Announcement"
+								  message: @"Please type Organization Name!"
+								  delegate: nil
+								  cancelButtonTitle:@"OK"
+								  otherButtonTitles:nil];
+			[alert show];
+		}
+		else if (orgIDAddProject == NULL) {
+			UIAlertView *alert = [[UIAlertView alloc]
+								  initWithTitle: @"Announcement"
+								  message: @"The specified Orgaization doesn't exist!"
+								  delegate: nil
+								  cancelButtonTitle:@"OK"
+								  otherButtonTitles:nil];
+			[alert show];
+		}
 	}
 }
 
@@ -232,7 +277,7 @@ UITextField *alertTextField1 , *alertTextField2;
 	publicTimeline = [NSJSONSerialization JSONObjectWithData:response
 													 options:0 error:&jsonParsingError];
 	
-	//	NSLog(@"publicTimeline:\n%@", publicTimeline);
+		NSLog(@"publicTimeline:\n%@", publicTimeline);
 	
 	if (!publicTimeline) {
 		NSLog(@"Error parsing JSON: %@", fetchError);
@@ -242,6 +287,7 @@ UITextField *alertTextField1 , *alertTextField2;
 			//			[_projectID addObject:item[@"_id"]];
 			[_organisation_name addObject:item[@"organization_name"]];
 			NSString *orgName = item[@"organization_name"];
+			[orgIDWithoutProjects setObject:item[@"_id"] forKey:orgName];
 			
 			NSMutableArray *aux = [[NSMutableArray alloc] init];
 			for(NSDictionary *projName in [item objectForKey:@"organization_projects"]) {

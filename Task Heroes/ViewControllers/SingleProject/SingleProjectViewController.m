@@ -269,6 +269,7 @@ UIRefreshControl *refreshControl;
 		singleTaskViewController.taskID = results;
 		singleTaskViewController.points = singleTaskPoints;
 		singleTaskViewController.addedDate = singleAddedDate;
+		singleTaskViewController.changeTask = 0;
 		
 		self.definesPresentationContext = YES; //self is presenting view controller
 		
@@ -278,12 +279,14 @@ UIRefreshControl *refreshControl;
 	else if([segue.identifier isEqualToString:@"addNewTask"]){
 		singleTaskViewController.orgID = _organisationID;
 		singleTaskViewController.projectID = projectID;
+		singleTaskViewController.taskID = results;
 		
-		singleTaskViewController.taskName = @"Add New Task";
+		[singleTaskViewController.taskName isEqualToString:@"Add New Task"];
 		self.definesPresentationContext = YES; //self is presenting view controller
 		
 		singleTaskViewController.changeTask = 1;
-		singleTaskViewController.view.backgroundColor = self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];//[UIColor colorWithWhite:1.0 alpha:0.5];
+		singleTaskViewController.view.backgroundColor = self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
+		//[UIColor colorWithWhite:1.0 alpha:0.5];
 		singleTaskViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 	}
 }

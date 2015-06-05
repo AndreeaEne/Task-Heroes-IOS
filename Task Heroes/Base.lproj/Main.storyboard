@@ -580,7 +580,7 @@
                                 </state>
                                 <connections>
                                     <action selector="addNewTask:" destination="WsM-k5-GNE" eventType="touchUpInside" id="qTb-KZ-6ky"/>
-                                    <segue destination="Ic2-g8-FOG" kind="modal" identifier="addNewTask" id="fMu-EG-OxV"/>
+                                    <segue destination="Ic2-g8-FOG" kind="modal" identifier="addNewTask" id="sps-jo-yMR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -740,6 +740,12 @@
                                             <action selector="iVolunteerAction:" destination="Ic2-g8-FOG" eventType="touchUpInside" id="2a9-h0-q7S"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type Task Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cM-D5-GVr">
+                                        <rect key="frame" x="59" y="146" width="131" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -770,6 +776,8 @@
                                     <constraint firstItem="yA6-ww-Ffo" firstAttribute="leading" secondItem="eV9-Fd-LJB" secondAttribute="leading" constant="102" id="hdL-hU-eLk"/>
                                     <constraint firstAttribute="bottom" secondItem="jNo-eQ-W7U" secondAttribute="bottom" constant="8" id="omf-uc-XSV"/>
                                     <constraint firstItem="gbo-Ji-tJI" firstAttribute="centerX" secondItem="FyN-Tw-DpM" secondAttribute="centerX" constant="-5" id="ses-Ex-6bh"/>
+                                    <constraint firstItem="EOD-4Z-dM6" firstAttribute="top" secondItem="2cM-D5-GVr" secondAttribute="bottom" constant="8" id="vs3-kU-v9x"/>
+                                    <constraint firstItem="2cM-D5-GVr" firstAttribute="centerX" secondItem="EOD-4Z-dM6" secondAttribute="centerX" id="wdL-dq-Lbg"/>
                                     <constraint firstItem="Fj7-Ri-ztM" firstAttribute="trailing" secondItem="mCx-sD-uqw" secondAttribute="trailing" id="xew-x3-ptG"/>
                                     <constraint firstItem="RIs-GZ-NHW" firstAttribute="leading" secondItem="eV9-Fd-LJB" secondAttribute="leading" constant="-36" id="xhf-Yd-QlF"/>
                                     <constraint firstAttribute="centerX" secondItem="aDE-B1-SFd" secondAttribute="centerX" constant="-0.5" id="y0R-4B-eMU"/>
@@ -786,6 +794,7 @@
                     </view>
                     <connections>
                         <outlet property="addTaskNameField" destination="EOD-4Z-dM6" id="7V5-uO-Pkb"/>
+                        <outlet property="addTaskNameLabel" destination="2cM-D5-GVr" id="Zow-uX-4Pz"/>
                         <outlet property="addedOn" destination="yA6-ww-Ffo" id="QBu-XN-9Da"/>
                         <outlet property="addedOnText" destination="mCx-sD-uqw" id="p9H-Rf-3dl"/>
                         <outlet property="backButton" destination="eV9-Fd-LJB" id="H4p-2B-3kp"/>
@@ -1116,19 +1125,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Task Heroes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiP-cK-2uN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Welcome to Task Heroes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiP-cK-2uN">
                                 <rect key="frame" x="59" y="28" width="215" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="index logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="8yM-Rw-qjj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="index logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="8yM-Rw-qjj">
                                 <rect key="frame" x="112" y="67" width="101" height="105"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40h-3A-j3f">
-                                <rect key="frame" x="117" y="454" width="91" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40h-3A-j3f">
+                                <rect key="frame" x="93" y="454" width="139" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Start" backgroundImage="greenButton.png">
+                                <state key="normal" title="Be a HERO" backgroundImage="greenButton.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1137,8 +1146,48 @@
                                     <action selector="startButton:" destination="899-ak-6WN" eventType="touchUpInside" id="alP-cC-8OZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Volunteers are the real heroes!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYo-p6-g6u">
+                                <rect key="frame" x="35" y="200" width="254" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="We can change the world without super powers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x77-5E-qbb">
+                                <rect key="frame" x="-16" y="237" width="365" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="and collaboration in and between NGOs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-0f-ieO">
+                                <rect key="frame" x="0.0" y="376" width="319" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Use the only tool for organization management " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeb-vK-N2o">
+                                <rect key="frame" x="-84" y="327" width="501" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="8yM-Rw-qjj" secondAttribute="centerX" constant="-2.5" id="6ol-Zj-0N8"/>
+                            <constraint firstAttribute="centerX" secondItem="eeb-vK-N2o" secondAttribute="centerX" constant="-6.5" id="9cP-Nd-sCl"/>
+                            <constraint firstAttribute="centerY" secondItem="40h-3A-j3f" secondAttribute="centerY" constant="-189.5" id="D1d-Wv-Q0M"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="40h-3A-j3f" secondAttribute="trailing" constant="72" id="GA3-g7-lye"/>
+                            <constraint firstItem="wsb-yj-KEv" firstAttribute="top" secondItem="40h-3A-j3f" secondAttribute="bottom" constant="75" id="GzO-CT-cP5"/>
+                            <constraint firstItem="x77-5E-qbb" firstAttribute="top" secondItem="XYo-p6-g6u" secondAttribute="bottom" constant="16" id="MBg-O7-Ti8"/>
+                            <constraint firstItem="XYo-p6-g6u" firstAttribute="centerX" secondItem="8yM-Rw-qjj" secondAttribute="centerX" constant="-0.5" id="NDM-e5-UaZ"/>
+                            <constraint firstItem="40h-3A-j3f" firstAttribute="top" secondItem="bqg-0f-ieO" secondAttribute="bottom" constant="57" id="ZQG-F8-a11"/>
+                            <constraint firstItem="8yM-Rw-qjj" firstAttribute="centerX" secondItem="x77-5E-qbb" secondAttribute="centerX" constant="-4" id="hll-VY-oX4"/>
+                            <constraint firstAttribute="centerX" secondItem="40h-3A-j3f" secondAttribute="centerX" constant="-2.5" id="i49-z7-vLd"/>
+                            <constraint firstItem="40h-3A-j3f" firstAttribute="leading" secondItem="4dI-kb-E5O" secondAttribute="leadingMargin" constant="77" id="lRV-7e-ow8"/>
+                            <constraint firstAttribute="centerY" secondItem="8yM-Rw-qjj" secondAttribute="centerY" constant="164.5" id="vps-Hb-Lo9"/>
+                            <constraint firstAttribute="centerX" secondItem="bqg-0f-ieO" secondAttribute="centerX" constant="0.5" id="y3e-h2-z5R"/>
+                            <constraint firstItem="8yM-Rw-qjj" firstAttribute="top" secondItem="kiP-cK-2uN" secondAttribute="bottom" constant="8" id="yMZ-ZE-oI4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="k8q-mV-Fte"/>
                     <connections>
@@ -1192,7 +1241,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="owl-EU-YZR"/>
         <segue reference="LXX-HT-OIT"/>
-        <segue reference="fMu-EG-OxV"/>
+        <segue reference="sps-jo-yMR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 </document>
