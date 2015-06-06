@@ -31,6 +31,7 @@ NSManagedObjectID *moID;
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
+	self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 	//	[self performSegueWithIdentifier: @"LogIn" sender: self];
 	moID = [[NSManagedObjectID alloc] init];
 }
@@ -53,7 +54,7 @@ NSManagedObjectID *moID;
 	BOOL email = [emailField.text length] > 0;
 	BOOL pass = [passField.text length] > 0;
 	
-	[self performSegueWithIdentifier: @"LogIn" sender: self];
+//	[self performSegueWithIdentifier: @"LogIn" sender: self];
 	
 	if (!email && !pass) {
 		msg = @"Enter a valid email and password.";

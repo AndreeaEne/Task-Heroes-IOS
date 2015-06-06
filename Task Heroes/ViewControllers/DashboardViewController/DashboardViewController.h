@@ -25,6 +25,7 @@
 	@property (weak, nonatomic) IBOutlet UIImageView *wallImage;
 
 	@property (weak, nonatomic) IBOutlet UILabel *points;
+	@property (weak, nonatomic) IBOutlet UILabel *tasks;
 
 	//CoreData
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

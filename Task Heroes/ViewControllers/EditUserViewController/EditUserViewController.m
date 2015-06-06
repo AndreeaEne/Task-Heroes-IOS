@@ -26,7 +26,15 @@ NSString *id_user;
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[self setupNavigationBar];
+	[self setPlaceHolderColor];
 	//[self getUserData];
+}
+
+- (void)setPlaceHolderColor {
+	[self.password setValue:[UIColor whiteColor]
+					forKeyPath:@"_placeholderLabel.textColor"];
+	[self.verifyPassword setValue:[UIColor whiteColor]
+					forKeyPath:@"_placeholderLabel.textColor"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,13 +42,13 @@ NSString *id_user;
 	// Dispose of any resources that can be recreated.
 }
 
-- (void) setupNavigationBar
-{
+- (void)setupNavigationBar {
 	[[UIApplication sharedApplication] setStatusBarHidden: NO];
 	[self.navigationController setNavigationBarHidden: NO];
 	
 	[self setTitle:@"Edit User Profile"];
 	[self setRevealButtonWithImage: [UIImage imageNamed:@"reveal-icon.png"]];
+	[self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -137,7 +145,7 @@ NSString *id_user;
 	
 }
 
-- (void) getUserData {
+- (void)getUserData {
 	// Fetching
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
 	// Add Sort Descriptor

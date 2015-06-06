@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[self setNewImage];
 	//imageView.image = [UIImage imageNamed:@"Default.jpg"];
 	// Do any additional setup after loading the view.
 }
@@ -45,6 +46,14 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	[picker dismissViewControllerAnimated:YES completion:nil];
 	imageView.image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+}
+
+- (void) setNewImage {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *getImagePath = [documentsDirectory stringByAppendingPathComponent:@"Default.jpg"];
+	NSData *imgData = [NSData dataWithContentsOfFile:getImagePath];
+	imageView.image = [[UIImage alloc] initWithData:imgData];
 }
 
 - (IBAction)backButton:(id)sender {

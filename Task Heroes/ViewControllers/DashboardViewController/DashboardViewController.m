@@ -59,7 +59,21 @@ NSArray *keyArray, *valueArray;
 	
 	[self getPoints];
 	[self getData];
+	[self getTasks];
 	//	[self printCoreData];
+}
+
+- (void) getTasks {
+	if ([task_name count] == 0) {
+		_tasks.text = [NSString stringWithFormat:@"You have completed your tasks"];
+		[_tasks setFont:[UIFont systemFontOfSize:15]];
+	}
+	else if ([task_name count] == 1) {
+		_tasks.text = [NSString stringWithFormat:@"1 task"];
+	}
+	else {
+	_tasks.text = [NSString stringWithFormat:@"%lu tasks",(unsigned long)[task_name count]];
+	}
 }
 
 - (void) getPoints {
@@ -92,7 +106,18 @@ NSArray *keyArray, *valueArray;
 	id_user = userData.id_user;
 	points = [userData.points floatValue];
 	
-	_points.text = [NSString stringWithFormat: @"You have %.2f points", points];
+	if (points == 0) {
+		_points.text = [NSString stringWithFormat: @"You don't have any points"];
+		[_points setFont:[UIFont systemFontOfSize:15]];
+	}
+	else if (points == 1) {
+		_points.text = [NSString stringWithFormat: @"1 point"];
+	}
+	else {
+		_points.text = [NSString stringWithFormat: @"%.0f points", points];
+	}
+	
+	
 	
 //		self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0f/255.0f green:108.0f/255.0f blue:164.0f/255.0f alpha:1.0f];
 	//#5BBD72

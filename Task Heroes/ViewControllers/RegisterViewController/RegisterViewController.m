@@ -119,6 +119,9 @@
 	BOOL orgName = [OrgNameField.text length] > 0;
 	
 #warning Dynamic messages!
+	
+//	[self performSegueWithIdentifier: @"SignUp" sender: self];
+	
 	if (!email && !pass) {
 		msg = @"Enter a valid email and password.";
 	}

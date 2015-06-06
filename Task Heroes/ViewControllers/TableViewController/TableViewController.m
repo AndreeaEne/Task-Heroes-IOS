@@ -27,6 +27,7 @@
 	
 	//NSLog(@"avatar.image = %@", _avatar.image);
 	// Do any additional setup after loading the view.
+//	[self setNewImage:[UIImage imageNamed:@"Default.jpg"]];
 	self.view.backgroundColor = [UIColor blackColor];
 	
 	self->profileImageView.layer.cornerRadius = self->profileImageView.frame.size.width / 2;
