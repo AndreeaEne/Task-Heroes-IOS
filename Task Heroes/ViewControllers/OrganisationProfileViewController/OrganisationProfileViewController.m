@@ -38,9 +38,10 @@ UITextField *alertTextField1 , *alertTextField2;
 	[self.orgTable addSubview:refreshControl];
 	[refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
 	
-	_addOrg = [[UIBarButtonItem alloc] initWithTitle:@"+ Organization" style:UIBarButtonItemStylePlain target:self action:@selector(addTask:)];
+	_addOrg = [[UIBarButtonItem alloc] initWithTitle:@"+ Add" style:UIBarButtonItemStylePlain target:self action:@selector(addTask:)];
 	
 	self.navigationItem.rightBarButtonItem = _addOrg;
+	[[[self navigationItem] rightBarButtonItem] setTintColor:[UIColor whiteColor]];
 	
 	alert = [[UIAlertView alloc] initWithTitle:@"Add New Organization"
 									   message:@""

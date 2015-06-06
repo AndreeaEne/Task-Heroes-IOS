@@ -53,6 +53,8 @@ NSManagedObjectID *moID;
 	BOOL email = [emailField.text length] > 0;
 	BOOL pass = [passField.text length] > 0;
 	
+	[self performSegueWithIdentifier: @"LogIn" sender: self];
+	
 	if (!email && !pass) {
 		msg = @"Enter a valid email and password.";
 	}

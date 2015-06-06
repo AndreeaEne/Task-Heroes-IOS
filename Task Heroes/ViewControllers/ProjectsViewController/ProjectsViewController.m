@@ -87,11 +87,16 @@ UITextField *alertTextField1 , *alertTextField2;
 	[[UIApplication sharedApplication] setStatusBarHidden: NO];
 	[self.navigationController setNavigationBarHidden: NO];
 	
-	_addTask = [[UIBarButtonItem alloc] initWithTitle:@"+ Add Project" style:UIBarButtonItemStylePlain target:self action:@selector(addTask:)];
-	self.navigationItem.rightBarButtonItem = _addTask;
-	//	[anotherButton release];
 	
-	[self setTitle:@"Projects"];
+	//Set right button and Title
+	_addTask = [[UIBarButtonItem alloc] initWithTitle:@"+ Add" style:UIBarButtonItemStylePlain target:self action:@selector(addTask:)];
+	self.navigationItem.rightBarButtonItem = _addTask;
+	[[[self navigationItem] rightBarButtonItem] setTintColor:[UIColor whiteColor]];
+	[self.navigationItem setTitle:@"Projects"];
+	[self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+
+
+
 	[self setRevealButtonWithImage: [UIImage imageNamed:@"reveal-icon.png"]];
 }
 

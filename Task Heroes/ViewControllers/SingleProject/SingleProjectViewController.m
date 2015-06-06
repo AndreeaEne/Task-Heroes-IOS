@@ -35,6 +35,8 @@ UIRefreshControl *refreshControl;
 	// Do any additional setup after loading the view.
 	[self getData];
 	
+	self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+	
 	results = [[NSString alloc] init];
 	singleTaskPoints = [[NSString alloc] init];
 	singleAddedDate = [[NSString alloc] init];
@@ -45,8 +47,8 @@ UIRefreshControl *refreshControl;
 	task_name = [[NSMutableArray alloc] init];
 	
 	setProjectTitle.text = projectTitle;
-	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
-	
+//	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
+
 	refreshControl = [[UIRefreshControl alloc]init];
 	[self.tasksTable addSubview:refreshControl];
 	[refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];

@@ -94,10 +94,13 @@ NSArray *keyArray, *valueArray;
 	
 	_points.text = [NSString stringWithFormat: @"You have %.2f points", points];
 	
-	//	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0f/255.0f green:108.0f/255.0f blue:164.0f/255.0f alpha:1.0f];
+//		self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0f/255.0f green:108.0f/255.0f blue:164.0f/255.0f alpha:1.0f];
+	//#5BBD72
+	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:91.0f/255.0f green:189.0f/255.0f blue:114.0f/255.0f alpha:1.0f];
+	
 	self.navigationController.navigationBar.translucent = NO;
 	
-	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
+//	_wallImage.image = [UIImage imageNamed:@"wallpaper2.jpg"];
 	
 //	self.dataTest = @[@"Data1", @"Data2", @"Data3", @"Data4", @"Data5"];
 //	NSArray *titles = @[@"Backlog", @"Waiting", @"Doing", @"Done"];
@@ -111,7 +114,7 @@ NSArray *keyArray, *valueArray;
 																		 style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
 	
 	self.navigationItem.leftBarButtonItem = revealButtonItem;
-	//	[[[self navigationItem] leftBarButtonItem] setTintColor:[UIColor whiteColor]];
+		[[[self navigationItem] leftBarButtonItem] setTintColor:[UIColor whiteColor]];
 	
 	//Scroll Section
 //	imageArray = [[NSArray alloc] initWithObjects:@"graySection.png", @"graySection.png", @"graySection.png", @"graySection.png", nil];
