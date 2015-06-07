@@ -53,8 +53,8 @@ NSArray *keyArray, *valueArray;
 //}
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+	NSLog(@"DashboardViewController loaded.");
 	[super viewDidLoad];
 	
 	[self getPoints];
@@ -216,6 +216,7 @@ NSArray *keyArray, *valueArray;
 	{
 		//		[self.navigationController popToRootViewControllerAnimated:YES];
 		
+		userData.id_user = @"0";
 		[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
 		//
 		//		HomeViewController *vc = [HomeViewController alloc];

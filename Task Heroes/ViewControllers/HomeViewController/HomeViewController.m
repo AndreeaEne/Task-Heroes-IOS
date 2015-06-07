@@ -11,6 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "UserData.h"
+#import "SWRevealViewController.h"
 
 BOOL semafor = false;
 NSManagedObjectID *moID;
@@ -28,6 +29,7 @@ NSManagedObjectID *moID;
 
 
 - (void)viewDidLoad {
+	NSLog(@"HomeViewController loaded.");
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
@@ -66,7 +68,13 @@ NSManagedObjectID *moID;
 		msg = @"Enter a password. ";
 	}
 	else if([self Login] == true) {
-		[self performSegueWithIdentifier: @"LogIn" sender: self];
+//		if (![userData.id_user  isEqual: @"0"]) {
+			[self performSegueWithIdentifier: @"LogIn" sender: self];
+//		}
+//		else {
+//			SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
+//			[rmvc performSegueWithIdentifier:@"segueToDashboard" sender:rmvc];
+//		}
 	}
 	else msg = @"User or password incorrect";
 	
@@ -210,7 +218,7 @@ NSManagedObjectID *moID;
 	}
 	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
 	if([array count] == 0) {
-		NSLog(@"ajunge?");
+		NSLog(@"Adding new account.");
 		userData = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:self.managedObjectContext];
 		userData.email = @"a";
 		[self.managedObjectContext save:nil];

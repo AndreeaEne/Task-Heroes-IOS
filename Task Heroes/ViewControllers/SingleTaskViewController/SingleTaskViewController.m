@@ -24,6 +24,7 @@ NSManagedObjectID *moID;
 @synthesize taskName, setTaskName, userData;
 
 - (void)viewDidLoad {
+	NSLog(@"SingleTaskViewController loaded.");
 	[super viewDidLoad];
 	[self getUserData];
 	//	NSLog(@"Added date: %@", _addedDate);

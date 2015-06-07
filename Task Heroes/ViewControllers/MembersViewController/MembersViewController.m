@@ -25,6 +25,7 @@ NSArray *keyArray, *valueArray;
 @synthesize userData;
 
 - (void)viewDidLoad {
+	NSLog(@"MembersViewController loaded.");
 	[super viewDidLoad];
 	
 	[self setupNavigationBar];

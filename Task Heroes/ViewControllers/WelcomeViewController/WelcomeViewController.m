@@ -16,6 +16,7 @@
 @implementation WelcomeViewController
 
 - (void)viewDidLoad {
+	NSLog(@"WelcomeViewController loaded.");
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -23,7 +24,7 @@
 }
 - (IBAction)startButton:(id)sender {
 	SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
-	[rmvc performSegueWithIdentifier:@"segueToProjects" sender:rmvc];
+	[rmvc performSegueWithIdentifier:@"segueToDashboard" sender:rmvc];
 }
 
 - (void)didReceiveMemoryWarning {

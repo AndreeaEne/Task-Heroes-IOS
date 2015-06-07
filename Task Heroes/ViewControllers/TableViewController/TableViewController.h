@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserData.h"
 
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 
-@property (weak, nonatomic) IBOutlet UITableView *TableViewContent;
-@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+	@property (weak, nonatomic) IBOutlet UITableView *TableViewContent;
+	@property (weak, nonatomic) IBOutlet UIImageView *avatar;
 
-- (void) setNewImage: (UIImage*) setimage;
+	//CoreData
+	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+	@property (strong, nonatomic) UserData *userData;
+
+	- (void) setNewImage: (UIImage*) setimage;
 
 @end

@@ -23,6 +23,7 @@
 @synthesize firstnameField, lastnameField, emailField, passField, passConfirmField, OrgNameField, orgTypeButton, orgTypePicker, userData;
 
 - (void)viewDidLoad {
+	NSLog(@"RegisterViewController loaded.");
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];

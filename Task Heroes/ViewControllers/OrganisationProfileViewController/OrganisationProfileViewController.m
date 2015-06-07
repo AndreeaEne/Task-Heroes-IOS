@@ -27,6 +27,7 @@ UITextField *alertTextField1 , *alertTextField2;
 @synthesize userData;
 
 - (void)viewDidLoad {
+	NSLog(@"OrganisationViewController loaded.");
 	[super viewDidLoad];
 	
 	// Do any additional setup after loading the view.

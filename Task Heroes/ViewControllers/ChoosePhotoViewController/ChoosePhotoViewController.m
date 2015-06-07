@@ -16,6 +16,7 @@
 @implementation ChoosePhotoViewController
 
 - (void)viewDidLoad {
+	NSLog(@"ChoosePhotoViewController loaded.");
 	[super viewDidLoad];
 	[self setNewImage];
 	//imageView.image = [UIImage imageNamed:@"Default.jpg"];

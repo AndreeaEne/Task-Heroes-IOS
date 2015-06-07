@@ -32,6 +32,7 @@ UITextField *alertTextField1 , *alertTextField2;
 @synthesize projectsTable;
 
 - (void)viewDidLoad {
+	NSLog(@"ProjectsViewController loaded.");
 	[super viewDidLoad];
 	//	NSLog(@"Se apeleaza viewDidLoad");
 	// Do any additional setup after loading the view.

@@ -23,6 +23,7 @@ NSString *id_user;
 @synthesize userData;
 
 - (void)viewDidLoad {
+	NSLog(@"EditUserViewController loaded.");
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[self setupNavigationBar];

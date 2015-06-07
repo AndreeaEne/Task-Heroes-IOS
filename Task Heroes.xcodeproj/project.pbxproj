@@ -32,6 +32,7 @@
 		6D4A10DA1B23851E00D4535D /* Blu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D4A10D91B23851E00D4535D /* Blu.jpg */; };
 		6D4A10DE1B238A5E00D4535D /* hero_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4A10DD1B238A5E00D4535D /* hero_photo.png */; };
 		6D4A10E01B238CFA00D4535D /* points_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4A10DF1B238CFA00D4535D /* points_photo.png */; };
+		6D4A10E31B24E60A00D4535D /* BeforeHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A10E21B24E60A00D4535D /* BeforeHomePageViewController.m */; };
 		6D54C9051A48C4240023032E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D54C9041A48C4240023032E /* SWRevealViewController.m */; };
 		6D67D27F1A409C7500F49CDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D27E1A409C7500F49CDE /* main.m */; };
 		6D67D2821A409C7500F49CDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D2811A409C7500F49CDE /* AppDelegate.m */; };
@@ -98,6 +99,8 @@
 		6D4A10D91B23851E00D4535D /* Blu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Blu.jpg; path = "Launch Screen/Blu.jpg"; sourceTree = "<group>"; };
 		6D4A10DD1B238A5E00D4535D /* hero_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hero_photo.png; path = "Choose Profile Picture/hero_photo.png"; sourceTree = "<group>"; };
 		6D4A10DF1B238CFA00D4535D /* points_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = points_photo.png; path = "Choose Profile Picture/points_photo.png"; sourceTree = "<group>"; };
+		6D4A10E11B24E60A00D4535D /* BeforeHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeforeHomePageViewController.h; path = BeforeNavigationViewController/BeforeHomePageViewController.h; sourceTree = "<group>"; };
+		6D4A10E21B24E60A00D4535D /* BeforeHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeforeHomePageViewController.m; path = BeforeNavigationViewController/BeforeHomePageViewController.m; sourceTree = "<group>"; };
 		6D54C9031A48C4240023032E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		6D54C9041A48C4240023032E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		6D67D2791A409C7500F49CDE /* Task Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Heroes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +214,7 @@
 		6D1B569C1A45D044009B50C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D4A10E61B24E62500D4535D /* BeforeHomePageViewController */,
 				6DF237C41B10A07C000C46EA /* SingleTaskViewController */,
 				6D0AC0BE1AFD699800667188 /* SingleProjectViewController */,
 				6DF41C011ADF043600F5DFDA /* EditUserViewController */,
@@ -222,7 +226,7 @@
 				6D322A861A52FB7B0052D2A0 /* MembersViewController */,
 				6D3048221A48ABD70059159B /* TableViewController */,
 				6D30481B1A48A7880059159B /* DashboardViewController */,
-				6D1B56B41A464407009B50C1 /* FirstPage */,
+				6D1B56B41A464407009B50C1 /* FirstPageViewController */,
 				6D1B569E1A45D177009B50C1 /* HomeViewController */,
 				6D1B56A11A45D177009B50C1 /* RegisterViewController */,
 			);
@@ -282,12 +286,13 @@
 			path = HomeViewController;
 			sourceTree = "<group>";
 		};
-		6D1B56B41A464407009B50C1 /* FirstPage */ = {
+		6D1B56B41A464407009B50C1 /* FirstPageViewController */ = {
 			isa = PBXGroup;
 			children = (
 				6D1B56B51A464407009B50C1 /* FirstPageViewController.h */,
 				6D1B56B61A464407009B50C1 /* FirstPageViewController.m */,
 			);
+			name = FirstPageViewController;
 			path = FirstPage;
 			sourceTree = "<group>";
 		};
@@ -350,6 +355,15 @@
 				6D4A10DD1B238A5E00D4535D /* hero_photo.png */,
 			);
 			name = ChooseProfileImage;
+			sourceTree = "<group>";
+		};
+		6D4A10E61B24E62500D4535D /* BeforeHomePageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D4A10E11B24E60A00D4535D /* BeforeHomePageViewController.h */,
+				6D4A10E21B24E60A00D4535D /* BeforeHomePageViewController.m */,
+			);
+			name = BeforeHomePageViewController;
 			sourceTree = "<group>";
 		};
 		6D54C9021A48C4240023032E /* SWRevealViewController */ = {
@@ -633,6 +647,7 @@
 				6D30481E1A48A7880059159B /* DashboardViewController.m in Sources */,
 				6DF237C71B10A08F000C46EA /* SingleTaskViewController.m in Sources */,
 				6D1B56A81A45D177009B50C1 /* RegisterViewController.m in Sources */,
+				6D4A10E31B24E60A00D4535D /* BeforeHomePageViewController.m in Sources */,
 				6DF41C041ADF044E00F5DFDA /* EditUserViewController.m in Sources */,
 				6DBBDA781A54231B00B31D2D /* OrganisationProfileViewController.m in Sources */,
 				6D1B56A71A45D177009B50C1 /* HomeViewController.m in Sources */,

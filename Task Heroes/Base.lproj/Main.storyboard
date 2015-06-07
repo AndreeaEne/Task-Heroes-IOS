@@ -6,16 +6,17 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Before Home Page View Controller-->
         <scene sceneID="kvM-SK-ghx">
             <objects>
-                <navigationController id="oEZ-kb-rUJ" sceneMemberID="viewController">
+                <navigationController id="oEZ-kb-rUJ" customClass="BeforeHomePageViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xVw-mx-bOh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="tZX-EL-clY"/>
+                        <segue destination="Rgx-FS-il7" kind="push" identifier="LogIn" id="qUa-uF-jyO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQD-Hc-7V0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1336,8 +1337,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="owl-EU-YZR"/>
-        <segue reference="LXX-HT-OIT"/>
+        <segue reference="AmJ-TB-D2P"/>
+        <segue reference="qUa-uF-jyO"/>
         <segue reference="sps-jo-yMR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
