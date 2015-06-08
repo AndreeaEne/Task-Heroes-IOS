@@ -121,7 +121,7 @@
 	
 #warning Dynamic messages!
 	
-//	[self performSegueWithIdentifier: @"SignUp" sender: self];
+	[self performSegueWithIdentifier: @"SignUp" sender: self];
 	
 	if (!email && !pass) {
 		msg = @"Enter a valid email and password.";

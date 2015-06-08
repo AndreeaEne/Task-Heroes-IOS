@@ -42,6 +42,7 @@
 		6D67D2901A409C7500F49CDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D67D28E1A409C7500F49CDE /* LaunchScreen.xib */; };
 		6D67D29C1A409C7600F49CDE /* Task_HeroesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D67D29B1A409C7600F49CDE /* Task_HeroesTests.m */; };
 		6D67D2A61A409D1900F49CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D67D2A51A409D1900F49CDE /* MapKit.framework */; };
+		6D92DC821B2624C100B4BA34 /* presentationScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D92DC811B2624C100B4BA34 /* presentationScreen.jpg */; };
 		6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */; };
 		6DB8125F1A4A07380031FF4D /* Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8125E1A4A07380031FF4D /* Header.png */; };
 		6DBBDA751A532FA200B31D2D /* UIViewController+NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBBDA741A532FA200B31D2D /* UIViewController+NavigationBar.m */; };
@@ -116,6 +117,7 @@
 		6D67D29A1A409C7600F49CDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D67D29B1A409C7600F49CDE /* Task_HeroesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task_HeroesTests.m; sourceTree = "<group>"; };
 		6D67D2A51A409D1900F49CDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6D92DC811B2624C100B4BA34 /* presentationScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = presentationScreen.jpg; sourceTree = "<group>"; };
 		6DB8125B1A49DF8B0031FF4D /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
 		6DB8125E1A4A07380031FF4D /* Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header.png; sourceTree = "<group>"; };
 		6DBBDA731A532FA200B31D2D /* UIViewController+NavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationBar.h"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 		6D1B56B81A464569009B50C1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6D92DC811B2624C100B4BA34 /* presentationScreen.jpg */,
 				6D1B56B91A464569009B50C1 /* background.png */,
 			);
 			path = ViewController;
@@ -618,6 +621,7 @@
 				6DBBDA7F1A54318B00B31D2D /* logout.png in Resources */,
 				6D1B56B21A45D2C3009B50C1 /* redButton.png in Resources */,
 				6D0E2D5E1AD1D82000E24046 /* index logo.png in Resources */,
+				6D92DC821B2624C100B4BA34 /* presentationScreen.jpg in Resources */,
 				6D4A10DE1B238A5E00D4535D /* hero_photo.png in Resources */,
 				6DB8125C1A49DF8B0031FF4D /* reveal-icon.png in Resources */,
 			);
