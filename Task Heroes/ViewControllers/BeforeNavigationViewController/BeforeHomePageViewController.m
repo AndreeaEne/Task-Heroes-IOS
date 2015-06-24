@@ -34,7 +34,7 @@ NSManagedObjectID *moID;
 							error:nil];
 //	logged = _userData.id_user ?: true;
 //	NSLog(@"userID: %@", _userData.id_user);
-	if (![_userData.id_user  isEqual: @"0"]) {
+	if (![_userData.id_user isEqual: @"0"]) {
 		NSLog(@"The user is logged in");
 		
 		SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];

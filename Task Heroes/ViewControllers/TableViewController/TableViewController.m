@@ -108,6 +108,8 @@ NSManagedObjectID *moID;
 								 existingObjectWithID:moID
 								 error:nil];
 		_userData.id_user = @"0";
+		[self.managedObjectContext save:nil];
+		
 		[self performSegueWithIdentifier: @"LogOut" sender: self];
 		}
 }

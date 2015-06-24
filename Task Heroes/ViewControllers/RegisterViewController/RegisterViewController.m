@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "HomeViewController.h"
 #import <CoreData/CoreData.h>
+#import "WelcomeViewController.h"
 
 @interface RegisterViewController ()
 
@@ -18,6 +19,7 @@
 	NSArray *content;
 	BOOL checkSignUp;
 	NSManagedObjectID *moID;
+	NSString *selectedType;
 }
 
 @synthesize firstnameField, lastnameField, emailField, passField, passConfirmField, OrgNameField, orgTypeButton, orgTypePicker, userData;
@@ -26,6 +28,7 @@
 	NSLog(@"RegisterViewController loaded.");
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
+	selectedType = [[NSString alloc] init];
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
 	[orgTypePicker setAlpha:0];
 	content = [NSArray arrayWithObjects:@"Youth", @"School", @"Religious", nil];
@@ -121,7 +124,7 @@
 	
 #warning Dynamic messages!
 	
-	[self performSegueWithIdentifier: @"SignUp" sender: self];
+//	[self performSegueWithIdentifier: @"SignUp" sender: self];
 	
 	if (!email && !pass) {
 		msg = @"Enter a valid email and password.";
@@ -304,6 +307,23 @@
 	[self setupFetchedResultsController];
 }
 
+- (void)pickerView:(UIPickerView *)orgTypePicker didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	//	NSLog(@"Selected content: %@. Index of selected color: %ld", [content objectAtIndex:row], (long)row);
+	selectedType = [content objectAtIndex:row];
+	//	NSLog(@"ProjectTO = %@", _projectTo);
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"SignUp"]){
+		WelcomeViewController *sendTo = segue.destinationViewController;
+		sendTo.orgType = selectedType;
+		sendTo.orgName = OrgNameField.text;
+		sendTo.user = emailField.text;
+		sendTo.pass = passField.text;
+	}
+}
+
 
 @end
 
@@ -313,13 +333,5 @@
 
 @end
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
 
