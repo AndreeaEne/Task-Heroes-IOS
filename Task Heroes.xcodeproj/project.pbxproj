@@ -224,7 +224,6 @@
 				6D0E2D621AD1DB0700E24046 /* WelcomeViewController */,
 				6DBBDA7D1A5424F800B31D2D /* ProjectsViewController */,
 				6DBBDA791A54232B00B31D2D /* OrganisationProfileViewController */,
-				6DBBDA721A532FA200B31D2D /* UIViewController+NavigationBar */,
 				6D322A861A52FB7B0052D2A0 /* MembersViewController */,
 				6D3048221A48ABD70059159B /* TableViewController */,
 				6D30481B1A48A7880059159B /* DashboardViewController */,
@@ -471,6 +470,7 @@
 		6DB812611A4A212A0031FF4D /* Uitls */ = {
 			isa = PBXGroup;
 			children = (
+				6DBBDA721A532FA200B31D2D /* UIViewController+NavigationBar */,
 				6D144A4A1B1C3FCE0044E84D /* NSManagedObjectClass */,
 				6D144A4E1B1C40070044E84D /* AppDelegate */,
 				6D54C9021A48C4240023032E /* SWRevealViewController */,
@@ -484,7 +484,8 @@
 				6DBBDA731A532FA200B31D2D /* UIViewController+NavigationBar.h */,
 				6DBBDA741A532FA200B31D2D /* UIViewController+NavigationBar.m */,
 			);
-			path = "UIViewController+NavigationBar";
+			name = "UIViewController+NavigationBar";
+			path = "ViewControllers/UIViewController+NavigationBar";
 			sourceTree = "<group>";
 		};
 		6DBBDA791A54232B00B31D2D /* OrganisationProfileViewController */ = {
@@ -567,7 +568,7 @@
 		6D67D2711A409C7500F49CDE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Andreea-Daniela Ene";
 				TargetAttributes = {
 					6D67D2781A409C7500F49CDE = {
@@ -724,6 +725,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -789,6 +791,7 @@
 				INFOPLIST_FILE = "Task Heroes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ade.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -802,6 +805,7 @@
 				INFOPLIST_FILE = "Task Heroes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ade.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -821,6 +825,7 @@
 				);
 				INFOPLIST_FILE = "Task HeroesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ade.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Task Heroes.app/Task Heroes";
 			};
@@ -836,6 +841,7 @@
 				);
 				INFOPLIST_FILE = "Task HeroesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ade.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Task Heroes.app/Task Heroes";
 			};

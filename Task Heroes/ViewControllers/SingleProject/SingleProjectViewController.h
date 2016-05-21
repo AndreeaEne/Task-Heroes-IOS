@@ -9,15 +9,24 @@
 #import <UIKit/UIKit.h>
 
 @interface SingleProjectViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *setProjectTitle;
 
-@property (strong, nonatomic) NSString *projectID, *projectTitle, *organisationID;
+	// Table.
+	@property (weak, nonatomic) IBOutlet UITableView *tasksTable;
 
-@property (weak, nonatomic) IBOutlet UITableView *tasksTable;
+	// Title.
+	@property (strong, nonatomic) IBOutlet UILabel *setProjectTitle;
 
-@property (weak, nonatomic) IBOutlet UIImageView *wallImage;
-@property (weak, nonatomic) IBOutlet UIButton *addNewTask;
+	// Strings.
+	@property (strong, nonatomic) NSString *projectID, *projectTitle, *organisationID;
 
-- (void) getData;
+	// Wallpaper.
+	@property (weak, nonatomic) IBOutlet UIImageView *wallImage;
+
+	// Button.
+	@property (weak, nonatomic) IBOutlet UIButton *addNewTask;
+
+
+	// Methods.
+	- (void) getData;
 
 @end

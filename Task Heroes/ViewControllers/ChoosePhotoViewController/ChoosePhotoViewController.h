@@ -10,11 +10,15 @@
 
 @interface ChoosePhotoViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (nonatomic, retain) IBOutlet UIButton *choosePhotoBtn;
-@property (nonatomic, retain) IBOutlet UIButton *takePhotoBtn;
+	// ImageViews.
+	@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+	//Buttons.
+	@property (nonatomic, retain) IBOutlet UIButton *choosePhotoBtn;
+	@property (nonatomic, retain) IBOutlet UIButton *takePhotoBtn;
 
 
--(IBAction) getPhoto:(id) sender;
+	// Methods.
+	-(IBAction) getPhoto:(id) sender;
 
 @end

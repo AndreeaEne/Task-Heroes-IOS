@@ -11,10 +11,13 @@
 
 @interface WelcomeViewController : UIViewController
 
+	// Buttons.
 	@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
+	// Strings.
 	@property (strong, nonatomic) NSString *orgName, *orgType, *user, *pass;
 
-	//CoreData
+	// CoreData.
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 	@property (strong, nonatomic) UserData *userData;

@@ -11,62 +11,62 @@
 
 @interface UIViewController (NavigationBar)
 
-- (void)setRevealButtonWithImage:(UIImage *)revealImage;
+	- (void)setRevealButtonWithImage:(UIImage *)revealImage;
 
-- (void)setBackButtonWithImage:(UIImage *)image
-                         title:(NSString *)title
-                  swipeForBack:(BOOL)swipeForBack;
+	- (void)setBackButtonWithImage:(UIImage *)image
+							title:(NSString *)title
+					swipeForBack:(BOOL)swipeForBack;
 
-- (void)setBackButtonWithImage:(UIImage *)image
-                         title:(NSString *)title
-                  swipeForBack:(BOOL)swipeForBack
-                      selector:(SEL)selector;
+	- (void)setBackButtonWithImage:(UIImage *)image
+							title:(NSString *)title
+					swipeForBack:(BOOL)swipeForBack
+						selector:(SEL)selector;
 
-- (void)setBackButtonWithImage:(UIImage *)image
-                         title:(NSString *)title
-                       xOffset:(CGFloat)xOffset
-                  swipeForBack:(BOOL)swipeForBack;
+	- (void)setBackButtonWithImage:(UIImage *)image
+							title:(NSString *)title
+						   xOffset:(CGFloat)xOffset
+					swipeForBack:(BOOL)swipeForBack;
 
-- (void)setBackButtonWithImage:(UIImage *)image
-                         title:(NSString *)title
-                       xOffset:(CGFloat)xOffset
-                  swipeForBack:(BOOL)swipeForBack
-                      selector:(SEL)selector;
+	- (void)setBackButtonWithImage:(UIImage *)image
+							title:(NSString *)title
+						   xOffset:(CGFloat)xOffset
+					swipeForBack:(BOOL)swipeForBack
+							selector:(SEL)selector;
 
-- (void)setLeftBarButtonItemWithImage:(UIImage *)image
+	- (void)setLeftBarButtonItemWithImage:(UIImage *)image
                                 title:(NSString *)title;
 
-- (void)setRightBarButtonItemWithImage:(UIImage *)image
+	- (void)setRightBarButtonItemWithImage:(UIImage *)image
                                 title:(NSString *)title;
 
-- (void)setRightBarButtonItemWithImage:(UIImage *)image
+	- (void)setRightBarButtonItemWithImage:(UIImage *)image
                                  title:(NSString *)title
                               selector:(SEL)selector;
 
-- (UIButton *)setRightBarButtonItemWithImage:(UIImage *)image
+	- (UIButton *)setRightBarButtonItemWithImage:(UIImage *)image
                                selectedImage:(UIImage *)selectedImage
                                        title:(NSString *)title
                                     selector:(SEL)selector;
 
-- (void)setRightBarButtonItemsWithImageNamesAndTitles:(id)firstObject, ... NS_REQUIRES_NIL_TERMINATION;
+	- (void)setRightBarButtonItemsWithImageNamesAndTitles:(id)firstObject, ... NS_REQUIRES_NIL_TERMINATION;
 
-- (void)setRightBarButtonWith:(UIBarButtonSystemItem)barButtonSystemItem;
-- (void)setRightBarButtonWithTitle:(NSString *)title
+	- (void)setRightBarButtonWith:(UIBarButtonSystemItem)barButtonSystemItem;
+	- (void)setRightBarButtonWithTitle:(NSString *)title
                           andStyle:(UIBarButtonItemStyle)style;
 
 
-- (void)initializeNavigationBarSimpleWithImage:(UIImage *)navigationImage;
+	- (void)initializeNavigationBarSimpleWithImage:(UIImage *)navigationImage;
 
-- (void)setTitleArrangement;
+	- (void)setTitleArrangement;
 
-- (void)goBack;
-- (void)goHome;
+	- (void)goBack;
+	- (void)goHome;
 
-- (void)setPanGestureRecognizer;
-- (void)removePanGestureRecognizer;
-- (void)addOrRemovePanGesture;
-- (void)setNavigationWithNavigationBarHidden:(BOOL)navigationBarHidden andStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
+	- (void)setPanGestureRecognizer;
+	- (void)removePanGestureRecognizer;
+	- (void)addOrRemovePanGesture;
+	- (void)setNavigationWithNavigationBarHidden:(BOOL)navigationBarHidden andStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
-- (void)setScreenTitleWithFontsAndTexts:(id)firstObject, ... NS_REQUIRES_NIL_TERMINATION;
+	- (void)setScreenTitleWithFontsAndTexts:(id)firstObject, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end

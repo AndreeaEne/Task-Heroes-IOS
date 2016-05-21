@@ -11,17 +11,19 @@
 
 @interface EditUserViewController : UIViewController
 
+	// Text Fields.
 	@property (weak, nonatomic) IBOutlet UITextField *firstName;
 	@property (weak, nonatomic) IBOutlet UITextField *lastName;
 	@property (weak, nonatomic) IBOutlet UITextField *email;
 	@property (weak, nonatomic) IBOutlet UITextField *password;
 	@property (weak, nonatomic) IBOutlet UITextField *verifyPassword;
+
+	// Buttons.
 	@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
-	//CoreData
+	// CoreData.
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 	@property(strong, nonatomic) UserData *userData;
 
 

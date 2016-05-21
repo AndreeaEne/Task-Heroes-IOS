@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -14,7 +15,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blu.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="btS-ft-0C9">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                 </imageView>
-                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Heroes" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Heroes" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
                     <rect key="frame" x="20" y="202" width="336" height="43"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="3wJ-Pd-69A"/>
@@ -90,14 +91,14 @@
                     <exclude reference="9pd-Di-vZ1"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="cln-3W-Lhi"/>
+                    <exclude reference="gLU-PG-RIV"/>
                     <exclude reference="K4o-9C-0ya"/>
                     <exclude reference="YfK-ZJ-u6e"/>
                     <exclude reference="hHr-Kb-hCS"/>
                     <exclude reference="yTS-xL-NwU"/>
                     <exclude reference="BH6-NG-qWX"/>
                     <exclude reference="uFF-JF-Jf7"/>
-                    <exclude reference="cln-3W-Lhi"/>
-                    <exclude reference="gLU-PG-RIV"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular">
@@ -106,6 +107,8 @@
                     <include reference="9pd-Di-vZ1"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="cln-3W-Lhi"/>
+                    <include reference="gLU-PG-RIV"/>
                     <include reference="K4o-9C-0ya"/>
                     <include reference="YfK-ZJ-u6e"/>
                     <include reference="hHr-Kb-hCS"/>
@@ -115,8 +118,6 @@
                     <exclude reference="Koa-jz-hwk"/>
                     <exclude reference="fvb-Df-36g"/>
                     <include reference="uFF-JF-Jf7"/>
-                    <include reference="cln-3W-Lhi"/>
-                    <include reference="gLU-PG-RIV"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="208.5" y="5.5"/>

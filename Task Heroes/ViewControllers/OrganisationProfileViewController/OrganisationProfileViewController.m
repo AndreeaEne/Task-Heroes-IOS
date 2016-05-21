@@ -6,16 +6,19 @@
 //  Copyright (c) 2014 Andreea-Daniela Ene. All rights reserved.
 //
 
+/** This view contains the list with all organisations. **/
+
 #import "OrganisationProfileViewController.h"
 #import "SWRevealViewController.h"
 #import "UIViewController+NavigationBar.h"
 #import <CoreData/CoreData.h>
 
-NSString *userID;
-NSMutableArray *orgName;
-NSManagedObjectID *moID;
-UIRefreshControl *refreshControl;
-UIAlertView *alert;
+NSString *userID;									// ID of the current user.
+NSManagedObjectID *moID;							// ID of the current object.
+NSMutableArray *orgName;							// Array with all organisations.
+UIRefreshControl *refreshControl;					// Refresh TableView.
+
+UIAlertView *alert;									// AlertView.
 UITextField *alertTextField1 , *alertTextField2;
 
 
@@ -30,11 +33,10 @@ UITextField *alertTextField1 , *alertTextField2;
 	NSLog(@"OrganisationViewController loaded.");
 	[super viewDidLoad];
 	
-	// Do any additional setup after loading the view.
-	//	orgName = [[NSMutableArray alloc] init];
 	[self setupNavigationBar];
 	[self getOrganizations];
 	
+	// Refresh the table.
 	refreshControl = [[UIRefreshControl alloc] init];
 	[self.orgTable addSubview:refreshControl];
 	[refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
@@ -44,6 +46,8 @@ UITextField *alertTextField1 , *alertTextField2;
 	self.navigationItem.rightBarButtonItem = _addOrg;
 	[[[self navigationItem] rightBarButtonItem] setTintColor:[UIColor whiteColor]];
 	
+	
+	// Set the TableView.
 	alert = [[UIAlertView alloc] initWithTitle:@"Add New Organization"
 									   message:@""
 									  delegate:self
@@ -54,25 +58,20 @@ UITextField *alertTextField1 , *alertTextField2;
 	alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
 	
 	alertTextField1 = [alert textFieldAtIndex:0];
-	//	alertTextField1.keyboardType = UIKeyboardTypeDefault;
 	alertTextField1.placeholder = @"Type Orgianization Name";
 	[[alert textFieldAtIndex:0] setSecureTextEntry:NO];
 	
 	alertTextField2 = [alert textFieldAtIndex:1];
-	//	alertTextField2.keyboardType = UIKeyboardTypeDefault;
 	alertTextField2.placeholder = @"Type Organization Description";
 	[[alert textFieldAtIndex:1] setSecureTextEntry:NO];
 }
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
-#pragma mark navigation bar
-
-- (void)setupNavigationBar
-{
+#pragma mark - Setup Navigation Bar
+- (void)setupNavigationBar {
 	[[UIApplication sharedApplication] setStatusBarHidden: NO];
 	[self.navigationController setNavigationBarHidden: NO];
 	
@@ -80,22 +79,22 @@ UITextField *alertTextField1 , *alertTextField2;
 	[self setRevealButtonWithImage: [UIImage imageNamed:@"reveal-icon.png"]];
 }
 
+// Get info from the server.
 - (void)getOrganizations {
 	userID = [[NSString alloc] init];
 	userData = (UserData *)[self.managedObjectContext
 							existingObjectWithID:moID
 							error:nil];
 	userID = userData.id_user;
-	NSLog(@"userID: %@", userID);
 	
-	//We begin by creating our POST's body as an NSString, and converting it to NSData.
+	// Create POST's body as an NSString, and converting it to NSData.
 	NSString *post = [NSString stringWithFormat:@"user_id=%@", userID];
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
-	//Next up, we read the postData's length, so we can pass it along in the request.
+	// Read the postData's length, so we can pass it along in the request.
 	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	
-	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+	// Create an NSMutableURLRequest, and include our postData.
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/mobile/get/org"]];
 	[request setHTTPMethod:@"POST"];
@@ -107,16 +106,15 @@ UITextField *alertTextField1 , *alertTextField2;
 	NSError *jsonParsingError = nil;
 	NSDictionary *responseFromServer = [NSJSONSerialization JSONObjectWithData:response
 																	   options:0 error:&jsonParsingError];
-	NSLog(@"Response: %@", responseFromServer);
 	
 	orgName = [[NSMutableArray alloc] init];
 	for(NSDictionary *item in responseFromServer) {
-		//NSLog(@"item: %@ ", item[@"task_name"]);
 		[orgName addObject:item[@"organization_name"]];
 	}
 	
 }
 
+#pragma mark - CoreData
 -(void)performFetch {
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -127,23 +125,17 @@ UITextField *alertTextField1 , *alertTextField2;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
 	for (NSManagedObject *managedObject in array) {
 		moID = [managedObject objectID];
-		NSLog(@"moID: %@", moID);
 	}
 }
 
 - (void) setupFetchedResultsController {
 	// 1 - Decide what Entity you want
-	NSString *entityName = @"UserData"; // Put your entity name here
-	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+	NSString *entityName = @"UserData";
  
 	// 2 - Request that Entity
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
- 
-	// 3 - Sort it if you want
-	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
-																					 ascending:YES
-																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
-	// 4 - Fetch it
+
+	// 3 - Fetch it
 	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
 																		managedObjectContext:self.managedObjectContext
 																		  sectionNameKeyPath:nil
@@ -161,11 +153,10 @@ UITextField *alertTextField1 , *alertTextField2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	
 	return [orgName count];
-	
 }
 
+#pragma mark - Setup tableView
 -(UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"cell"];
@@ -178,11 +169,15 @@ UITextField *alertTextField1 , *alertTextField2;
 	return cell;
 }
 
--(IBAction)addTask:(id)sender{
-	[alert show];
-	
+// Refresh data from the table.
+- (void)refreshTable {
+	orgName = nil;
+	[self getOrganizations];
+	[refreshControl endRefreshing];
+	[_orgTable reloadData];
 }
 
+# pragma mark - alerView
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex != 0) {
 		if (alertTextField1.text.length > 0 && alertTextField2.text.length > 0 && [orgName containsObject:alertTextField1.text] == false) {
@@ -201,14 +196,7 @@ UITextField *alertTextField1 , *alertTextField2;
 			[request setHTTPMethod:@"POST"];
 			[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 			[request setHTTPBody:postData];
-			
-			//Request
-			NSURLResponse *requestResponse;
-			NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
-			
-			NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-			
-			NSLog(@"request: %@", requestReply);
+
 			NSString *successMessage = [NSString stringWithFormat:@"The organization %@ has beend added!", alertTextField1.text];
 			UIAlertView *alert = [[UIAlertView alloc]
 								  initWithTitle: @"Announcement"
@@ -257,23 +245,11 @@ UITextField *alertTextField1 , *alertTextField2;
 	}
 }
 
-- (void)refreshTable {
-	//Refresh data from the table
-	orgName = nil;
-	[self getOrganizations];
-	[refreshControl endRefreshing];
-	[_orgTable reloadData];
+-(IBAction)addTask:(id)sender{
+	[alert show];
+	
 }
 
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

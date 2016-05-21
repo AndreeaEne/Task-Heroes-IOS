@@ -11,9 +11,10 @@
 
 @interface MembersViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+	// Tables.
 	@property (weak, nonatomic) IBOutlet UITableView *membersTable;
 
-	//CoreData
+	// CoreData.
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 	@property (strong, nonatomic) UserData *userData;

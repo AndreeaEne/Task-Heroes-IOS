@@ -6,13 +6,14 @@
 //  Copyright (c) 2015 Andreea-Daniela Ene. All rights reserved.
 //
 
+/** This view contains information about the user and has the option to update it. **/
+
 #import "EditUserViewController.h"
 #import "SWRevealViewController.h"
 #import "UIViewController+NavigationBar.h"
 #import <CoreData/CoreData.h>
 
-NSString *id_user;
-
+NSString *id_user;	// ID of the current user.
 
 @interface EditUserViewController ()
 
@@ -25,12 +26,11 @@ NSString *id_user;
 - (void)viewDidLoad {
 	NSLog(@"EditUserViewController loaded.");
 	[super viewDidLoad];
-	// Do any additional setup after loading the view.
 	[self setupNavigationBar];
 	[self setPlaceHolderColor];
-	//[self getUserData];
 }
 
+// Change the color of the placeholder image.
 - (void)setPlaceHolderColor {
 	[self.password setValue:[UIColor whiteColor]
 					forKeyPath:@"_placeholderLabel.textColor"];
@@ -40,9 +40,9 @@ NSString *id_user;
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
+#pragma mark - NavigationBar.
 - (void)setupNavigationBar {
 	[[UIApplication sharedApplication] setStatusBarHidden: NO];
 	[self.navigationController setNavigationBarHidden: NO];
@@ -52,64 +52,48 @@ NSString *id_user;
 	[self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
 }
 
+// Hide Keyboard when pressing out of it.
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	//	NSLog(@"Hide keyboard");
 	[self.view endEditing:YES];
 	[super touchesBegan:touches withEvent:event];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Update info.
+// Save the information that has been change and send it to the server.
 - (IBAction)saveButton:(id)sender {
-	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
 	NSString *post = [NSString stringWithFormat:@"first_name=%@&last_name=%@&email=%@&_id=%@", _firstName.text, _lastName.text, _email.text, id_user];
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
-	//Next up, we read the postData's length, so we can pass it along in the request.
 	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-	//NSData *postDataLogged = [postLogged dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
-	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/update/user"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
-	
-	//Send the request, and read the reply:
+
 	NSURLResponse *requestResponse;
 	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
 	
 	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
 	
-	//Pass Request
+	// Old and new password.
 	NSString *postPass = [NSString stringWithFormat:@"old=%@&new=%@&_id=%@", _password.text, _verifyPassword.text, id_user];
 	NSData *postDataPass = [postPass dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
-	//Next up, we read the postData's length, so we can pass it along in the request.
 	NSString *postLengthPass = [NSString stringWithFormat:@"%lu", (unsigned long)[postDataPass length]];
 	
-	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+	// Send it to the server.
 	NSMutableURLRequest *requestPass = [[NSMutableURLRequest alloc] init];
 	[requestPass setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/change/password"]];
 	[requestPass setHTTPMethod:@"POST"];
 	[requestPass setValue:postLengthPass forHTTPHeaderField:@"Content-Length"];
 	[requestPass setHTTPBody:postDataPass];
 	
-	//Send the request, and read the reply:
+	// Get the response.
 	NSURLResponse *requestResponsePass;
 	NSData *requestHandlerPass = [NSURLConnection sendSynchronousRequest:requestPass returningResponse:&requestResponsePass error:nil];
 	
 	NSString *requestReplyPass = [[NSString alloc] initWithBytes:[requestHandlerPass bytes] length:[requestHandlerPass length] encoding:NSASCIIStringEncoding];
 	
-#warning "Nu verifica daca trimit text gol"
+	//TODO: Doesn't check if the sent text is null.
 	BOOL log = false;
 	BOOL passLog = false;
 	if([requestReply isEqualToString:@"{\"msg\":\"success update!\"}"] || ![requestReply isEqualToString:@""]) {
@@ -122,10 +106,8 @@ NSString *id_user;
 		if([requestReplyPass isEqualToString:@"{\"msg\":\"update succesful\"}"] || ![requestReplyPass isEqualToString:@""]) {
 			passLog = true;
 		}
-	//	NSLog(@"\nlog:%hhd\npassLog: %hhd", log, passLog);
-	//	NSLog(@"requestReply: %@", requestReply);
-	//	NSLog(@"requestReplyPass: %@", requestReplyPass);
 	
+	// Set an alert view to show if the info has been updated.
 	UIAlertView *alert;
 	if(log == true && passLog == true) {
 		alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The user info and the pass have been succesfully updated." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -146,14 +128,9 @@ NSString *id_user;
 	
 }
 
+#pragma mark - Get info from CoreData.
 - (void)getUserData {
-	// Fetching
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"UserData"];
-	// Add Sort Descriptor
-	//NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"email" ascending:YES];
-	//[fetchRequest setSortDescriptors:@[sortDescriptor]];
-	
-	// Execute Fetch Request
 	NSManagedObjectContext *context = [self managedObjectContext];
 	NSError *fetchError = nil;
 	NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
@@ -167,9 +144,6 @@ NSString *id_user;
 			_firstName.text = first_name_user;
 			_lastName.text = last_name_user;
 			_email.text = email_user;
-			
-			NSLog(@"[Edit User] Managed Object: %@", managedObject);
-			NSLog(@"email: %@,\nfirst: %@,\nlast:%@,", email_user, first_name_user, last_name_user);
 		}
 		
 	} else {
@@ -177,25 +151,13 @@ NSString *id_user;
 		NSLog(@"%@, %@", fetchError, fetchError.localizedDescription);
 	}
 	
-	
 	NSError *error;
 	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
 	if (fetchedObjects == nil) {
-		// Handle the error.
+		//TODO: Handle the error.
 	}
-	
-	//	NSString *email_user = userData.email;
-	//	NSString *last_name_user = userData.last_name;
-	//	NSString *first_name_user = userData.first_name;
-	//	id_user = userData.id_user;
-	//	_firstName.text = first_name_user;
-	//	_lastName.text = last_name_user;
-	//	_email.text = email_user;
 }
 
-- (void) performFetch {
-	NSLog(@"[EditUser][Fetch]userData: %@", userData);
-}
 
 - (NSManagedObjectContext *) managedObjectContext {
 	NSManagedObjectContext *context = nil;
@@ -209,31 +171,25 @@ NSString *id_user;
 - (void) viewWillAppear:(BOOL)animated {
 	[self getUserData];
 	[self setupFetchedResultsController];
-	
 }
 
 - (void) setupFetchedResultsController
 {
 	// 1 - Decide what Entity you want
-	NSString *entityName = @"UserData"; // Put your entity name here
-	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+	NSString *entityName = @"UserData";
  
 	// 2 - Request that Entity
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
- 
-	// 3 - Filter it if you want
-	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
- 
-	// 4 - Sort it if you want
+	
+	// 3 - Sort it.
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
 																					 ascending:YES
 																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
-	// 5 - Fetch it
+	// 4 - Fetch it.
 	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
 																		managedObjectContext:self.managedObjectContext
 																		  sectionNameKeyPath:nil
 																				   cacheName:nil];
-	[self performFetch];
 }
 
 

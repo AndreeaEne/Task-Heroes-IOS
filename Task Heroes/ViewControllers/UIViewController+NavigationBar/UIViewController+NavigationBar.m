@@ -22,10 +22,10 @@
 	CGFloat scale = imageSize.height / navigationHeight;
 	CGFloat width = imageSize.width;
 	CGFloat height = imageSize.height;
-	//if( scale > 1 ) {
+
 	width /= scale;
 	height /= scale;
-	//}
+	
 	
 	CGRect buttonFrame = CGRectMake(0, (navigationHeight - height) / 2, width, height);
 	
@@ -523,11 +523,11 @@
 		
 		NSMutableArray *argumentsArray = [NSMutableArray new];
 		[argumentsArray addObject:firstObject];
-		va_start(argumentList, firstObject);          // scan for arguments after firstObject.
-		while ((eachObject = va_arg(argumentList, id))) // get rest of the objects until nil is found
+		va_start(argumentList, firstObject);          // Scan for arguments after firstObject.
+		while ((eachObject = va_arg(argumentList, id))) // Get rest of the objects until nil is found
 		{
 			[argumentsArray addObject:eachObject];
-			// do something with each object
+			// Do something with each object
 		}
 		va_end(argumentList);
 		

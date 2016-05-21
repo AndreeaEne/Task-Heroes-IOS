@@ -11,11 +11,13 @@
 
 @interface OrganisationProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+	// Tables.
 	@property (weak, nonatomic) IBOutlet UITableView *orgTable;
 
+	// Button items.
 	@property (strong, nonatomic) UIBarButtonItem *addOrg;
 
-	//CoreData
+	// CoreData.
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 	@property (strong, nonatomic) UserData *userData;

@@ -11,6 +11,8 @@
 #import "MembersViewController.h"
 #import <CoreData/CoreData.h>
 
+/** This view contains the table from RevealViewController. **/
+
 NSManagedObjectID *moID;
 
 @interface TableViewController ()
@@ -19,19 +21,13 @@ NSManagedObjectID *moID;
 
 @implementation TableViewController {
 	NSArray *content;
-	
 	__weak IBOutlet UIImageView *profileImageView;
 }
 
 - (void)viewDidLoad {
 	NSLog(@"TableViewController loaded.");
 	[super viewDidLoad];
-	//NSLog(@"avatar.image = %@", _avatar.image);
-	//[self setNewImage:(_avatar.image)];
-	
-	//NSLog(@"avatar.image = %@", _avatar.image);
-	// Do any additional setup after loading the view.
-//	[self setNewImage:[UIImage imageNamed:@"Default.jpg"]];
+
 	self.view.backgroundColor = [UIColor blackColor];
 	
 	self->profileImageView.layer.cornerRadius = self->profileImageView.frame.size.width / 2;
@@ -40,14 +36,10 @@ NSManagedObjectID *moID;
 	self->profileImageView.layer.borderWidth = 3.0f;
 	self->profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
 	
-	
-	//	[[self navigationController] setNavigationBarHidden:NO animated:YES];
 	content = [NSArray arrayWithObjects:@"Dashboard", @"Volunteers", @"Organisations", @"Projects", @"Edit User Profile", @"Log Out", nil];
-	//	if([content isEqual: @"Members"]) {
-	//	[self performSegueWithIdentifier: @"segueToMembers" sender: self];
-	//	}
 }
 
+# pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [content count];
 }
@@ -63,11 +55,6 @@ NSManagedObjectID *moID;
 	
 	cell.textLabel.text = [content objectAtIndex:indexPath.row];
 	return cell;
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,6 +89,7 @@ NSManagedObjectID *moID;
 	}
 }
 
+#pragma mark - AlertView.
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex != 0)  /* 0 == Cancel button*/ {
 		_userData = (UserData *)[self.managedObjectContext
@@ -114,6 +102,7 @@ NSManagedObjectID *moID;
 		}
 }
 
+#pragma mark - Segue.
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
 		SWRevealViewControllerSegue* rvcs = (SWRevealViewControllerSegue*) segue;
@@ -132,6 +121,7 @@ NSManagedObjectID *moID;
 	}
 }
 
+#pragma mark - Avatar image.
 - (void) viewWillAppear:(BOOL)animated {
 	[self setNewImage:(_avatar.image)];
 	[self setupFetchedResultsController];
@@ -145,23 +135,19 @@ NSManagedObjectID *moID;
 	_avatar.image = [[UIImage alloc] initWithData:imgData];
 }
 
-- (void) setupFetchedResultsController
-{
+- (void) setupFetchedResultsController {
 	// 1 - Entity name
 	NSString *entityName = @"UserData";
-	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
  
 	// 2 - Request  Entity
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
- 
-	// 3 - Filter it if you want
-	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
- 
-	// 4 - Sort it if you want
+	
+	// 3 - Sort it if you want
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
 																					 ascending:YES
 																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
-	// 5 - Fetch it
+ 
+	// 4 - Fetch it
 	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
 																		managedObjectContext:self.managedObjectContext
 																		  sectionNameKeyPath:nil
@@ -169,32 +155,27 @@ NSManagedObjectID *moID;
 	[self performFetch];
 }
 
--(void)performFetch{
+#pragma mark - CoreData.
+-(void)performFetch {
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"UserData" inManagedObjectContext:moc];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription];
-	
  
 	NSError *error;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
-	if (array == nil)
-	{
-		// Deal with error...
+	if (array == nil) {
+		//TODO: Deal with error.
 	}
-	//	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
 	
 	for (NSManagedObject *managedObject in array) {
 		moID = [managedObject objectID];
-		//		NSLog(@"moID: %@", moID);
 	}
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
-	//	NSLog(@"viewDidLoad: moID: %@", moID);
-	
 	NSManagedObjectContext *context = nil;
 	id delegate = [[UIApplication sharedApplication] delegate];
 	if ([delegate performSelector:@selector(managedObjectContext)]) {
@@ -203,16 +184,8 @@ NSManagedObjectID *moID;
 	return context;
 }
 
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+}
 
 @end

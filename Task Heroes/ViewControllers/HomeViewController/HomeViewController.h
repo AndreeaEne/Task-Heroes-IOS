@@ -13,15 +13,17 @@
 
 @interface HomeViewController : UIViewController
 
+	// TextFields.
 	@property (weak, nonatomic) IBOutlet UITextField *emailField;
 	@property (weak, nonatomic) IBOutlet UITextField *passField;
+
+	// Buttons.
 	@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 
-	//CoreData
+	// CoreData,
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 	@property(strong, nonatomic) UserData *userData;
 
 @end

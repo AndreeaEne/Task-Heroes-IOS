@@ -11,15 +11,18 @@
 
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-
+	// TableViews.
 	@property (weak, nonatomic) IBOutlet UITableView *TableViewContent;
+
+	// Images.
 	@property (weak, nonatomic) IBOutlet UIImageView *avatar;
 
-	//CoreData
+	// CoreData.
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 	@property (strong, nonatomic) UserData *userData;
 
+	// Methods.
 	- (void) setNewImage: (UIImage*) setimage;
 
 @end

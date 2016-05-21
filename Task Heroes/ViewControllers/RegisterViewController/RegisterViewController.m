@@ -11,15 +11,17 @@
 #import <CoreData/CoreData.h>
 #import "WelcomeViewController.h"
 
+/** This view contains the register page. **/
+
 @interface RegisterViewController ()
 
 @end
 
 @implementation RegisterViewController {
-	NSArray *content;
-	BOOL checkSignUp;
-	NSManagedObjectID *moID;
-	NSString *selectedType;
+	NSManagedObjectID *moID;	// ID of the current object.
+	NSArray *content;			// List of organisation types.
+	BOOL checkSignUp;			// Checks if all data has been completed.
+	NSString *selectedType;		// The organisation type that has been selected.
 }
 
 @synthesize firstnameField, lastnameField, emailField, passField, passConfirmField, OrgNameField, orgTypeButton, orgTypePicker, userData;
@@ -27,7 +29,7 @@
 - (void)viewDidLoad {
 	NSLog(@"RegisterViewController loaded.");
 	[super viewDidLoad];
-	// Do any additional setup after loading the view.
+
 	selectedType = [[NSString alloc] init];
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
 	[orgTypePicker setAlpha:0];
@@ -37,9 +39,7 @@
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
-
 
 - (BOOL) textFieldShouldReturn:(UITextField *) textField {
 	BOOL didResign = [textField resignFirstResponder];
@@ -52,52 +52,19 @@
 	
 }
 
-/*
- - (void)textFieldDidBeginEditing:(UITextField *)textField
- {
- activeField = textField;
- }
- 
- - (void)textFieldDidEndEditing:(UITextField *)textField
- {
- activeField = nil;
- }
- */
-- (IBAction)selectPicker:(id)sender
-{
+// Hide Keyboard.
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	[self.view endEditing:YES];
+	[super touchesBegan:touches withEvent:event];
+}
+
+#pragma mark - PickerView.
+- (IBAction)selectPicker:(id)sender {
 	[UIView animateWithDuration:0.6 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		[orgTypePicker setAlpha:1];
 	} completion:nil];
 }
 
-//Hide Keyboard
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	NSLog(@"Hide keyboard");
-	//NSLog(@"touchesBegan:withEvent:");
-	[self.view endEditing:YES];
-	[super touchesBegan:touches withEvent:event];
-}
-/*
- - (IBAction)hidePicker {
- NSLog(@"Hide Picker");
- UIPickerView *pickerView = [[UIPickerView alloc] init]; // default frame is set
- float pvHeight = pickerView.frame.size.height;
- float y = self.view.bounds.size.height - (pvHeight * -2); // the root view of view controller
- [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
- self.orgTypePicker.frame = CGRectMake(0 , y, pickerView.frame.size.width, pvHeight);
- } completion:nil];
- }
- 
- - (IBAction)showPicker {
- NSLog(@"Show picker");
- UIPickerView *pickerView = [[UIPickerView alloc] init]; // default frame is set
- float pvHeight = pickerView.frame.size.height;
- float y = self.view.bounds.size.height - (pvHeight); // the root view of view controller
- [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
- self.orgTypePicker.frame = CGRectMake(0 , y, pickerView.frame.size.width, pvHeight);
- } completion:nil];
- }
- */
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
 	return 1;
 }
@@ -122,10 +89,7 @@
 	BOOL lastName = [lastnameField.text length] > 0;
 	BOOL orgName = [OrgNameField.text length] > 0;
 	
-#warning Dynamic messages!
-	
-//	[self performSegueWithIdentifier: @"SignUp" sender: self];
-	
+//TODO: warning Dynamic messages!
 	if (!email && !pass) {
 		msg = @"Enter a valid email and password.";
 	}
@@ -157,79 +121,64 @@
 		[alert show];
 	}
 	
-	if (checkSignUp == 1 && [self Register] == 1){
+	if (checkSignUp == 1 && [self Register] == 1) {
 		[self performSegueWithIdentifier: @"SignUp" sender: self];
 	}
 }
-/* Transmite info la urmatorul view
- - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
- if ([identifier isEqualToString:@"SignUp"]) {
- NSLog(@"Segue Blocked");
- //Put your validation code here and return YES or NO as needed
- if (checkSignUp == 1)
- return NO;
- }
- 
- return YES;
- }
- */
 
+// Send the added data to server.
 - (BOOL)Register {
-	//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
+	// Create our POST's body as an NSString, and convert it to NSData.
 	NSString *post = [NSString stringWithFormat:@"Email=%@&Pass1=%@&First=%@&Last=%@", emailField.text, passField.text, firstnameField.text, lastnameField.text];
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 	
-	//Next up, we read the postData's length, so we can pass it along in the request.
+	// Read the postData's length, so it can passed along in the request.
 	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	
-	//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+	// Create an NSMutableURLRequest, and include our postData.
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/register/user"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
 	
-	//And finally, we can send our request, and read the reply:
+	// Send our request, and read the reply.
 	NSURLResponse *requestResponse;
 	NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
 	
 	NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-	//requestReply = [NSString stringWithFormat:@"msg"];
 	
 	BOOL log = false;
 	if([requestReply isEqualToString:@"{\"success\":\"User Inserted successfuly!\"}"]) {
 		log = true;
 		
-		//We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
+		// Create our POST's body as an NSString, and convert it to NSData.
 		NSString *post = [NSString stringWithFormat:@"username=%@&pass=%@", emailField.text, passField.text];
 		NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 		
-		//Next up, we read the postData's length, so we can pass it along in the request.
+		// Read the postData's length, so we can pass it along in the request.
 		NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 		
-		//Now that we have what we'd like to post, we can create an NSMutableURLRequest, and include our postData
+		// Create an NSMutableURLRequest, and include the postData.
 		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 		[request setURL:[NSURL URLWithString:@"https://task-heroes.herokuapp.com/login/user"]];
 		[request setHTTPMethod:@"POST"];
 		[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 		[request setHTTPBody:postData];
 		
-		//Send the request, and read the reply:
+		// Send the request, and read the reply.
 		NSURLResponse *requestResponse;
 		NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
 		
 		NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-		//requestReply = [NSString stringWithFormat:@"msg"];
 		
 		NSArray *components = [requestReply componentsSeparatedByString:@","];
 		NSLog(@"%@",components);
 		
-		//Save data about User
+		// Save data about User.
 		NSString* id_user = [[[[requestReply componentsSeparatedByString:@"_id\":\""]objectAtIndex:1] componentsSeparatedByString:@"\""]objectAtIndex:0];
 		
-		NSLog(@"\n ID: %@",id_user);
-		
-		//Save to Core Data
+		// Save to Core Data.
 		userData = (UserData *)[self.managedObjectContext
 								existingObjectWithID:moID
 								error:nil];
@@ -247,6 +196,7 @@
 	return log;
 }
 
+#pragma mark - CoreData.
 -(void)performFetch {
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -259,9 +209,9 @@
 	NSError *error;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
 	if (array == nil) {
-		// Deal with error...
+		//TODO: Deal with error.
 	}
-	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
+	
 	for (NSManagedObject *managedObject in array) {
 		moID = [managedObject objectID];
 		NSLog(@"moID: %@", moID);
@@ -269,8 +219,6 @@
 }
 
 - (NSManagedObjectContext *) managedObjectContext {
-	//	NSLog(@"viewDidLoad: moID: %@", moID);
-	
 	NSManagedObjectContext *context = nil;
 	id delegate = [[UIApplication sharedApplication] delegate];
 	if ([delegate performSelector:@selector(managedObjectContext)]) {
@@ -280,21 +228,17 @@
 }
 
 - (void) setupFetchedResultsController {
-	// 1 - Decide what Entity you want
-	NSString *entityName = @"UserData"; // Put your entity name here
-	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+	// 1 - Decide what Entity you want.
+	NSString *entityName = @"UserData";
  
-	// 2 - Request that Entity
+	// 2 - Request that Entity.
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
  
-	// 3 - Filter it if you want
-	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
- 
-	// 4 - Sort it if you want
+	// 3 - Sort it if you want
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
 																					 ascending:YES
 																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
-	// 5 - Fetch it
+	// 4 - Fetch it
 	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
 																		managedObjectContext:self.managedObjectContext
 																		  sectionNameKeyPath:nil
@@ -307,13 +251,12 @@
 	[self setupFetchedResultsController];
 }
 
+#pragma mark - PickerView.
 - (void)pickerView:(UIPickerView *)orgTypePicker didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	//	NSLog(@"Selected content: %@. Index of selected color: %ld", [content objectAtIndex:row], (long)row);
 	selectedType = [content objectAtIndex:row];
-	//	NSLog(@"ProjectTO = %@", _projectTo);
 }
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+#pragma mark - Segue.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if([segue.identifier isEqualToString:@"SignUp"]){
 		WelcomeViewController *sendTo = segue.destinationViewController;

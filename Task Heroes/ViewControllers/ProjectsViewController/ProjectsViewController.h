@@ -10,15 +10,17 @@
 
 @interface ProjectsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *projectsTable;
+	// Tables.
+	@property (weak, nonatomic) IBOutlet UITableView *projectsTable;
 
-@property (strong, nonatomic) NSMutableArray *organisationID;
-@property (strong, nonatomic) NSMutableArray *projectID;
-@property (strong, nonatomic) NSMutableArray *project_name;
-@property (strong, nonatomic) NSMutableArray *organisation_name;
-//@property (strong, nonatomic) NSMutableArray *project_description;
+	// Arrays.
+	@property (strong, nonatomic) NSMutableArray *organisationID;
+	@property (strong, nonatomic) NSMutableArray *projectID;
+	@property (strong, nonatomic) NSMutableArray *project_name;
+	@property (strong, nonatomic) NSMutableArray *organisation_name;
 
-@property (strong, nonatomic) UIBarButtonItem *addTask;
+	// Button items.
+	@property (strong, nonatomic) UIBarButtonItem *addTask;
 
 @end
 

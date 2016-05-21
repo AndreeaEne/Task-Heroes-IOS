@@ -11,23 +11,30 @@
 #import "UserData.h"
 
 @interface DashboardViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate> { }
-	@property(weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
-	@property (weak, nonatomic) IBOutlet UITableView *tableView;
-	@property (weak, nonatomic) IBOutlet UIBarButtonItem *quitButton;
-	//@property (weak, nonatomic) IBOutlet UICollectionView *dashboardCollection;
 
+	// Bar button items.
+	@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
+	@property (weak, nonatomic) IBOutlet UIBarButtonItem *quitButton;
+
+	// Tables.
+	@property (weak, nonatomic) IBOutlet UITableView *tableView;
 	@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 	@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+
+
+	// Arrays.
 	@property (nonatomic, strong) NSArray *imageArray;
-	@property (weak, nonatomic) IBOutlet UILabel *taskSection;
 	@property NSArray *dataTest;
 
+	// Image views.
 	@property (weak, nonatomic) IBOutlet UIImageView *wallImage;
 
+	// Labels.
 	@property (weak, nonatomic) IBOutlet UILabel *points;
 	@property (weak, nonatomic) IBOutlet UILabel *tasks;
+	@property (weak, nonatomic) IBOutlet UILabel *taskSection;
 
-	//CoreData
+	// CoreData.
 	@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 	@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 	@property (strong, nonatomic) UserData *userData;

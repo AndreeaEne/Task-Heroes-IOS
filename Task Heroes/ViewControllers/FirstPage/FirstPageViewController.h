@@ -10,7 +10,8 @@
 
 @interface FirstPageViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *label;
+	// Labels.
+	@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 

@@ -6,13 +6,22 @@
 //  Copyright (c) 2015 Andreea-Daniela Ene. All rights reserved.
 //
 
+/** This view checks if the user logged in already. **/
+
 #import "BeforeHomePageViewController.h"
 #import "SingleTaskViewController.h"
 #import "DashboardViewController.h"
 #import "SWRevealViewController.h"
 
-//BOOL logged;
-NSManagedObjectID *moID;
+/* 
+  First method to check if the ID of the current user is the same as the one saved in CoreData:
+  use a bool variable that is true if the ID of the current user is the same ad the one in CoreData,
+  and false if it is different.
+ 
+BOOL logged;
+*/
+
+NSManagedObjectID *moID;	// ID of the current object.
 
 @interface BeforeHomePageViewController ()
 
@@ -24,52 +33,49 @@ NSManagedObjectID *moID;
 	NSLog(@"BeforeHomePageViewController loaded.");
     [super viewDidLoad];
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
-//	logged = false;
-    // Do any additional setup after loading the view.
+	// logged = false;
 }
 
 - (void)verifyLogIn{
-	_userData = (UserData *)[self.managedObjectContext
-							existingObjectWithID:moID
-							error:nil];
-//	logged = _userData.id_user ?: true;
-//	NSLog(@"userID: %@", _userData.id_user);
+	/*
+	 Set the logged variable to *true* if it is the same as the one saved in CoreData.
+	
+	logged = _userData.id_user ?: true; NSLog(@"userID: %@", _userData.id_user);
+	 */
+	
+	/* 
+	 In the second method there is only one user saved in CoreData.
+	 Every time the user logs out, the ID changes to the value 0.
+	*/
 	if (![_userData.id_user isEqual: @"0"]) {
+		// If the user logged in already (the ID is not 0), go directly to the Dashboard controller.
 		NSLog(@"The user is logged in");
-		
 		SWRevealViewController *rmvc = (SWRevealViewController *)[[self revealViewController] rearViewController];
 		[rmvc performSegueWithIdentifier:@"segueToDashboard" sender:rmvc];
-		
-//		UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//		DashboardViewController *newRootViewController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"dashboardViewController"];
-//		[[UIApplication sharedApplication].keyWindow  setRootViewController:newRootViewController];
 	}
 	else
-		NSLog(@"The user is logged off");
+		NSLog(@"The user is logged out");
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void) setupFetchedResultsController
+#pragma mark - CoreData.
+- (void)setupFetchedResultsController
 {
 	// 1 - Entity name
 	NSString *entityName = @"UserData";
-	NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
  
-	// 2 - Request  Entity
+	// 2 - Request Entity
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
  
-	// 3 - Filter it if you want
-	//request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
  
-	// 4 - Sort it if you want
+	// 3 - Sort it by first_name
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"first_name"
 																					 ascending:YES
 																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
-	// 5 - Fetch it
+	// 4 - Fetch it
 	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
 																		managedObjectContext:self.managedObjectContext
 																		  sectionNameKeyPath:nil
@@ -77,7 +83,7 @@ NSManagedObjectID *moID;
 	[self performFetch];
 }
 
--(void)performFetch{
+- (void)performFetch {
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"UserData" inManagedObjectContext:moc];
@@ -90,19 +96,21 @@ NSManagedObjectID *moID;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
 	if (array == nil)
 	{
-		// Deal with error...
+		//TODO: Deal with error.
 	}
-//	NSLog(@"array: %@\n, Conturi: %lu", array, (unsigned long)[array count]);
 	
+	/* 
+	 Shows the number of accounts. This is not used anymore because only one account is saved in CoreData.
+	 
+	 NSLog(@"array: %@\n, Number of accounts: %lu", array, (unsigned long)[array count]);
+	*/
 	for (NSManagedObject *managedObject in array) {
 		moID = [managedObject objectID];
-//		NSLog(@"moID: %@", moID);
+		// NSLog(@"moID: %@", moID);
 	}
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
-	//	NSLog(@"viewDidLoad: moID: %@", moID);
-	
 	NSManagedObjectContext *context = nil;
 	id delegate = [[UIApplication sharedApplication] delegate];
 	if ([delegate performSelector:@selector(managedObjectContext)]) {
@@ -117,14 +125,5 @@ NSManagedObjectID *moID;
 	[self verifyLogIn];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
