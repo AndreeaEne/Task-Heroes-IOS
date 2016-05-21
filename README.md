@@ -1,3 +1,4 @@
 Task-Heroes-IOS
 ===============
-The only tool for organisation management and collaboration in and between NGOs.
+
+iOS Application in Objective-C focused on organisation management and collaboration in and between NGOs.
